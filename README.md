@@ -1,3 +1,3 @@
 <h1 align='center'>Welcome to my Portfolio 👋🏼</h1>
 
-### 🏊🏼‍♂️ [**Check it out!](https://swim.codes)
+### 🏊🏼‍♂️ [Check it out!](https://swim.codes)
