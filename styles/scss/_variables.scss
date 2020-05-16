@@ -14,3 +14,31 @@ $projectsYellow: #E3A93D;
 $projectsPurple: #494C8F;
 $projectsGreen: #167E63;
 $projectsRed: #DF5644;
+$projectsBlack: #414342;
+
+// Typefaces
+$mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+@mixin headingType($sizeValue, $colorValue: $mainWhite) {
+    font-family: $mainFont;
+    font-size: $sizeValue;
+    font-weight: 500;
+    color: $colorValue;
+
+    // Confirm these are the right measurements
+    letter-spacing: 0.05rem;
+    line-height: 1;
+}
+
+@mixin bodyType($sizeValue, $weightValue: 400, $colorValue: $mainWhite) {
+    font-family: $mainFont;
+    font-size: $sizeValue;
+    font-weight: $weightValue;
+    color: $colorValue;
+
+    // Confirm these are the right measurements
+    letter-spacing: 0.05rem;
+    line-height: 1.4;
+    // Make this a variable later
+    // margin-bottom: 30px;
+}
