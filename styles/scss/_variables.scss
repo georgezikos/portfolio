@@ -1,3 +1,6 @@
+// Other
+$phi: 1.6180339887498948482;
+
 // Primary Palette
 $mainBlack: #161616;
 $mainWhite: #DDDCE1;
@@ -27,7 +30,7 @@ $mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
     // Confirm these are the right measurements
     letter-spacing: 0.05rem;
-    line-height: 1;
+    line-height: $sizeValue;
 }
 
 @mixin bodyType($sizeValue, $weightValue: 400, $colorValue: $mainWhite) {
@@ -37,8 +40,8 @@ $mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
     color: $colorValue;
 
     // Confirm these are the right measurements
-    letter-spacing: 0.05rem;
-    line-height: 1.4;
+    letter-spacing: 0rem;
+    line-height: $sizeValue;
     // Make this a variable later
     // margin-bottom: 30px;
 }

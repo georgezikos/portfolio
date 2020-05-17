@@ -1,6 +1,11 @@
 // Base
 html {
-    @include bodyType(62.5%)
+    @include bodyType(62.5%);
+    background: $mainBlack;
+}
+
+*::selection {
+    background: rgba(76, 71, 249, 0.99);
 }
 
 h1,
@@ -9,6 +14,10 @@ h3,
 h4,
 h5,
 h6 {
+    margin: 0;
+}
+
+p {
     margin: 0;
 }
 

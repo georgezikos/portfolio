@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>George Zikos | Frontend Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/54ea624771.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
@@ -12,12 +13,16 @@
     
     <header class="section section--header">
         <nav class="header__nav">
-            <ul class="nav__links clearfix">
-                <li class="main-link">
-                    <a href="#">Projects</a>
-                </li>
+            <div class="nav__branding">
+                <img class="wordmark" src="./assets/logo--wordmark.svg" alt="#">
+                <img class="globe" src="./assets/logo--globe.svg" alt="#">
+            </div>
+            <ul class="nav__links">
                 <li class="main-link">
                     <a href="#">About</a>
+                </li>
+                <li class="main-link">
+                    <a href="#">Projects</a>
                 </li>
                 <li class="main-link">
                     <a href="#">Contact</a>
@@ -25,33 +30,64 @@
             </ul>
         </nav>
         <div class="section-container">
-
+            <h1 class="main-heading">George Zikos</h1>
+            <h2 class="secondary-heading">Frontend <span class="line-break">Developer <i class="far fa-arrow-right"></i></span></h2>
         </div>
     </header>
 
     <section class="section section--about">
-        <div class="section-container">
+        <div class="section-container container--left">
 
+        </div>
+        <div class="section-container container--right">
+            <p class="main-paragraph">
+                Former wellness professional in the pursuit of making meaningful contributions to people’s lives through technology.
+                <span class="line-break">
+                    Reach out at <span class="underline">hello@swim.codes</span>
+                </span>
+            </p>
         </div>
     </section>
 
-    <section class="section section--skills">
+    <!-- <section class="section section--skills">
         <div class="section-container">
         
         </div>
-    </section>
+    </section> -->
 
     <main class="section section--projects">
-        <div class="section-container">
-        
+        <div class="section-container container--left">
+            <div class="container--top">
+                <div class="projects__category">
+                    <h3 class="third-headline">Live</h3>
+                </div>
+                <ul class="projects__list">
+                    <li class="list__item">Macro Calculator</li>
+                    <li class="list__item">Recipease</li>
+                    <li class="list__item">Fridge Verses</li>
+                </ul>
+            </div>
+            <div class="container--bottom">
+                <div class="projects__category">
+                    <h3 class="third-headline">WIP</h3>
+                </div>
+                <ul class="projects__list">
+                    <li class="list__item">Macro Calculator</li>
+                    <li class="list__item">Recipease</li>
+                    <li class="list__item">Fridge Verses</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-container container--right">
+
         </div>
     </main>
-
+<!-- 
     <footer class="section section--footer">
         <div class="section-container">
 
         </div>
-    </footer>
+    </footer> -->
 
     
     <!-- <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
