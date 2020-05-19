@@ -357,6 +357,11 @@ img {
   border: 1px solid #4C47F9;
 }
 
+.nav__branding:hover > .wordmark {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
 @media (max-width: 768px) {
   .nav__branding {
     display: none;
@@ -364,8 +369,8 @@ img {
 }
 
 .nav__branding .wordmark {
-  -webkit-animation: wordmark 6s linear infinite normal;
-          animation: wordmark 6s linear infinite normal;
+  -webkit-animation: wordmark 6s linear infinite running;
+          animation: wordmark 6s linear infinite running;
 }
 
 @-webkit-keyframes wordmark {
@@ -505,12 +510,6 @@ img {
   }
 }
 
-@media (max-width: 768px) {
-  .main-heading {
-    text-align: center;
-  }
-}
-
 .secondary-heading {
   border: 1px solid #4C47F9;
   font-family: "Inter", Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -568,12 +567,6 @@ img {
     color: #DDDCE1;
     letter-spacing: 0.05rem;
     line-height: calc(2.3rem + 2.8vw);
-  }
-}
-
-@media (max-width: 768px) {
-  .secondary-heading {
-    text-align: center;
   }
 }
 
@@ -754,6 +747,61 @@ img {
   .main-paragraph .line-break .underline {
     border-bottom: 3px solid #DDDCE1;
   }
+}
+
+.section--skills {
+  padding-top: 40px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .section--skills .section-container {
+    height: calc(100% - 230px);
+  }
+}
+
+.section--skills .skills__banner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 115px;
+  width: calc(100vw - 175px);
+  background: transparent;
+  margin: 0 30px 0 145px;
+  border-bottom: 6px solid #DDDCE1;
+  border-top: 6px solid #DDDCE1;
+  mix-blend-mode: difference;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .section--skills .skills__banner {
+    margin: 0;
+    width: 100vw;
+  }
+}
+
+.section--skills .skills__banner .skills__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  font-family: "Inter", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: calc(3.25rem + 1.35vw);
+  font-weight: 400;
+  color: #DDDCE1;
+  letter-spacing: 0rem;
+  line-height: calc(3.25rem + 1.35vw);
+  line-height: calc(115px - 12px);
+}
+
+.section--skills .skills__banner .skills__list .main-skill {
+  white-space: nowrap;
+}
+
+.section--skills .skills__banner .skills__list .list__divider {
+  display: inline-block;
+  margin: 0 20px;
 }
 
 .section--projects {

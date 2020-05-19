@@ -20,6 +20,8 @@ $projectsRed: #DF5644;
 $projectsBlack: #414342;
 
 // Typefaces
+// '-apple-system' , 'BlinkMacSystemFont'
+
 $mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 @mixin headingType($sizeValue, $colorValue: $mainWhite) {
