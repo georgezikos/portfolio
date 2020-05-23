@@ -60,51 +60,26 @@
             height: calc(61.8% - 115px * 0.618);
             margin: 0;
         }
-    }
-}
 
-.main-paragraph {
-    @include bodyType(calc(3.25rem + 1.35vw));
-    line-height: 1.2;
-    border: 1px solid $mainPurple;
-    
-    @media (min-width: 1680px) {
-        @include bodyType(5.5rem);
-    }
+        .line-break {
+            display: block;
+            border: 1px solid $mainPurple;
+            margin-top: 4.25%;
 
-    @media (max-width: 929px) {
-        @include bodyType(calc(2.75rem + 1.35vw));
-        line-height: 1.2;
-    }
+            .underline {
+                display: inline-block;
+                padding-bottom: 1.8%;
+                // padding-bottom: 15px;
+                border-bottom: 4px solid $mainWhite;
+                // transition: all ease 150ms;
 
-    @media (max-width: 813px) {
-        @include bodyType(calc(2.5rem + 1.35vw));
-        line-height: 1.3;
-    }
+                &:hover {
+                    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; /*!emojicursor.app*/
+                }
 
-    @media (max-width: 768px) {
-        @include bodyType(calc(2rem + 1.35vw));
-        line-height: 1.4;
-    }
-
-    .line-break {
-        display: block;
-        border: 1px solid $mainPurple;
-        margin-top: 4.25%;
-
-        .underline {
-            display: inline-block;
-            padding-bottom: 1.8%;
-            // padding-bottom: 15px;
-            border-bottom: 4px solid $mainWhite;
-            // transition: all ease 150ms;
-
-            &:hover {
-                cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; /*!emojicursor.app*/
-            }
-
-            @media (max-width: 768px) {
-                border-bottom: 3px solid $mainWhite;
+                @media (max-width: 768px) {
+                    border-bottom: 3px solid $mainWhite;
+                }
             }
         }
     }

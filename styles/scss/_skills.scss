@@ -24,7 +24,7 @@
             animation-play-state: paused;
         }
 
-        @media (min-width: 1680px) {
+        @media (min-width: 1681px) {
             width: auto;
         }
 
@@ -51,7 +51,7 @@
             animation: marquee 12s linear infinite;
             transform: translate3d(0, 0, 0);
 
-            @media (min-width: 1680px) {
+            @media (min-width: 1681px) {
                 @include bodyType(5.5rem);
                 line-height: calc(115px - 12px);
             }
