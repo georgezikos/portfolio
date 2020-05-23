@@ -11,8 +11,8 @@
 <body>
 
     
-    <header class="section section--header">
-        <nav class="header__nav">
+    <header class="section section--header wrapper">
+        <!-- <nav class="header__nav">
             <div class="nav__branding">
                 <img class="wordmark" src="./assets/logo--wordmark.svg" alt="#">
                 <img class="globe" src="./assets/logo--globe.svg" alt="#">
@@ -28,14 +28,16 @@
                     <a href="#">Contact</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
+
         <div class="section-container">
             <h1 class="main-heading">George Zikos</h1>
             <h2 class="secondary-heading">Frontend <span class="line-break">Developer <i class="far fa-arrow-right"></i></span></h2>
         </div>
+
     </header>
 
-    <section class="section section--about">
+    <section class="section section--about wrapper">
         <div class="section-container container--left">
 
         </div>
@@ -49,7 +51,7 @@
         </div>
     </section>
 
-    <section class="section section--skills">
+    <section class="section section--skills wrapper">
 
         <div class="skills__banner">
 
@@ -101,6 +103,57 @@
                 <li class="main-skill">
                     Adobe Creative Suite
                 </li>            
+                <span class="list__divider">•</span>
+            </ul>
+            <ul class="skills__list skill__list--wrap">
+                <li class="main-skill">
+                    HTML
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    CSS
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Javascript
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    React
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    BEM
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Sass
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    jQuery
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    GitHub
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Visual Studio Code
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Sketch
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Figma
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Adobe Creative Suite
+                </li>            
+                <span class="list__divider">•</span>
             </ul>
 
         </div>
@@ -109,14 +162,14 @@
         </div>
     </section>
 
-    <main class="section section--projects">
+    <main class="section section--projects wrapper">
         <div class="section-container container--left">
             <div class="container--top">
                 <div class="projects__category">
                     <h3 class="third-headline">Live</h3>
                 </div>
                 <ul class="projects__list">
-                    <li class="list__item">Macro Calculator</li>
+                    <li class="list__item list__item--active">Macro Calculator</li>
                     <li class="list__item">Recipease</li>
                     <li class="list__item">Fridge Verses</li>
                 </ul>
@@ -133,7 +186,30 @@
             </div>
         </div>
         <div class="section-container container--right">
+            <div class="projects__macro-calc">
+                
+                <h4 class="fourth-headline">Macro Calculator</h4>
 
+                <ul class="macro-calc__skills">
+                    <li class="skills-pill"><p>React</p></li>
+                    <li class="skills-pill"><p>JS</p></li>
+                    <li class="skills-pill"><p>Sass</p></li>
+                    <li class="skills-pill"><p>API</p></li>
+                </ul>
+
+                <div class="projects__video">
+                    <img src="https://images.unsplash.com/photo-1498724546413-791544cf00d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2720&q=80" alt="">
+                </div>
+                <!-- <div class="projects__video"></div> -->
+                
+                <p class="projects__description">Simple calculator that allows the user to use key body stats to determine the appropriate macronutrient ratio for a diet.</p>
+
+                <ul class="projects__links">
+                    <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
+                    <li><p>Visit Live <i class="far fa-arrow-right"></i></p></li>
+                </ul>
+
+            </div>
         </div>
     </main>
 <!-- 

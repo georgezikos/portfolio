@@ -1,0 +1,257 @@
+.section--projects {
+    display: flex;
+    justify-content: flex-end;
+    
+    .container--left {
+        display: flex;
+        width: calc(50% - 115px / 2);
+        margin: 0;
+        padding: 0;
+
+        // Temp
+        @media (max-width: 965px) {
+            width: calc(100% - 115px);
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
+            height: calc(100% - 115px);
+            margin: auto 0 0 0;
+        }
+        // Temp
+
+        .container--top,
+        .container--bottom {
+            display: flex;
+            height: 50%;
+            width: 100%;
+            border: 1px solid $mainPurple;
+        }
+
+        .projects__category,
+        .projects__list {
+            border: 1px solid $mainPurple;
+            height: 100%;
+            padding: 6%;
+        }
+
+        .projects__category {
+            width: 38.2%;
+        }
+        
+        .projects__list {
+            width: 61.8%;
+        }
+
+        .list__item {
+            border: 1px solid $mainPurple;
+            @include bodyType(calc(1.9rem + 0.9vw));
+            line-height: 1.2;
+            border: 1px solid $mainPurple;
+            margin-bottom: 20px;
+            
+            &--active {
+                color: $skillsPink;
+                
+                &::selection {
+                    color: $mainWhite;
+                }
+            }
+            
+            @media (min-width: 1681px) {
+                @include bodyType(3.4rem);
+
+                &--active {
+                    color: $skillsPink;
+                    
+                    &::selection {
+                        color: $mainWhite;
+                    }
+                }
+            }
+        }
+    }
+    
+    .container--right {
+        width: calc(50% - 115px / 2);
+        margin: 0;
+        padding: 0;
+
+        .projects__macro-calc {
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            height: 100%;
+            width: 100%;
+            // border: 1px solid $mainWhite;
+            background-color: $skillsBlue;
+            padding: 5%;
+            // overflow: scroll;
+
+            .fourth-headline {
+                @include bodyType(calc(3.25rem + 1.35vw));
+                color: $skillsPink;
+                // border: 1px solid red;
+                margin-bottom: 20px;
+
+                &::selection {
+                    background: $skillsYellow;
+                    color: $skillsBlue;
+                }
+
+                @media (min-width: 1680px) {
+                    @include bodyType(5.5rem);
+                    color: $skillsPink;
+                    // border: 1px solid red;
+                    margin-bottom: 20px;
+
+                    &::selection {
+                        background: $skillsYellow;
+                        color: $skillsBlue;
+                    }
+                }
+            }
+
+            .macro-calc__skills {
+                display: flex;
+                flex-wrap: wrap;
+                align-content: space-between;
+                height: auto;
+                width: auto;
+                // border: 1px solid red;
+                margin-bottom: 20px;
+
+                @media (max-width: 1590px) {
+                    height: 120px;
+                }
+
+                .skills-pill {
+                    border: 2px solid $skillsPink;
+                    border-radius: 20% / 70%;
+                    // width: calc(10.6rem + 2.9vw);
+                    min-width: 150px;
+                    height: 50px;
+                    // border: 1px solid red;
+                    text-align: center;
+                    text-transform: uppercase;
+                    margin-right: 20px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+    
+                    p {
+                        @include bodyType(calc(2rem + 0.3vw));
+                        // @include bodyType(calc(3.25rem + 1.35vw));
+                        color: $skillsPink;
+                        // border: 1px solid red;
+                        line-height: calc(5rem - 4px);
+                        
+                        &::selection {
+                            background: $skillsYellow;
+                            color: $skillsBlue;
+                        }
+
+                        @media (min-width: 1680px) {
+                            @include bodyType(2.5rem);
+                            // @include bodyType(calc(3.25rem + 1.35vw));
+                            color: $skillsPink;
+                            // border: 1px solid red;
+                            line-height: calc(5rem - 4px);
+                            
+                            &::selection {
+                                background: $skillsYellow;
+                                color: $skillsBlue;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .projects__video {
+                // width: 100%;
+                // height: 40%;
+                border: 2px solid $skillsPink;
+                margin-bottom: 20px;
+                object-fit: contain;
+            }
+
+            .projects__description {
+                @include bodyType(calc(2rem + 0.3vw));
+                // @include bodyType(calc(3.25rem + 1.35vw));
+                line-height: 1.2;
+                color: $skillsPink;
+                // border: 1px solid red;
+                margin-bottom: 20px;
+
+                &::selection {
+                    background: $skillsYellow;
+                    color: $skillsBlue;
+                }
+
+                @media (min-width: 1680px) {
+                    @include bodyType(2.5rem);
+                    // @include bodyType(calc(3.25rem + 1.35vw));
+                    line-height: 1.2;
+                    color: $skillsPink;
+                    // border: 1px solid red;
+                    margin-bottom: 20px;
+
+                    &::selection {
+                        background: $skillsYellow;
+                        color: $skillsBlue;
+                    }
+                }
+            }
+
+            .projects__links {
+                // border: 1px solid red;
+                display: flex;
+
+                // li {
+                //     transition: transform ease 100ms;
+
+                //     &:hover > .fa-arrow-right {
+                //         display: none;
+                //     }
+                // }
+
+                & li:first-child {
+                    margin-right: 20px;
+                }
+
+                p {
+                    @include bodyType(calc(2rem + 0.3vw));
+                    // @include bodyType(calc(3.25rem + 1.35vw));
+                    line-height: 1.2;
+                    color: $skillsPink;
+                    // border: 1px solid red;
+
+                    @media (min-width: 1680px) {
+                        @include bodyType(calc(2.5rem));
+                        // @include bodyType(calc(3.25rem + 1.35vw));
+                        line-height: 1.2;
+                        color: $skillsPink;
+                        // border: 1px solid red;
+                    }
+                }
+            }
+        }
+
+        // Temporary, not functional
+        @media (max-width: 965px) {
+            display: none;
+        }
+        // Temp
+    }
+
+    .third-headline {
+        @include bodyType(calc(2rem + 0.3vw));
+        line-height: 1;
+        border: 1px solid $mainPurple;
+        
+        @media (min-width: 1680px) {
+            @include bodyType(calc(2.5rem));
+        }
+    }
+}
