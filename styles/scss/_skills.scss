@@ -1,6 +1,7 @@
 .section--skills {
     padding-top: 40px;
     display: block;
+    // border: 1px solid red;
     // height: 100%;
     
     .section-container {
@@ -67,6 +68,7 @@
             .list__divider {
                 display: inline-block;
                 margin: 0 20px;
+                user-select: none;
             }
         }
     }

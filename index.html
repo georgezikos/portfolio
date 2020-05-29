@@ -8,13 +8,6 @@
     <script src="https://kit.fontawesome.com/54ea624771.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
-
-<nav className="app__nav">
-
-        
-    </ul>
-</nav>
-
 <body>
     <header class="section section--header wrapper">
         <nav class="header__nav">
@@ -69,7 +62,6 @@
             </p>
         </div>
     </section>
-
     <section class="section section--skills wrapper">
         <div class="skills__banner">
             <ul class="skills__list">
@@ -177,16 +169,16 @@
         <div class="section-container">
         </div>
     </section>
-
     <main class="section section--projects wrapper">
+
         <div class="section-container container--left">
             <div class="container--top">
                 <div class="projects__category">
                     <h3 class="third-headline">Live</h3>
                 </div>
                 <ul class="projects__list">
-                    <li class="list__item list__item--active">Macro Calculator</li>
-                    <li class="list__item">Recipease</li>
+                    <li class="list__item list__item--active list__item--macro">Macro Calculator</li>
+                    <li class="list__item list__item--recipease">Recipease</li>
                     <li class="list__item">Fridge Verses</li>
                 </ul>
             </div>
@@ -201,8 +193,11 @@
                 </ul>
             </div>
         </div>
+
         <div class="section-container container--right">
-            <div class="projects__macro-calc">
+            <div class="projects__macro-calc projects--hide">
+                <!-- Add projects--hide to class after -->
+                <p class="projects__tag">Macro Calculator <i class="far fa-arrow-right"></i></p>
                 
                 <h4 class="fourth-headline">Macro Calculator</h4>
 
@@ -226,7 +221,34 @@
                 </ul>
 
             </div>
+            <div class="projects__recipease projects--hide">
+                <!-- Add projects--hide to class after -->
+                <p class="projects__tag">Recipease <i class="far fa-arrow-right"></i></p>
+                
+                <h4 class="fourth-headline">Recipease</h4>
+
+                <ul class="macro-calc__skills">
+                    <li class="skills-pill"><p>React</p></li>
+                    <li class="skills-pill"><p>JS</p></li>
+                    <li class="skills-pill"><p>Sass</p></li>
+                    <li class="skills-pill"><p>API</p></li>
+                </ul>
+
+                <div class="projects__video">
+                    <img src="https://images.unsplash.com/photo-1498724546413-791544cf00d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2720&q=80" alt="">
+                </div>
+                <!-- <div class="projects__video"></div> -->
+                
+                <p class="projects__description">Simple calculator that allows the user to use key body stats to determine the appropriate macronutrient ratio for a diet.</p>
+
+                <ul class="projects__links">
+                    <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
+                    <li><p>Visit Live <i class="far fa-arrow-right"></i></p></li>
+                </ul>
+
+            </div>
         </div>
+
     </main>
 <!-- 
     <footer class="section section--footer">
@@ -236,8 +258,8 @@
     </footer> -->
 
     
-    <!-- <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
+    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
 
-    <script src="./scripts/scripts.js"></script> -->
+    <script src="./scripts/scripts.js"></script>
 </body>
 </html>

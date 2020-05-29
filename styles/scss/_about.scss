@@ -12,14 +12,14 @@
         width: calc(42.5% - 115px);
         margin: 0 0 0 auto;
         // flex: 1 1 auto;
-        border: 1px solid $mainWhite;
+        // border: 1px solid $mainWhite;
 
         @media (max-width: 1229px) {
             display: flex;
             flex-direction: column;
             justify-content: center;
             flex: none;
-            border: 1px solid $mainPurple;
+            // border: 1px solid $mainPurple;
             margin: 0 0 0 auto;
             padding: 0 6% 0;
             // padding: 0 100px 0;
@@ -46,7 +46,7 @@
             flex-direction: column;
             justify-content: flex-start;
             flex: none;
-            border: 1px solid $mainPurple;
+            // border: 1px solid $mainPurple;
             margin: 0 0 0 auto;
             padding: 0 6% 0;
             // padding: 0 100px 0;
@@ -63,7 +63,7 @@
 
         .line-break {
             display: block;
-            border: 1px solid $mainPurple;
+            // border: 1px solid $mainPurple;
             margin-top: 4.25%;
 
             .underline {
