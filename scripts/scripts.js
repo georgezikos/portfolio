@@ -24,39 +24,131 @@
 
 // Document Ready
 $(function () {
-    // When you click on one, anything open closes
 
-    // Macro Calculator Project
-    $('.list__item--macro').on('mouseover', function() {
-        if ($('.projects__macro-calc').hasClass('projects--display') !== true) {
-            $('.projects__macro-calc').toggleClass('projects--hide projects--hover').css('z-index', '9');
+    // Close Button
+    $('.accessories__close').on('click', function() {
+        if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if ($('.summary--recipease').hasClass('summary--display') === true) {
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if ($('.summary--strainless').hasClass('summary--display') === true) {
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '');
+        }
+    });
+
+    // Macro Calculator Project    
+    $('.list__item--macro-calculator').on('mouseover', function() {
+        if ($('.summary--macro-calculator').hasClass('summary--display') !== true) {
+            $('.summary--macro-calculator').toggleClass('summary--hide summary--hover').css('z-index', '9');
         }
     }).on('mouseout', function() {
-        if ($('.projects__macro-calc').hasClass('projects--display') !== true) {
-            $('.projects__macro-calc').toggleClass('projects--hover projects--hide').css('z-index', '')
+        if ($('.summary--macro-calculator').hasClass('summary--display') !== true) {
+            $('.summary--macro-calculator').toggleClass('summary--hover summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
-        $('.projects__macro-calc').toggleClass('projects--hover projects--display').css('z-index', '');
-        if ($('.projects__recipease').hasClass('projects--display') === true) {
-            $('.projects__recipease').toggleClass('projects--display projects--hide')
+        $('.summary--macro-calculator').toggleClass('summary--hover summary--display').css('z-index', '8');
+        if ($('.summary--recipease').hasClass('summary--display') === true) {
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index','7')
+        } else if ($('.summary--fridge-verses').hasClass('summary--display') === true ) {
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--strainless').hasClass('summary--display') === true) {
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
         }
     })
 
     // Recipease Project
     $('.list__item--recipease').on('mouseover', function() {
-        if ($('.projects__recipease').hasClass('projects--display') !== true) {
-            $('.projects__recipease').toggleClass('projects--hide projects--hover').css('z-index', '9');
+        if ($('.summary--recipease').hasClass('summary--display') !== true) {
+            $('.summary--recipease').toggleClass('summary--hide summary--hover').css('z-index', '9');
         }
     }).on('mouseout', function() {
-        if ($('.projects__recipease').hasClass('projects--display') !== true) {
-            $('.projects__recipease').toggleClass('projects--hover projects--hide').css('z-index', '')
+        if ($('.summary--recipease').hasClass('summary--display') !== true) {
+            $('.summary--recipease').toggleClass('summary--hover summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
-        $('.projects__recipease').toggleClass('projects--hover projects--display').css('z-index', '');
-        if ($('.projects__macro-calc').hasClass('projects--display') === true) {
-            $('.projects__macro-calc').toggleClass('projects--display projects--hide')
+        $('.summary--recipease').toggleClass('summary--hover summary--display').css('z-index', '8');
+        if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--strainless').hasClass('summary--display') === true) {
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
         }
     })
+
+    // Fridge Verses Project
+    $('.list__item--fridge-verses').on('mouseover', function() {
+        if ($('.summary--fridge-verses').hasClass('summary--display') !== true) {
+            $('.summary--fridge-verses').toggleClass('summary--hide summary--hover').css('z-index', '9');
+        }
+    }).on('mouseout', function() {
+        if ($('.summary--fridge-verses').hasClass('summary--display') !== true) {
+            $('.summary--fridge-verses').toggleClass('summary--hover summary--hide').css('z-index', '9')
+        }
+    }).on('click', function() {
+        $('.summary--fridge-verses').toggleClass('summary--hover summary--display').css('z-index', '8');
+        if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--recipease').hasClass('summary--display') === true) {
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--strainless').hasClass('summary--display') === true) {
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
+        }
+    })
+
+    // NST Project
+    $('.list__item--nosuchthing').on('mouseover', function() {
+        if ($('.summary--nosuchthing').hasClass('summary--display') !== true) {
+            $('.summary--nosuchthing').toggleClass('summary--hide summary--hover').css('z-index', '9');
+        }
+    }).on('mouseout', function() {
+        if ($('.summary--nosuchthing').hasClass('summary--display') !== true) {
+            $('.summary--nosuchthing').toggleClass('summary--hover summary--hide').css('z-index', '9')
+        }
+    }).on('click', function() {
+        $('.summary--nosuchthing').toggleClass('summary--hover summary--display').css('z-index', '8');
+        if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--recipease').hasClass('summary--display') === true) {
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--strainless').hasClass('summary--display') === true) {
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
+        }
+    });
+
+    // Strainless Project
+    $('.list__item--strainless').on('mouseover', function() {
+        if ($('.summary--strainless').hasClass('summary--display') !== true) {
+            $('.summary--strainless').toggleClass('summary--hide summary--hover').css('z-index', '9');
+        }
+    }).on('mouseout', function() {
+        if ($('.summary--strainless').hasClass('summary--display') !== true) {
+            $('.summary--strainless').toggleClass('summary--hover summary--hide').css('z-index', '9')
+        }
+    }).on('click', function() {
+        $('.summary--strainless').toggleClass('summary--hover summary--display').css('z-index', '8');
+        if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--recipease').hasClass('summary--display') === true) {
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+        } 
+    });
 
 });
 

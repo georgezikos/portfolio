@@ -43,7 +43,6 @@ img {
 .wrapper {
     max-width: 1680px;
     margin: 0 auto;
-    // border: 1px solid red;
 }
 
 .section {
@@ -51,6 +50,8 @@ img {
     min-height: 850px;
     background: $mainBlack;
     display: flex;
+    // border: 1px solid $mainWhite;
+    width: 100vw;
 
     @media (max-width: 768px) {
         display: flex;
@@ -61,11 +62,10 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // border: 1px solid $mainPurple;
+    // border: 1px solid $mainAccent;
     margin: 0 0 0 auto;
     padding: 0 6% 0;
     // padding: 0 100px 0;
-    height: 100%;
     width: calc(100% - 115px);
 
     @media (max-width: 768px) {
@@ -76,7 +76,7 @@ img {
 }
 
 .main-heading {
-    // border: 1px solid $mainPurple;
+    // border: 1px solid $mainAccent;
     @include headingType(calc(8.3rem + 2.8vw));
     letter-spacing: 0rem;
     margin-bottom: 50px;
@@ -100,7 +100,7 @@ img {
 }
 
 .secondary-heading {
-    // border: 1px solid $mainPurple;
+    // border: 1px solid $mainAccent:;
     @include headingType(calc(6.3rem + 2.8vw));
     font-weight: 400;
     letter-spacing: 0rem;
@@ -133,7 +133,7 @@ img {
 .main-paragraph {
     @include bodyType(calc(3.25rem + 1.35vw));
     line-height: 1.2;
-    // border: 1px solid $mainPurple;
+    // border: 1px solid $mainAccent:;
     
     @media (min-width: 1681px) {
         @include bodyType(5.5rem);

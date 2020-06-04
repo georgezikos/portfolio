@@ -61,7 +61,7 @@
         width: 109px;
         padding: 10px;
         margin: 0 auto;
-        // border: 1px solid $mainPurple;
+        // border: 1px solid $mainAccent:;
     
         &:hover > .wordmark {
             animation-play-state: paused;
@@ -103,7 +103,7 @@
         align-items: center;
         height: 100%;
         width: 75%;
-        // border: 1px solid $mainPurple;
+        // border: 1px solid $mainAccent:;
 
         @media (max-width: 768px) {
             width: 100%;
@@ -114,7 +114,7 @@
         @include bodyType(calc(3.25rem + 1.35vw));
         @include bodyType(5.5rem);
         line-height: calc(115px - 6px);
-        // border: 1px solid $mainPurple;
+        // border: 1px solid $mainAccent:;
     
         a {
             display: inline-block;
