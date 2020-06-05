@@ -6,8 +6,7 @@
     <title>George Zikos | Frontend Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/54ea624771.js" crossorigin="anonymous"></script>
-    <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://vjs.zencdn.net/7.8.2/video-js.css">
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
@@ -171,11 +170,8 @@
         <div class="section-container">
         </div>
     </section>
-    
     <main class="section section--projects wrapper">
-
         <div class="section-container container--left">
-
             <div class="container--top">
                 <div class="projects__category">
                     <h3 class="third-headline">Live</h3>
@@ -186,7 +182,6 @@
                     <li class="list__item list__item--fridge-verses">Fridge Verses</li>
                 </ul>
             </div>
-
             <div class="container--bottom">
                 <div class="projects__category">
                     <h3 class="third-headline">WIP</h3>
@@ -197,11 +192,9 @@
                 </ul>
             </div>
         </div>
-
         <div class="section-container container--right">
 
             <div class="projects__summary summary--macro-calculator summary--hide">
-
                 <div class="summary__accessories">
                     <i class="fal fa-times accessories__close"></i>
                     <p class="accessories__tag">Diet Calculator <i class="far fa-arrow-right"></i></p>
@@ -218,39 +211,31 @@
                 </ul>
 
                 <div class="summary__video">
-
-                    <video id="my-video" class="video-js" controls preload="auto" width="auto" height="auto" poster="MY_VIDEO_POSTER.jpg"
-                        data-setup="{}">
-                        <source src="MY_VIDEO.mp4" type="video/mp4" />
-                        <source src="MY_VIDEO.webm" type="video/webm" />
-                        <p class="vjs-no-js">
-                            To view this video please enable JavaScript, and consider upgrading to a
-                            web browser that
-                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                        </p>
-                    </video>
-
-                </div>
                 
-                <p class="summary__description">Based on key body measurements and your goal, this calculator will provide you with the appropriate calories and
-                macronutrient ratio for your diet.</p>
-
+                    <iframe src="https://player.vimeo.com/video/185013805?api=1&title=0&byline=0&portrait=0" frameborder="0"
+                        allow="autoplay; fullscreen" allowfullscreen id="macroVideo">
+                    </iframe>
+                
+                </div>
+                        
+                <p class="summary__description">Based on key body measurements and your goal, this calculator will provide you with the appropriate calories and macronutrient ratio for your diet.</p>
+                            
                 <ul class="summary__links">
                     <li><p>View Live <i class="far fa-arrow-right"></i></p></li>
                     <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
                 </ul>
-
+                            
             </div>
-
+                        
             <div class="projects__summary summary--recipease summary--hide">
-
+                
                 <div class="summary__accessories">
                     <i class="fal fa-times accessories__close"></i>
                     <p class="accessories__tag">Recipease <i class="far fa-arrow-right"></i></p>
                 </div>
                 
                 <h4 class="fourth-headline">Recipease</h4>
-
+                
                 <ul class="summary__skills">
                     <li class="skills__pill"><p>HTML</p></li>
                     <li class="skills__pill"><p>Sass</p></li>
@@ -258,29 +243,32 @@
                     <li class="skills__pill"><p>API</p></li>
                     <li class="skills__pill"><p>Pair</p></li>
                 </ul>
-
+                
                 <div class="summary__video">
-                    <img src="https://images.unsplash.com/photo-1498724546413-791544cf00d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2720&q=80" alt="">
+
+                    <iframe src="https://player.vimeo.com/video/185013805?api=1?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen id="recipeaseVideo">
+                    </iframe>
+
                 </div>
                 
                 <p class="summary__description">This quiz will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the Spoonacular API.</p>
-
+                
                 <ul class="summary__links">
                     <li><p>View Live <i class="far fa-arrow-right"></i></p></li>
                     <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
                 </ul>
-
+                
             </div>
-
+            
             <div class="projects__summary summary--fridge-verses summary--hide">
-
+                
                 <div class="summary__accessories">
                     <i class="fal fa-times accessories__close"></i>
                     <p class="accessories__tag">Fridge Verses <i class="far fa-arrow-right"></i></p>
                 </div>
                 
                 <h4 class="fourth-headline">Fridge Verses</h4>
-
+                
                 <ul class="summary__skills">
                     <li class="skills__pill"><p>React</p></li>
                     <li class="skills__pill"><p>Sass</p></li>
@@ -288,93 +276,96 @@
                     <li class="skills__pill"><p>BaaS</p></li>
                     <li class="skills__pill"><p>Group</p></li>
                 </ul>
-
+                
                 <div class="summary__video">
-                    <img src="https://images.unsplash.com/photo-1498724546413-791544cf00d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2720&q=80" alt="">
+                    <iframe src="https://player.vimeo.com/video/185013805?api=1&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen id="fridgeVersesVideo">
+                    </iframe>
                 </div>
                 
                 <p class="summary__description">A single-page app based on fridge magnet poetry. Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.</p>
-
+                
                 <ul class="summary__links">
                     <li><p>View Live <i class="far fa-arrow-right"></i></p></li>
                     <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
                 </ul>
-
+                
             </div>
-
+            
             <div class="projects__summary summary--nosuchthing summary--hide">
-
+                
                 <div class="summary__accessories">
                     <i class="fal fa-times accessories__close"></i>
                     <p class="accessories__tag">NOSUCHTHING <i class="far fa-arrow-right"></i></p>
                 </div>
                 
                 <h4 class="fourth-headline">NOSUCHTHING</h4>
-
+                
                 <ul class="summary__skills">
                     <li class="skills__pill"><p>React</p></li>
                     <li class="skills__pill"><p>Sass</p></li>
                     <li class="skills__pill"><p>API</p></li>
                     <li class="skills__pill"><p>Solo</p></li>
                 </ul>
-
+                
                 <div class="summary__video">
-                    <img src="https://images.unsplash.com/photo-1498724546413-791544cf00d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2720&q=80" alt="">
+                    <iframe src="https://player.vimeo.com/video/185013805?api=1&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen id="nosuchthingVideo">
+                    </iframe>
                 </div>
                 
                 <p class="summary__description">Open-source health and wellness education paired with a suite of digital products centered around preventative health and improved wellness. Currently experimenting with the Webflow CMS API.</p>
-
+                
                 <ul class="summary__links">
                     <li><p>View Live <i class="far fa-arrow-right"></i></p></li>
                     <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
                 </ul>
-
+                
             </div>
-
+            
             <div class="projects__summary summary--strainless summary--hide">
-
+                
                 <div class="summary__accessories">
                     <i class="fal fa-times accessories__close"></i>
                     <p class="accessories__tag">Strainless <i class="far fa-arrow-right"></i></p>
                 </div>
                 
                 <h4 class="fourth-headline">Strainless</h4>
-
+                
                 <ul class="summary__skills">
                     <li class="skills__pill"><p>React</p></li>
                     <li class="skills__pill"><p>Sass</p></li>
                     <li class="skills__pill"><p>API</p></li>
                     <li class="skills__pill"><p>Solo</p></li>
                 </ul>
-
+                
                 <div class="summary__video">
-                    <img src="https://images.unsplash.com/photo-1498724546413-791544cf00d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2720&q=80" alt="">
+                    <iframe src="https://player.vimeo.com/video/185013805?api=1&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen id="strainlessVideo">
+                    </iframe>
                 </div>
                 
                 <p class="summary__description">This quiz will direct you towards the best strain of cannabis based on generally preferred or medicinal properties with the option to purchase from the Ontario Cannabis Store. This project brings together the Strain API, Otreeba API and an open-source Ontario Cannabis Store web scraper.</p>
-
+                
                 <ul class="summary__links">
                     <li><p>View Live <i class="far fa-arrow-right"></i></p></li>
                     <li><p>Visit Repository <i class="far fa-arrow-right"></i></p></li>
                 </ul>
-
+                
             </div>
-
-        </div>
-
+                        
+        </div>         
     </main>
-<!-- 
-    <footer class="section section--footer">
+
+    <!-- <footer class="section section--footer">
         <div class="section-container">
-
+            
         </div>
-    </footer> -->
-
+    </footer> -->         
     
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
 
-    <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
-
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    
     <script src="./scripts/scripts.js"></script>
+    
+
 </body>
 </html>

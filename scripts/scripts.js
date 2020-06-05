@@ -24,129 +24,175 @@
 
 // Document Ready
 $(function () {
+    
+    // Vimeo
+    const $macroVideo = $('#macroVideo');
+    const macroPlayer = new Vimeo.Player($macroVideo);
+
+    const $recipeaseVideo = $('#recipeaseVideo');
+    const recipeasePlayer = new Vimeo.Player($recipeaseVideo);
+
+    const $fridgeVersesVideo = $('#fridgeVersesVideo');
+    const fridgeVersesPlayer = new Vimeo.Player($fridgeVersesVideo);
+
+    const $nosuchthingVideo = $('#nosuchthingVideo');
+    const nosuchthingPlayer = new Vimeo.Player($nosuchthingVideo);
+
+    const $strainlessVideo = $('#strainlessVideo');
+    const strainlessPlayer = new Vimeo.Player($strainlessVideo);
 
     // Close Button
     $('.accessories__close').on('click', function() {
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
             $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
+            macroPlayer.pause();
         } else if ($('.summary--recipease').hasClass('summary--display') === true) {
             $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '');
+            recipeasePlayer.pause();
         } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
             $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '');
+            nosuchthingPlayer.pause();
         } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
             $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '');
+            fridgeVersesPlayer.pause();
         } else if ($('.summary--strainless').hasClass('summary--display') === true) {
             $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '');
+            strainlessPlayer.pause();
         }
     });
-
+    
     // Macro Calculator Project    
-    $('.list__item--macro-calculator').on('mouseover', function() {
+    $('.list__item--macro-calculator').on('mouseenter', function() {
         if ($('.summary--macro-calculator').hasClass('summary--display') !== true) {
-            $('.summary--macro-calculator').toggleClass('summary--hide summary--hover').css('z-index', '9');
+            $('.summary--macro-calculator').removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseout', function() {
+    }).on('mouseleave', function() {
         if ($('.summary--macro-calculator').hasClass('summary--display') !== true) {
-            $('.summary--macro-calculator').toggleClass('summary--hover summary--hide').css('z-index', '9')
+            $('.summary--macro-calculator').removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
         $('.summary--macro-calculator').toggleClass('summary--hover summary--display').css('z-index', '8');
+        macroPlayer.pause();
         if ($('.summary--recipease').hasClass('summary--display') === true) {
-            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index','7')
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index','7');
+            recipeasePlayer.pause();
         } else if ($('.summary--fridge-verses').hasClass('summary--display') === true ) {
-            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7');
+            fridgeVersesPlayer.pause();
         } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
-            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7');
+            nosuchthingPlayer.pause();
         } else if ($('.summary--strainless').hasClass('summary--display') === true) {
-            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7');
+            strainlessPlayer.pause();
         }
     })
 
     // Recipease Project
-    $('.list__item--recipease').on('mouseover', function() {
+    $('.list__item--recipease').on('mouseenter', function() {
         if ($('.summary--recipease').hasClass('summary--display') !== true) {
-            $('.summary--recipease').toggleClass('summary--hide summary--hover').css('z-index', '9');
+            $('.summary--recipease').removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseout', function() {
+    }).on('mouseleave', function() {
         if ($('.summary--recipease').hasClass('summary--display') !== true) {
-            $('.summary--recipease').toggleClass('summary--hover summary--hide').css('z-index', '9')
+            $('.summary--recipease').removeClass('summary--hover').addClass('summary--hide').css('z-index', '9');
         }
     }).on('click', function() {
         $('.summary--recipease').toggleClass('summary--hover summary--display').css('z-index', '8');
+        recipeasePlayer.pause();
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
-            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7');
+            macroPlayer.pause();
         } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
-            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7');
+            fridgeVersesPlayer.pause();
         } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
-            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7');
+            nosuchthingPlayer.pause();
         } else if ($('.summary--strainless').hasClass('summary--display') === true) {
-            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7');
+            strainlessPlayer.pause();
         }
     })
 
     // Fridge Verses Project
-    $('.list__item--fridge-verses').on('mouseover', function() {
+    $('.list__item--fridge-verses').on('mouseenter', function() {
         if ($('.summary--fridge-verses').hasClass('summary--display') !== true) {
-            $('.summary--fridge-verses').toggleClass('summary--hide summary--hover').css('z-index', '9');
+            $('.summary--fridge-verses').removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseout', function() {
+    }).on('mouseleave', function() {
         if ($('.summary--fridge-verses').hasClass('summary--display') !== true) {
-            $('.summary--fridge-verses').toggleClass('summary--hover summary--hide').css('z-index', '9')
+            $('.summary--fridge-verses').removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
         $('.summary--fridge-verses').toggleClass('summary--hover summary--display').css('z-index', '8');
+        fridgeVersesPlayer.pause();
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
-            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7');
+            macroPlayer.pause();
         } else if ($('.summary--recipease').hasClass('summary--display') === true) {
-            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7');
+            recipeasePlayer.pause();
         } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
-            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7');
+            nosuchthingPlayer.pause();
         } else if ($('.summary--strainless').hasClass('summary--display') === true) {
-            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7');
+            strainlessPlayer.pause();
         }
     })
 
     // NST Project
-    $('.list__item--nosuchthing').on('mouseover', function() {
+    $('.list__item--nosuchthing').on('mouseenter', function() {
         if ($('.summary--nosuchthing').hasClass('summary--display') !== true) {
-            $('.summary--nosuchthing').toggleClass('summary--hide summary--hover').css('z-index', '9');
+            $('.summary--nosuchthing').removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseout', function() {
+    }).on('mouseleave', function() {
         if ($('.summary--nosuchthing').hasClass('summary--display') !== true) {
-            $('.summary--nosuchthing').toggleClass('summary--hover summary--hide').css('z-index', '9')
+            $('.summary--nosuchthing').removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
         $('.summary--nosuchthing').toggleClass('summary--hover summary--display').css('z-index', '8');
+        nosuchthingPlayer.pause();
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
-            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7');
+            macroPlayer.pause();
         } else if ($('.summary--recipease').hasClass('summary--display') === true) {
-            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7');
+            recipeasePlayer.pause();
         } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
-            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7');
+            fridgeVersesPlayer.pause();
         } else if ($('.summary--strainless').hasClass('summary--display') === true) {
-            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '7');
+            strainlessPlayer.pause();
         }
     });
 
     // Strainless Project
-    $('.list__item--strainless').on('mouseover', function() {
+    $('.list__item--strainless').on('mouseenter', function() {
         if ($('.summary--strainless').hasClass('summary--display') !== true) {
-            $('.summary--strainless').toggleClass('summary--hide summary--hover').css('z-index', '9');
+            $('.summary--strainless').removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseout', function() {
+    }).on('mouseleave', function() {
         if ($('.summary--strainless').hasClass('summary--display') !== true) {
-            $('.summary--strainless').toggleClass('summary--hover summary--hide').css('z-index', '9')
+            $('.summary--strainless').removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
         $('.summary--strainless').toggleClass('summary--hover summary--display').css('z-index', '8');
+        strainlessPlayer.pause();
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
-            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '7');
+            macroPlayer.pause();
         } else if ($('.summary--recipease').hasClass('summary--display') === true) {
-            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '7');
+            recipeasePlayer.pause();
         } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
-            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '7');
+            fridgeVersesPlayer.pause();
         } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
-            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7')
+            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '7');
+            nosuchthingPlayer.pause();
         } 
     });
 

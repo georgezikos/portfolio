@@ -1286,8 +1286,20 @@ img {
 }
 
 .section--projects .container--right .projects__summary .summary__video {
-  border: 2px solid #DDDCE1;
+  padding: 56.25% 0 0 0;
+  position: relative;
+  background-color: #DDDCE1;
   margin-bottom: 20px;
+}
+
+.section--projects .container--right .projects__summary .summary__video iframe {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
 }
 
 .section--projects .container--right .projects__summary .summary__description {
@@ -1461,7 +1473,7 @@ img {
 }
 
 .section--projects .container--right .summary--macro-calculator .summary__video {
-  border: 2px solid #E093B3;
+  background-color: #E093B3;
 }
 
 .section--projects .container--right .summary--macro-calculator .summary__description {
@@ -1575,7 +1587,7 @@ img {
 }
 
 .section--projects .container--right .summary--recipease .summary__video {
-  border: 2px solid #914F00;
+  background-color: #914F00;
 }
 
 .section--projects .container--right .summary--recipease .summary__description {
@@ -1689,7 +1701,7 @@ img {
 }
 
 .section--projects .container--right .summary--fridge-verses .summary__video {
-  border: 2px solid #005246;
+  background-color: #005246;
 }
 
 .section--projects .container--right .summary--fridge-verses .summary__description {
@@ -1773,7 +1785,7 @@ img {
 }
 
 .section--projects .container--right .summary--nosuchthing .summary__video {
-  border: 2px solid #FFE2E2;
+  background-color: #FFE2E2;
 }
 
 .section--projects .container--right .summary--nosuchthing .summary__description {
@@ -1857,7 +1869,7 @@ img {
 }
 
 .section--projects .container--right .summary--strainless .summary__video {
-  border: 2px solid #34437C;
+  background-color: #34437C;
 }
 
 .section--projects .container--right .summary--strainless .summary__description {
