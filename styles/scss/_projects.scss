@@ -96,6 +96,7 @@
         margin: 0;
         padding: 0;
         position: relative;
+        overflow: hidden;
 
         .summary--hide {
             transform: translateX(calc(-100% - 1px)) translate3d(0, 0, 0);
@@ -264,9 +265,10 @@
                     color: $mainWhite;
 
                     @media (min-width: 1681px) {
-                        @include bodyType(calc(20.02rem));
+                        @include bodyType(2.02rem);
                         line-height: 1;
                     }
+
                 }
 
                 .fa-arrow-right {

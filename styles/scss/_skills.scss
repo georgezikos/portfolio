@@ -1,13 +1,14 @@
 .section--skills {
     padding-top: 40px;
     display: block;
-    // border: 1px solid red;
-    // height: 100%;
+    height: 100vh;
     
     .section-container {
         height: calc(100% - 115px);
-        @media (max-width: 768px) {
-        }
+    }
+
+    @media (max-width: 768px) {
+        padding-top: 155px;
     }
 
     .skills__banner {

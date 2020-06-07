@@ -2,6 +2,7 @@
 html {
     @include bodyType(62.5%);
     background: $mainBlack;
+    scroll-snap-type: y mandatory;
 }
 
 *::selection {
@@ -50,8 +51,8 @@ img {
     min-height: 850px;
     background: $mainBlack;
     display: flex;
-    // border: 1px solid $mainWhite;
     width: 100vw;
+    scroll-snap-align: start;
 
     @media (max-width: 768px) {
         display: flex;
