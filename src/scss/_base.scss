@@ -53,21 +53,16 @@ img {
     display: flex;
     width: 100vw;
     scroll-snap-align: start;
-
-    @media (max-width: 768px) {
-        display: flex;
-    }
 }
 
 .section-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // border: 1px solid $mainAccent;
     margin: 0 0 0 auto;
     padding: 0 6% 0;
-    // padding: 0 100px 0;
     width: calc(100% - 115px);
+    // border: 1px solid $mainWhite;
 
     @media (max-width: 768px) {
         width: 100%;

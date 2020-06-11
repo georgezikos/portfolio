@@ -9,7 +9,7 @@
     }
 
     .container--left {
-        width: calc(42.5% - 115px);
+        width: calc(40% - 115px / 2);
         margin: 0 0 0 auto;
         // flex: 1 1 auto;
         // border: 1px solid $mainWhite;
@@ -19,6 +19,7 @@
             flex-direction: column;
             justify-content: center;
             flex: none;
+            // border: 1px solid $mainAccent;
             margin: 0 0 0 auto;
             padding: 0 6% 0;
             // padding: 0 100px 0;
@@ -34,11 +35,9 @@
     }
     
     .container--right {
-        width: 57.5%;
-        // min-width: 850px;
+        width: calc(60% - 115px / 2);
         margin: 0;
-        padding: 0;
-        // flex: 1 1 822px;
+        padding: 0 3% 0 0;
 
         @media (max-width: 1229px) {
             display: flex;

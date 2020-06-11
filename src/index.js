@@ -23,6 +23,8 @@
     
     // swimCodes.init();
     
+    import './scss/styles.scss'
+
     // Document Ready
     $(function () {
         // Vimeo

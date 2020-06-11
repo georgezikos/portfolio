@@ -22,7 +22,7 @@
         display: flex;
         width: calc(40% - 115px / 2);
         margin: 0;
-        padding: 0;
+        padding: 3% 0 0 6%;
         background-color: $mainBlack;
 
         @media (max-width: 965px) {
@@ -37,6 +37,7 @@
             width: 100%;
             height: calc(100% - 115px);
             margin: auto 0 0 0;
+            padding: 6% 0 0 6%;
         }
 
         .container--top,
@@ -53,15 +54,14 @@
         .projects__category,
         .projects__list {
             height: 100%;
-            padding: 6%;
         }
 
         .projects__category {
-            width: 38.2%;
+            width: 30%;
         }
         
         .projects__list {
-            width: 61.8%;
+            width: 70%;
         }
 
         .list__item {

@@ -1,5 +1,5 @@
 .section--skills {
-    padding-top: 40px;
+    padding-top: 3%;
     display: block;
     height: 100vh;
     
@@ -15,9 +15,9 @@
         overflow: hidden;
         display: flex;        
         height: 115px;
-        width: calc(100vw - 175px);
+        width: calc(100vw - 215px);
         background: transparent;
-        margin: 0 30px 0 145px;
+        margin: 0 50px 0 165px;
         border-bottom: 6px solid $mainWhite;
         border-top: 6px solid $mainWhite;
         mix-blend-mode: difference;
