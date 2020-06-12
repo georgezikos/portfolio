@@ -1,0 +1,75 @@
+.section--footer {
+    justify-content: flex-end;
+    
+    .third-headline {
+        @include bodyType(calc(1.9rem + 0.9vw));
+        // border: 1px solid $mainWhite;
+        line-height: 1;
+        margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+        height: calc(100vh - 115px);
+    }
+
+    .section-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        // align-items: flex-end;
+        width: calc(100% - 115px);
+        height: 100%;
+        margin: 0;
+        padding: 3% 0 6% 3%;
+
+        .list__item--contacts {
+            margin-bottom: 20px;
+            max-width: 400px;
+
+            .fa-file-pdf {
+                // position: relative;
+                // bottom: 2px;
+                font-size: 2.4rem;
+                line-height: 1;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+                max-width: 200px;
+            }
+        }
+
+        .underline {
+                display: inline-block;
+                padding-bottom: 2.6%;
+                border-bottom: 4px solid $mainWhite;
+
+                &:hover {
+                    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; /*!emojicursor.app*/
+                }
+
+                @media (max-width: 768px) {
+                    border-bottom: 3px solid $mainWhite;
+                }
+            }
+
+            .contacts-list--socials {
+                display: flex;
+                justify-content: space-between;
+                // border: 1px solid $mainWhite;
+
+                .fab {
+                    font-size: calc(2rem + 0.8vw);
+                    // border: 1px solid $mainWhite;
+                }
+            }
+
+        @media (max-width: 1000px) {
+            width: calc(70% - 115px / 2);
+        }
+        @media (max-width: 768px) {
+            width: 65%;
+            padding: 6% 0 0 6%;
+        }
+    }
+}

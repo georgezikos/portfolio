@@ -1,0 +1,55 @@
+// Other
+$phi: 1.6180339887498948482;
+
+// Primary Palette
+$mainBlack: #161616;
+$mainWhite: #DDDCE1;
+$mainAccent: #4C47F9;
+
+// Maconutrient Calculator Palette
+$macroPrimary: #165A96;
+$macroSecondary: #E093B3;
+
+// Recipease Palette
+$recipeasePrimary: #FDA63D;
+$recipeaseSecondary: #914F00;
+
+// Frige Verses Palette
+$fridgeVersesPrimary: #01B99F;
+$fridgeVersesSecondary: #005246;
+
+// NOSUCHTHING Palette
+$nosuchthingPrimary: #E35742;
+$nosuchthingSecondary: #FFE2E2;
+
+// Strainless Palette
+$strainlessPrimary: #A8E2E4;
+$strainlessSecondary: #34437C;
+
+// Typefaces
+// Add '-apple-system' , 'BlinkMacSystemFont'
+$mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+@mixin headingType($sizeValue, $colorValue: $mainWhite) {
+    font-family: $mainFont;
+    font-size: $sizeValue;
+    font-weight: 500;
+    color: $colorValue;
+
+    // Confirm these are the right measurements
+    letter-spacing: 0.05rem;
+    line-height: $sizeValue;
+}
+
+@mixin bodyType($sizeValue, $weightValue: 400, $colorValue: $mainWhite) {
+    font-family: $mainFont;
+    font-size: $sizeValue;
+    font-weight: $weightValue;
+    color: $colorValue;
+
+    // Confirm these are the right measurements
+    letter-spacing: 0rem;
+    line-height: $sizeValue;
+    // Make this a variable later
+    // margin-bottom: 30px;
+}
