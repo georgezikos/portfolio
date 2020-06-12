@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack --config webpack.prod.config.js",
+    "dev": "webpack-dev-server --config webpack.dev.config.js --hot"
   },
   "repository": {
     "type": "git",
@@ -13,25 +14,32 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/georgezikos/portfolio/issues"
   },
   "homepage": "https://github.com/georgezikos/portfolio#readme",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
+    "@popperjs/core": "^2.4.2",
+    "@vimeo/player": "^2.12.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
     "html-webpack-plugin": "^4.3.0",
+    "jquery": "^3.5.1",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
+    "scrollreveal": "^4.0.6",
     "style-loader": "^1.2.1",
-    "terser-webpack-plugin": "^3.0.3",
+    "tippy.js": "^6.2.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
   }
 }

@@ -1,6 +1,5 @@
 // Other
 $phi: 1.6180339887498948482;
-$test: 1.2;
 
 // Primary Palette
 $mainBlack: #161616;
@@ -28,8 +27,7 @@ $strainlessPrimary: #A8E2E4;
 $strainlessSecondary: #34437C;
 
 // Typefaces
-// '-apple-system' , 'BlinkMacSystemFont'
-
+// Add '-apple-system' , 'BlinkMacSystemFont'
 $mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 @mixin headingType($sizeValue, $colorValue: $mainWhite) {
