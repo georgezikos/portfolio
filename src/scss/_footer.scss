@@ -20,11 +20,13 @@
         width: calc(100% - 115px);
         height: 100%;
         margin: 0;
-        padding: 3% 0 6% 3%;
+        padding: 3% 0 58px 3%;
+        border: 1px solid red;
 
         .list__item--contacts {
             margin-bottom: 20px;
             max-width: 400px;
+            border: 1px solid red;
 
             .fa-file-pdf {
                 // position: relative;

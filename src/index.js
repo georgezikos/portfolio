@@ -219,13 +219,13 @@ swimCodes.init = function() {
     swimCodes.strainlessFunction();
     // Turn into a function higher up
     ScrollReveal().reveal('.container--right .main-paragraph', { reset: true })
+    ScrollReveal().reveal('.about__video', { reset: true })
 };
 
 // Document Ready
 $(function () {
     swimCodes.init();
-});    
-    
+});
 
 // Projects Section Functionality
 // User clicks on a list__item from the projects__list
