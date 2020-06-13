@@ -27,6 +27,11 @@
 
 .section--header {
     position: relative;
+
+    .header__copy {
+        // border: 1px solid $mainWhite;
+        transition: transform 150ms ease;
+    }
 }
 
 .header__nav {
@@ -44,7 +49,7 @@
     background-color: $mainBlack;
     transform: rotateZ(-90deg) translateX(-100%);
     transform-origin: top left;
-    padding: 0 3% 0 0;
+    padding: 0 3vw 0 0;
     // background-color: $mainBlack;
     border-bottom: 6px solid $mainWhite;
     // mix-blend-mode: difference;
@@ -61,7 +66,7 @@
         width: 109px;
         padding: 10px;
         margin: 0 auto;
-        // border: 1px solid $mainAccent:;
+        border: 1px solid $mainWhite;
     
         &:hover > .wordmark {
             animation-play-state: paused;
@@ -102,8 +107,8 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-        width: 75%;
-        // border: 1px solid $mainAccent:;
+        width: 680px;
+        border: 1px solid $mainWhite;
 
         @media (max-width: 768px) {
             width: 100%;
@@ -111,10 +116,8 @@
     }
     
     .main-link {
-        @include bodyType(calc(3.25rem + 1.35vw));
         @include bodyType(5.5rem);
         line-height: calc(115px - 6px);
-        // border: 1px solid $mainAccent:;
     
         a {
             display: inline-block;

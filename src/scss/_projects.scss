@@ -8,7 +8,6 @@
         // Shouldn't this be headingType?
         @include bodyType(calc(2rem + 0.3vw));
         line-height: 1.2;
-        // border: 1px solid $mainWhite;
         user-select: none;
         
         @media (min-width: 1681px) {
@@ -67,8 +66,7 @@
         .list__item {
             @include bodyType(calc(1.9rem + 0.9vw));
             margin-bottom: 20px;
-            // border: 1px solid $mainWhite;
-            line-height: 1.2;
+            line-height: 1;
             user-select: none;
 
             &:hover {
@@ -125,21 +123,20 @@
             height: 100%;
             width: 100%;
             background-color: $mainBlack;
-            padding: 5% 10% 5% 10%;
+            padding: 3vw 10% 5% 10%;
 
             @media (max-width: 965px) {
                 padding: 5% 10% 5% 5%;
             }
 
             .summary__accessories {
-                // border: 1px solid $mainWhite;
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 40px;
 
                 .accessories__close {
                     font-size: calc(2.4rem + 0.35vw);
-                    // border: 1px solid $mainWhite;
+                    line-height: 1;
                     color: $mainWhite;
                     transition: transform ease-in-out 100ms;
 
