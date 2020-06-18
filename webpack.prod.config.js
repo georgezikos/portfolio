@@ -29,6 +29,18 @@ module.exports = {
                         presets: [ '@babel/env' ]
                     }
                 }
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -43,6 +55,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: 'src/assets', to: 'assets' }
+                // { from: 'src/fonts', to: 'fonts' }
             ],
             options: {
                 concurrency: 100,

@@ -48,19 +48,10 @@
         .skills__list {
             display: flex;
             height: 100%;
-            @include bodyType(calc(3.25rem + 1.35vw));
+            @include bodyType(calc(3.8rem + (55 - 38) * ((100vw - 375px) / (1680 - 375))));
             line-height: calc(115px - 12px);
             animation: marquee 12s linear infinite;
             transform: translate3d(0, 0, 0);
-
-            @media (min-width: 1681px) {
-                @include bodyType(5.5rem);
-                line-height: calc(115px - 12px);
-            }
-
-            @media (max-width: 768px) {
-                // display: none;
-            }
 
             .main-skill {
                 white-space: nowrap;

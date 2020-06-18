@@ -6,13 +6,15 @@
 
     .third-headline {
         // Shouldn't this be headingType?
-        @include bodyType(calc(2rem + 0.3vw));
+        @include bodyType(2.5rem);
         line-height: 1.2;
         user-select: none;
+        // border: 1px solid red;
+        display: inline-block;
         
-        @media (min-width: 1681px) {
-            @include bodyType(calc(2.5rem));
-        }
+        // @media (min-width: 1681px) {
+        //     @include bodyType(calc(2.5rem));
+        // }
     }
     
     .container--left {
@@ -23,6 +25,7 @@
         margin: 0;
         padding: 3% 0 0 6%;
         background-color: $mainBlack;
+        // border: 1px solid $mainWhite;
 
         @media (max-width: 965px) {
             position: absolute;
@@ -36,7 +39,7 @@
             width: 100%;
             height: calc(100% - 115px);
             margin: auto 0 0 0;
-            padding: 6% 0 0 6%;
+            padding: 6% 6% 0 6%;
         }
 
         .container--top,
@@ -44,6 +47,7 @@
             display: flex;
             height: 50%;
             width: 100%;
+            // border: 1px solid $mainWhite;
         }
 
         .constainer--top {
@@ -53,6 +57,7 @@
         .projects__category,
         .projects__list {
             height: 100%;
+            // border: 1px solid $mainAccent;
         }
 
         .projects__category {
@@ -64,28 +69,40 @@
         }
 
         .list__item {
-            @include bodyType(calc(1.9rem + 0.9vw));
+            @include bodyType(calc(2.25rem + (34 - 22.5) * ((100vw - 966px) / (1680 - 966))));
             margin-bottom: 20px;
             line-height: 1;
             user-select: none;
-
+            // border: 1px solid red;
+            // display: inline-block;
+            
             &:hover {
                 cursor: pointer;
             }
             
-            @media (min-width: 1681px) {
+            @media (max-width: 965px) {
                 @include bodyType(3.4rem);
+                line-height: 1;
             }
+            
+            @media (max-width: 768px) {
+                @include bodyType(calc(2.78rem + (34 - 27.8) * ((100vw - 375px) / (768 - 375))));
+                line-height: 1;
+            }
+            
+            // @media (min-width: 1681px) {
+            //     @include bodyType(3.4rem);
+            // }
 
-            @media (max-width: 1452px) {
-                @include bodyType(calc(1.6rem + 0.9vw));
-                line-height: 1.2;
-            }
+            // @media (max-width: 1452px) {
+            //     @include bodyType(calc(1.6rem + 0.9vw));
+            //     line-height: 1.2;
+            // }
 
-            @media (max-width: 1263px) {
-                @include bodyType(calc(1.5rem + 0.6vw));
-                line-height: 1.2;
-            }
+            // @media (max-width: 1263px) {
+            //     @include bodyType(calc(1.5rem + 0.6vw));
+            //     line-height: 1.2;
+            // }
         }
     }
     
@@ -135,7 +152,7 @@
                 margin-bottom: 40px;
 
                 .accessories__close {
-                    font-size: calc(2.4rem + 0.35vw);
+                    font-size: 3rem;
                     line-height: 1;
                     color: $mainWhite;
                     transition: transform ease-in-out 100ms;
@@ -163,14 +180,14 @@
 
             .fourth-headline {
                 // Shouldn't this be headingType?
-                @include bodyType(calc(3.25rem + 1.35vw));
+                @include bodyType(5.5rem);
                 color: $mainWhite;
                 // border: 1px solid $mainWhite;
                 // Responsive Margins?
                 margin-bottom: 20px;
-
-                @media (min-width: 1681px) {
-                    @include bodyType(5.5rem);
+                
+                @media (max-width: 500px) {
+                    @include bodyType(calc(3.6rem + (55 - 36) * ((100vw - 375px) / (500 - 375))));
                 }
             }
 
@@ -197,18 +214,13 @@
                     }
     
                     p {
-                        @include bodyType(calc(1.6rem + 0.1vw));
+                        @include bodyType(1.768rem);
                         color: $mainWhite;
                         // border: 1px solid $mainWhite;
                         line-height: calc(4rem - 4px);
                         
-                        @media (min-width: 1681px) {
-                            @include bodyType(2.5rem);
-                            line-height: calc(5rem - 4px);
-                        }
-                        
-                        @media (max-width: 968px) {
-                            @include bodyType(calc(1.6rem + 0.25vw));
+                        @media (max-width: 500px) {
+                            @include bodyType(calc(1.6rem + (17.68 - 16) * ((100vw - 375px) / (500 - 375))));
                             line-height: calc(4rem - 4px);
                         }
                     }
@@ -236,17 +248,28 @@
             }
 
             .summary__description {
-                @include bodyType(calc(1.6rem + 0.25vw));
+                @include bodyType(2.02rem);
                 line-height: 1.4;
                 color: $mainWhite;
                 // border: 1px solid $mainWhite;
                 margin-bottom: 20px;
-
-                @media (min-width: 1681px) {
-                    @include bodyType(2.5rem);
-                    line-height: 1.4;
+                
+                // @media (min-width: 1681px) {
+                    //     @include bodyType(2.5rem);
+                    //     line-height: 1.4;
+                    // }
+                    
+                    @media (max-width: 768px) {
+                        // Reversed! Save for use later
+                        @include bodyType(calc(1.6rem + (19 - 16) * ((100vw - 768px) / (500 - 768))));
+                        line-height: 1.4;  
+                    }
+                    
+                    @media (max-width: 500px) {
+                        @include bodyType(calc(1.6rem + (19 - 16) * ((100vw - 375px) / (500 - 375))));
+                        line-height: 1.4;  
+                    }
                 }
-            }
 
             .summary__links {
                 // border: 1px solid $mainWhite;
@@ -257,12 +280,12 @@
                 }
 
                 p {
-                    @include bodyType(calc(1.6rem + 0.25vw));
+                    @include bodyType(2.02rem);
                     line-height: 1;
                     color: $mainWhite;
-
-                    @media (min-width: 1681px) {
-                        @include bodyType(2.02rem);
+                    
+                    @media (max-width: 500px) {
+                        @include bodyType(calc(1.8rem + (20.2 - 18) * ((100vw - 375px) / (500 - 375))));
                         line-height: 1;
                     }
 

@@ -20,6 +20,19 @@ module.exports = {
     },
     module: {
         rules: [
+            // Add to production as well
+            {
+                test: /\.(svg|png|jpg|jpeg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/'
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.scss$/,
                 use: [
@@ -35,6 +48,18 @@ module.exports = {
                         presets: [ '@babel/env' ]
                     }
                 }
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }
+                ]
             }
         ]
     },

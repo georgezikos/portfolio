@@ -27,25 +27,59 @@ $strainlessPrimary: #A8E2E4;
 $strainlessSecondary: #34437C;
 
 // Typefaces
-// Add '-apple-system' , 'BlinkMacSystemFont'
-$mainFont: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+/*
+Font:       Beni
+Style:      Regular, Bold
+URL:        https://www.youworkforthem.com/font/T12269/beni
+Foundry:    Nois
+Foundry:    https://www.youworkforthem.com/designer/1360/nois
+Copyright:  
+Version:    17
+Created:    May 08, 2020
+License:    https://www.youworkforthem.com/font-license 
+License:    The WebFont(s) listed in this document must follow the YouWorkForThem
+            WebFont license rules. All other parties are strictly restricted 
+            from using the WebFonts(s) listed without a purchased license. 
+            All details above must always remain unaltered and visible in your CSS.
+*/
 
-@mixin headingType($sizeValue, $colorValue: $mainWhite) {
-    font-family: $mainFont;
-    font-size: $sizeValue;
-    font-weight: 500;
-    color: $colorValue;
-
-    // Confirm these are the right measurements
-    letter-spacing: 0.05rem;
-    line-height: $sizeValue;
+@font-face {
+	font-family: 'Beni';
+	src: url('../fonts/beni-bold/beni-bold.eot');
+	src: url('../fonts/beni-bold/beni-bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/beni-bold/beni-bold.woff2') format('woff2'),
+        url('../fonts/beni-bold/beni-bold.woff') format('woff'),
+        url('../fonts/beni-bold/beni-bold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
 }
 
-@mixin bodyType($sizeValue, $weightValue: 400, $colorValue: $mainWhite) {
-    font-family: $mainFont;
+@font-face {
+	font-family: 'Beni';
+	src: url('../fonts/beni-regular/beni-regular.eot');
+	src: url('../fonts/beni-regular/beni-regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/beni-regular/beni-regular.woff2') format('woff2'),
+        url('../fonts/beni-regular/beni-regular.woff') format('woff'),
+        url('../fonts/beni-regular/beni-regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+// Add '-apple-system' , 'BlinkMacSystemFont'
+$body: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$heading: 'Beni';
+
+@mixin headingType($fontFace, $sizeValue, $fontWeight, $colorValue: $mainWhite) {
+    font-family: $fontFace;
     font-size: $sizeValue;
-    font-weight: $weightValue;
+    font-weight: $fontWeight;
     color: $colorValue;
+}
+
+@mixin bodyType($sizeValue) {
+    font-family: $body;
+    font-size: $sizeValue;
+    font-weight: 400;
+    color: $mainWhite;
 
     // Confirm these are the right measurements
     letter-spacing: 0rem;
