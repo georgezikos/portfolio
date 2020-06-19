@@ -2,7 +2,11 @@
 html {
     @include bodyType(62.5%);
     background: $mainBlack;
-    scroll-snap-type: y mandatory;
+    // scroll-snap-type: y mandatory;
+}
+
+#fullpage {
+    border: 1px solid red;
 }
 
 body {
@@ -63,7 +67,7 @@ img {
     // background: $mainBlack;
     display: flex;
     width: 100vw;
-    scroll-snap-align: start;
+    // scroll-snap-align: start;
 }
 
 .section-container {

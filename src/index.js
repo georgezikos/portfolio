@@ -2,10 +2,21 @@ import './scss/styles.scss';
 import $ from 'jquery';
 import Player from '@vimeo/player';
 import ScrollReveal from 'scrollreveal';
-import { createPopper } from '@popperjs/core';
-import tippy from 'tippy.js';
+import PanelSnap from 'panelsnap'
+// import { createPopper } from '@popperjs/core';
+// import tippy from 'tippy.js';
 
 const swimCodes = {};
+
+// PanelSnap
+swimCodes.panelSnap = new PanelSnap({
+    container: document.body,
+    panelSelector: '> .section',
+    directionThreshold: 50,
+    delay: 0,
+    duration: 300,
+    easing: function(t) { return t },
+});
 
 // Project Selectors
 swimCodes.macroCalculator = $('.summary--macro-calculator');
@@ -218,8 +229,8 @@ swimCodes.init = function() {
     swimCodes.nosuchthingFunction();
     swimCodes.strainlessFunction();
     // Turn into a function higher up
-    ScrollReveal().reveal('.container--right .main-paragraph', { reset: true })
-    ScrollReveal().reveal('.about__video', { reset: true })
+    ScrollReveal().reveal('.container;--right .main-paragraph', { reset: true })
+    ScrollReveal().reveal('.about__video', { reset: true });
 };
 
 // Document Ready
