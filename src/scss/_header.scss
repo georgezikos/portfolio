@@ -182,7 +182,7 @@
         width: 60px;
         height: 60px;
         position: relative;
-        border: 1px solid red;
+        // border: 1px solid red;
 
         .hamburger__bun {
             position: absolute;
@@ -203,7 +203,7 @@
             left: 0;
             // right: 0;
         }
-        
+
         .bun__top--active {
             transform: rotateZ(135deg) translateY(18px);
             top: 38px;
