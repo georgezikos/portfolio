@@ -15,9 +15,21 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(svg|png|jpg|jpeg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/'
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.scss$/,
                 use: [
-                    MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
+                    MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'
                 ]
             },
             {
@@ -55,11 +67,10 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: 'src/assets', to: 'assets' }
-                // { from: 'src/fonts', to: 'fonts' }
             ],
             options: {
                 concurrency: 100,
             }
-        })
+        }),
     ]   
 };

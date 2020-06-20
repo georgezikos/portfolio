@@ -2,21 +2,22 @@ import './scss/styles.scss';
 import $ from 'jquery';
 import Player from '@vimeo/player';
 import ScrollReveal from 'scrollreveal';
-import PanelSnap from 'panelsnap'
+// import PanelSnap from 'panelsnap'
 // import { createPopper } from '@popperjs/core';
 // import tippy from 'tippy.js';
 
 const swimCodes = {};
 
 // PanelSnap
-swimCodes.panelSnap = new PanelSnap({
-    container: document.body,
-    panelSelector: '> .section',
-    directionThreshold: 50,
-    delay: 0,
-    duration: 300,
-    easing: function(t) { return t },
-});
+// Decide if it's going to be this or native CSS
+// swimCodes.panelSnap = new PanelSnap({
+//     container: document.body,
+//     panelSelector: '> .section',
+//     directionThreshold: 5,
+//     delay: 0,
+//     duration: 250,
+//     easing: t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+// });
 
 // Project Selectors
 swimCodes.macroCalculator = $('.summary--macro-calculator');
@@ -228,9 +229,39 @@ swimCodes.init = function() {
     swimCodes.fridgeVersesFunction();
     swimCodes.nosuchthingFunction();
     swimCodes.strainlessFunction();
-    // Turn into a function higher up
+
+    // TODO Move into Namespace
+    // * ScrollReveal Related
     ScrollReveal().reveal('.container;--right .main-paragraph', { reset: true })
     ScrollReveal().reveal('.about__video', { reset: true });
+    // * Media Query Related 
+    const $nav = $('.header__nav');
+    $nav.on('click', '.mobile--hamburger', function() {
+        $('.bun__top').toggleClass('bun__top--active');
+        $('.bun__bottom').toggleClass('bun__bottom--active');
+    });
+    const mobileMenu = (breakpoint) => {
+        if (breakpoint.matches) {
+            $nav.prepend(`
+                <div class="nav__mobile mobile--wordmark">
+                    <a href="">SWIM</a>
+                </div>
+                <div class="nav__mobile mobile--hamburger">
+                    <div class="hamburger__bun bun__top"></div>
+                    <div class="hamburger__bun bun__bottom"></div>
+                </div>
+            `)
+        } else {
+            $('.nav__mobile').remove();
+        }
+    };
+    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+    mobileMenu(mobileBreakpoint);
+    mobileBreakpoint.addListener(mobileMenu);
+
+    
+
+
 };
 
 // Document Ready
