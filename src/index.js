@@ -4,29 +4,28 @@ import Player from '@vimeo/player';
 import ScrollReveal from 'scrollreveal';
 // import PanelSnap from 'panelsnap'
 // import { createPopper } from '@popperjs/core';
-// import tippy from 'tippy.js';
+import tippy, { followCursor } from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 
+// * Namespace
 const swimCodes = {};
 
-// PanelSnap
-// Decide if it's going to be this or native CSS
-// swimCodes.panelSnap = new PanelSnap({
-//     container: document.body,
-//     panelSelector: '> .section',
-//     directionThreshold: 5,
-//     delay: 0,
-//     duration: 250,
-//     easing: t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
-// });
+// * Cached Selectors
+// Breakpoints
+swimCodes.mobileBreakpoint = window.matchMedia('(max-width: 768px)');
 
-// Project Selectors
+// Mobile Nav
+swimCodes.nav = $('.header__nav');
+swimCodes.navLinks = $('.nav__links');
+
+// Projects
 swimCodes.macroCalculator = $('.summary--macro-calculator');
 swimCodes.recipease = $('.summary--recipease');
 swimCodes.nosuchthing = $('.summary--nosuchthing');
 swimCodes.fridgeVerses = $('.summary--fridge-verses');
 swimCodes.strainless = $('.summary--strainless');
 
-// Vimeo Related
+// Vimeo Players
 swimCodes.macroVideo = document.querySelector('#macroVideo');
 swimCodes.macroPlayer = new Player(swimCodes.macroVideo);
 
@@ -42,7 +41,9 @@ swimCodes.nosuchthingPlayer = new Player(swimCodes.nosuchthingVideo);
 swimCodes.strainlessVideo = document.querySelector('#strainlessVideo');
 swimCodes.strainlessPlayer = new Player(swimCodes.strainlessVideo);
 
-swimCodes.escProject = () => {
+// * Functionality
+// Projects
+swimCodes.projectEscClose = () => {
     $(document).keyup(function(e) {
         if (e.keyCode === 27) {
             if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
@@ -65,7 +66,7 @@ swimCodes.escProject = () => {
     });
 };
 
-swimCodes.closeButton = () => {
+swimCodes.projectCloseButton = () => {
     $('.accessories__close').on('click', function() {
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
             $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
@@ -86,7 +87,7 @@ swimCodes.closeButton = () => {
     });
 };
 
-swimCodes.macroFunction = () => {
+swimCodes.macroProject = () => {
     $('.list__item--macro-calculator').on('mouseenter', function () {
         if ($(swimCodes.macroCalculator).hasClass('summary--display') !== true) {
             $(swimCodes.macroCalculator).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
@@ -113,7 +114,7 @@ swimCodes.macroFunction = () => {
     });
 };
 
-swimCodes.recipeaseFunction = () => {
+swimCodes.recipeaseProject = () => {
     $('.list__item--recipease').on('mouseenter', function() {
         if ($(swimCodes.recipease).hasClass('summary--display') !== true) {
             $(swimCodes.recipease).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
@@ -140,7 +141,7 @@ swimCodes.recipeaseFunction = () => {
     });
 };
 
-swimCodes.fridgeVersesFunction = () => {
+swimCodes.fridgeVersesProject = () => {
     $('.list__item--fridge-verses').on('mouseenter', function() {
         if ($(swimCodes.fridgeVerses).hasClass('summary--display') !== true) {
             $(swimCodes.fridgeVerses).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
@@ -167,7 +168,7 @@ swimCodes.fridgeVersesFunction = () => {
     });
 };
 
-swimCodes.nosuchthingFunction = () => {
+swimCodes.nosuchthingProject = () => {
     $('.list__item--nosuchthing').on('mouseenter', function() {
         if ($(swimCodes.nosuchthing).hasClass('summary--display') !== true) {
             $(swimCodes.nosuchthing).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
@@ -194,7 +195,7 @@ swimCodes.nosuchthingFunction = () => {
     });
 };
 
-swimCodes.strainlessFunction = () => {
+swimCodes.strainlessProject = () => {
     $('.list__item--strainless').on('mouseenter', function() {
         if ($(swimCodes.strainless).hasClass('summary--display') !== true) {
             $(swimCodes.strainless).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
@@ -221,28 +222,10 @@ swimCodes.strainlessFunction = () => {
     });
 };
 
-swimCodes.init = function() {
-    swimCodes.escProject();
-    swimCodes.closeButton();
-    swimCodes.macroFunction();
-    swimCodes.recipeaseFunction();
-    swimCodes.fridgeVersesFunction();
-    swimCodes.nosuchthingFunction();
-    swimCodes.strainlessFunction();
-
-    // TODO Move into Namespace
-    // * ScrollReveal Related
-    ScrollReveal().reveal('.container;--right .main-paragraph', { reset: true })
-    ScrollReveal().reveal('.about__video', { reset: true });
-    // * Media Query Related 
-    const $nav = $('.header__nav');
-    $nav.on('click', '.mobile--hamburger', function() {
-        $('.bun__top').toggleClass('bun__top--active');
-        $('.bun__bottom').toggleClass('bun__bottom--active');
-    });
-    const mobileMenu = (breakpoint) => {
-        if (breakpoint.matches) {
-            $nav.prepend(`
+// Mobile Nav
+swimCodes.mobileNavBuild = (breakpoint) => {
+    if (breakpoint.matches) {
+        swimCodes.nav.prepend(`
                 <div class="nav__mobile mobile--wordmark">
                     <a href="">SWIM</a>
                 </div>
@@ -250,21 +233,69 @@ swimCodes.init = function() {
                     <div class="hamburger__bun bun__top"></div>
                     <div class="hamburger__bun bun__bottom"></div>
                 </div>
-            `)
-        } else {
-            $('.nav__mobile').remove();
+            `);
+    } else {
+        $('.nav__mobile').remove();
+        if (swimCodes.navLinks.hasClass('nav__links--open') === true) {
+            swimCodes.navLinks.removeClass('nav__links--open');
         }
-    };
-    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
-    mobileMenu(mobileBreakpoint);
-    mobileBreakpoint.addListener(mobileMenu);
-
-    
-
-
+    }
 };
 
-// Document Ready
+swimCodes.breakpointListener = (build) => {
+    swimCodes.mobileBreakpoint.addListener(build);
+};
+
+swimCodes.mobileNav = () => {
+    swimCodes.nav.on('click', '.mobile--hamburger', function () {
+        $('.bun__top').toggleClass('bun__top--active');
+        $('.bun__bottom').toggleClass('bun__bottom--active');
+        swimCodes.navLinks.toggleClass('nav__links--open');
+    });
+};
+
+// * Init
+swimCodes.init = function() {
+    swimCodes.projectEscClose();
+    swimCodes.projectCloseButton();
+    swimCodes.macroProject();
+    swimCodes.recipeaseProject();
+    swimCodes.fridgeVersesProject();
+    swimCodes.nosuchthingProject();
+    swimCodes.strainlessProject();
+    swimCodes.mobileNavBuild(swimCodes.mobileBreakpoint);
+    swimCodes.breakpointListener(swimCodes.mobileNavBuild);
+    swimCodes.mobileNav();
+
+    // TODO Move into Namespace
+    // * ScrollReveal Related
+    ScrollReveal().reveal('.container;--right .main-paragraph', { reset: true })
+    ScrollReveal().reveal('.about__video', { reset: true });
+
+    // * Tippy Related
+    // Add in ARIA later
+    tippy('.branding', {
+        theme: 'urban-dictionary',
+        allowHTML: true,
+        // Add acronym best practices below
+        content: `
+            <p class="definition-rank">Top Definition</p>
+            <h5 class="definition-heading">S.W.I.M.</h5>
+            <p class="definition">Acronym: Someone Who Isn't Me
+                <span class="line-break">General use indicates that it is indeed the  same person.</span>
+            </p>
+            <p class="definition-example">S.W.I.M. decided to start coding.</p>
+        `,
+        arrow: false,
+        followCursor: true,
+        plugins: [followCursor],
+        maxWidth: 450,
+        touch: 'hold',
+        hideOnClick: false,
+    });
+};
+
+// * Document Ready
 $(function () {
     swimCodes.init();
 });
