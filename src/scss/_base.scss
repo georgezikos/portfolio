@@ -5,9 +5,11 @@ html {
     scroll-snap-type: y mandatory;
 }
 
-#fullpage {
-    border: 1px solid red;
-}
+// canvas {
+//     width: 100%;
+//     height: 100%;
+//     background: white;
+// }
 
 body {
     // background-image: url('../assets/pixels-a.svg'), url('../assets/pixels-b.svg');
@@ -95,6 +97,7 @@ img {
     padding: 0;
     // border: 1px solid $mainAccent;
     margin-right: 3.65%;
+    user-select: none;
 
     @media (max-width: 1205px) {
         @include headingType($heading, calc(32.2rem + (520 - 322) * ((100vw - 768px) / (1205 - 768))), 400);
@@ -131,6 +134,7 @@ img {
     @include headingType($body, 7.3rem, 400);
     line-height: 7.3rem;
     max-width: 945px;
+    user-select: none;
     // border: 1px solid $mainAccent;
 
     .fa-long-arrow-right {
@@ -153,6 +157,7 @@ img {
     @include bodyType(calc(4.1rem + (55 - 41) * ((100vw - 1229px) / (1680 - 1229))));
     line-height: 1.2;
     // border: 1px solid $mainAccent;
+    user-select: none;
     
     @media (max-width: 1229px) {
         @include bodyType(calc(4.3rem + (55 - 43) * ((100vw - 768px) / (1229 - 769))));

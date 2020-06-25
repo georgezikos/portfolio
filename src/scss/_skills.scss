@@ -5,10 +5,16 @@
     
     .section-container {
         height: calc(100% - 115px);
+        border: 1px solid red;
+        padding: 3%;
     }
 
     @media (max-width: 768px) {
         padding-top: 155px;
+    }
+
+    .skills__shape {
+        position: relative;
     }
 
     .skills__banner {

@@ -6,6 +6,7 @@ import ScrollReveal from 'scrollreveal';
 // import { createPopper } from '@popperjs/core';
 import tippy, { followCursor } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
+import Matter from 'matter-js';
 
 // * Namespace
 const swimCodes = {};
@@ -274,10 +275,11 @@ swimCodes.init = function() {
 
     // * Tippy Related
     // Add in ARIA later
-    tippy('.branding', {
+    const instance = tippy('.branding', {
         theme: 'urban-dictionary',
         allowHTML: true,
         // Add acronym best practices below
+        // Prevent user-select on header and branding images
         content: `
             <p class="definition-rank">Top Definition</p>
             <h5 class="definition-heading">S.W.I.M.</h5>
@@ -289,10 +291,126 @@ swimCodes.init = function() {
         arrow: false,
         followCursor: true,
         plugins: [followCursor],
-        maxWidth: 450,
-        touch: 'hold',
-        hideOnClick: false,
+        maxWidth: 300,
+        touch: true,
     });
+
+    // $(document).on('touchstart', () => {
+    //     $('#tippy-1').trigger('touch');
+    // })
+
+    // * Matter.JS
+    // Aliases
+    const { Engine, Render, Bodies, World, MouseConstraint, Composites } = Matter;
+
+    // Where it will render
+    const skillsSection = document.querySelector('.skills__shapes');
+    const skillsCanvas = document.querySelector('.shapes__canvas');
+    
+    const sectionWidth = $(skillsSection).width();
+    const sectionHeight = $(skillsSection).height();
+    
+    const skillsCanvasHeight = $(skillsCanvas).height(sectionHeight);
+    const skillsCanvasWidth = $(skillsCanvas).width(sectionWidth);
+    
+    $(window).on('resize', function() {
+        const sectionWidth = $(skillsSection).width();
+        const sectionHeight = $(skillsSection).height();
+        const skillsCanvasHeight = $(skillsCanvas).height(sectionHeight);
+        const skillsCanvasWidth = $(skillsCanvas).width(sectionWidth);
+    })
+
+    // Image Loader
+    const loadImage = (path, onSuccess, onError) => {
+        const img = new Image();
+        img.onload = () => {
+            onSuccess(img.src);
+        };
+        img.onerror = onError();
+        img.src = path;
+    };
+
+
+    // Engine – computation and math
+    // Renderer – draws the result of the engine
+    const engine = Engine.create();
+    const render = Render.create({
+        // element: skillsSection,
+        canvas: skillsCanvas, 
+        engine: engine,
+        options: {
+            height: sectionHeight,
+            width: sectionWidth,
+            background: '#161616',
+            // background: '#fff',
+            wireframes: false,
+            pixelRatio: window.devicePixelRatio,
+        }
+    });
+
+    // Create Shapes
+    loadImage(
+        '/Users/georgezikos/development/projects/web/personal/portfolio/src/assets/skills-icons--sketch.png', 
+        url => {
+            console.log('Success');
+            const createShape = (x, y) => {
+                return Bodies.circle(x, y, 20 + 20 * Math.random(), {
+                    render: {
+                        // fillStyle: 'red',
+                        sprite: {
+                            texture: '/Users/georgezikos/development/projects/web/personal/portfolio/src/assets/skills-icons--sketch.png'
+                        }
+                    }
+                })
+            }
+
+            const initialShapes = Composites.stack(50, 50, 15, 5, 40, 40, (x, y) => {
+                return createShape(x, y);
+            })
+
+            World.add(engine.world, [
+                floor,
+                ceiling,
+                leftWall,
+                rightWall,
+                mouseControl,
+                initialShapes
+            ])
+        },
+        () => {
+            console.log('Error');
+        }
+    );
+
+    const wallOptions = {
+        isStatic: true,
+        render: {
+            visible: false,
+        }
+    }
+
+    const floor = Bodies.rectangle(sectionWidth / 2, sectionHeight + 50, sectionWidth + 100, 100,wallOptions);
+    const ceiling = Bodies.rectangle(sectionWidth / 2, -50, sectionWidth + 100, 100, wallOptions);
+    const leftWall = Bodies.rectangle(-50, sectionHeight / 2, 100, sectionHeight + 100, wallOptions);
+    const rightWall = Bodies.rectangle(sectionWidth + 50, sectionHeight / 2, 100, sectionHeight + 100, wallOptions);
+
+    const mouseControl = MouseConstraint.create(engine, {
+        element: skillsCanvas,
+        constraint: {
+            render: {
+                visible: false,
+            }
+        }
+    })
+
+    mouseControl.mouse.element.removeEventListener("mousewheel", mouseControl.mouse.mousewheel);
+    mouseControl.mouse.element.removeEventListener("DOMMouseScroll", mouseControl.mouse.mousewheel);
+
+    
+
+    // Run the engine and the renderer
+    Engine.run(engine);
+    Render.run(render);
 };
 
 // * Document Ready

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>George Zikos | Frontend Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/54ea624771.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -27,6 +28,7 @@
             <div class="section-container">
                 <div class="header__copy">
                     <h1 class="main-heading">George<span class="line-break">Zikos</span></h1>
+                    <!-- Try pointer-events: none; to manage buggy interaction -->
                     <div class="branding">
                         <img class="branding__wordmark" src="./assets/logo--wordmark.svg" alt="#">
                         <img class="branding__globe" src="./assets/logo--globe.svg" alt="#">
@@ -159,7 +161,8 @@
                     <span class="list__divider">•</span>
                 </ul>
             </div>
-            <div class="section-container">
+            <div class="section-container skills__shapes">
+                <canvas class="shapes__canvas"></canvas>
             </div>
     </section>
     <main class="section section--projects wrapper">

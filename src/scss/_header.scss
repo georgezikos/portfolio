@@ -16,6 +16,7 @@
             height: 200px;
             position: relative;
             width: 200px;
+            user-select: none;
 
             @media (max-width: 1205px) {
                 height: calc(99px + (200 - 99) * ((100vw - 768px) / (1205 - 768)));
@@ -28,6 +29,7 @@
             }
         
             .branding__wordmark {
+                -webkit-touch-callout: none;
                 @keyframes wordmark {
                     from {
                         transform: rotateZ(0deg)
@@ -50,6 +52,8 @@
                 right: 0;
                 top: 0;
                 width: 62%;
+                user-select: none;
+                -webkit-touch-callout: none;
             }
         }
     }
