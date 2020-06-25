@@ -350,7 +350,7 @@ swimCodes.init = function() {
 
     // Create Shapes
     loadImage(
-        '/Users/georgezikos/development/projects/web/personal/portfolio/src/assets/skills-icons--sketch.png', 
+        './assets/skills-icons--sketch.png', 
         url => {
             console.log('Success');
             const createShape = (x, y) => {
@@ -358,7 +358,7 @@ swimCodes.init = function() {
                     render: {
                         // fillStyle: 'red',
                         sprite: {
-                            texture: '/Users/georgezikos/development/projects/web/personal/portfolio/src/assets/skills-icons--sketch.png'
+                            texture: './assets/skills-icons--sketch.png'
                         }
                     }
                 })
