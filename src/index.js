@@ -407,8 +407,8 @@ swimCodes.init = function() {
     mouseControl.mouse.element.removeEventListener("DOMMouseScroll", mouseControl.mouse.mousewheel);
 
     mouseControl.mouse.element.removeEventListener('touchmove', mouseControl.mouse.mousemove);
-    // mouseControl.mouse.element.removeEventListener('touchstart', mouseControl.mouse.mousedown);
-    // mouseControl.mouse.element.removeEventListener('touchend', mouseControl.mouse.mouseup);
+    mouseControl.mouse.element.removeEventListener('touchstart', mouseControl.mouse.mousedown);
+    mouseControl.mouse.element.removeEventListener('touchend', mouseControl.mouse.mouseup);
 
     
 
