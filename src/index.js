@@ -354,11 +354,13 @@ swimCodes.init = function() {
         url => {
             console.log('Success');
             const createShape = (x, y) => {
-                return Bodies.circle(x, y, 20 + 20 * Math.random(), {
+                return Bodies.polygon(x, y, 6, 25, {
                     render: {
                         // fillStyle: 'red',
                         sprite: {
-                            texture: './assets/skills-icons--sketch.png'
+                            texture: './assets/skills-icons--sketch.png',
+                            xScale: 0.5,
+                            yScale: 0.5,
                         }
                     }
                 })
@@ -415,6 +417,11 @@ swimCodes.init = function() {
     // Run the engine and the renderer
     Engine.run(engine);
     Render.run(render);
+
+    window.addEventListener('deviceorientation', function(e) {
+        engine.world.gravity.x = e.gamma / 30;
+        engine.world.gravity.y = e.beta / 30;
+    })
 };
 
 // * Document Ready
