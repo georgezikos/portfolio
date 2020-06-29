@@ -138,16 +138,11 @@
             height: 100%;
 
             &:hover {
-                -webkit-text-stroke: 3px $mainWhite;
-                -webkit-text-fill-color: $mainBlack;
-                paint-order: stroke fill;
+                color: $mainBlack;
+                @include stroke(1.2px);
 
                 @media(max-width: 768px) {
-                    -webkit-text-stroke-width: 2.4px;
-                }
-
-                @media(max-width: 480px) {
-                    -webkit-text-stroke-width: 2.2px;
+                    @include stroke(1px);
                 }
             }
             
@@ -179,6 +174,10 @@
         width: 60px;
         height: 60px;
         position: relative;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         .hamburger__bun {
             position: absolute;

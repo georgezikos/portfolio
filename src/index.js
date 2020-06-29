@@ -380,6 +380,11 @@ swimCodes.init = function() {
                 swimCodes.navLinks.removeClass('nav__links--open');
             }
     });
+
+    $('a.email').on('click', function() {
+        const href = $(this).attr('href');
+        $(this).attr('href', href.replace('notsofast.', ''))
+    })
 };
 
 // * Document Ready

@@ -19,6 +19,7 @@
             height: 100%;
             position: relative;
             width: 90%;
+            mix-blend-mode: add;
 
             video {
                 height: 100%;
@@ -88,6 +89,10 @@
 
                 @media (max-width: 768px) {
                     border-bottom: 3px solid $mainWhite;
+                }
+
+                @media (max-width: 480px) {
+                    border-bottom: 2px solid $mainWhite;
                 }
             }
         }

@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-end;
     min-height: 940px;
+    height: 100vh;
     position: relative;
 
     .third-headline {
@@ -9,6 +10,12 @@
         display: inline-block;
         line-height: 1.2;
         user-select: none;
+
+        @media (max-width: 768px) {
+            @include headingType($body, calc(2.1rem + (25 - 21) * ((100vw - 375px) / (768 - 375))), 400);
+            // border: 1px solid red;
+            line-height: 1;
+        }
     }
     
     .container--left {
@@ -61,7 +68,7 @@
 
         .list__item {
             @include bodyType(calc(2.25rem + (34 - 22.5) * ((100vw - 966px) / (1680 - 966))));
-            line-height: 1;
+            line-height: 1.2;
             margin-bottom: 20px;
             user-select: none;
             
@@ -71,12 +78,13 @@
             
             @media (max-width: 965px) {
                 @include bodyType(3.4rem);
-                line-height: 1;
+                line-height: 1.2;
             }
             
             @media (max-width: 768px) {
-                @include bodyType(calc(2.78rem + (34 - 27.8) * ((100vw - 375px) / (768 - 375))));
+                @include bodyType(calc(2.1rem + (34 - 21) * ((100vw - 375px) / (768 - 375))));
                 line-height: 1;
+                // border: 1px solid red;
             }
         }
     }

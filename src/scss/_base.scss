@@ -76,6 +76,11 @@ img {
     display: flex;
     height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
+    min-height: 850px;
+
+    @media (max-width: 375px) {
+        min-height: auto;
+    }
 
     // Revisit this on mobile
     // @media(orientation: landscape) {
@@ -163,6 +168,10 @@ img {
     @media (max-width: 768px) {
         @include bodyType(calc(2.1rem + (43 - 21) * ((100vw - 375px) / (768 - 375))));
         line-height: 1.2;
+    }
+
+    @media (max-width: 480px) {
+        line-height: 1.4;
     }
 }
 

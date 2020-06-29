@@ -64,3 +64,15 @@ $heading: 'Beni';
     letter-spacing: 0rem;
     line-height: $sizeValue;
 }
+
+@mixin stroke($size: 1px, $color: $mainWhite) {
+    text-shadow:
+        -#{$size} -#{$size} 0 $color,
+        0        -#{$size} 0 $color,
+        #{$size} -#{$size} 0 $color,
+        #{$size}  0        0 $color,
+        #{$size}  #{$size} 0 $color,
+        0         #{$size} 0 $color,
+        -#{$size}  #{$size} 0 $color,
+        -#{$size}  0        0 $color;
+}
