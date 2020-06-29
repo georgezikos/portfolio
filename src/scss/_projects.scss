@@ -1,45 +1,38 @@
 .section--projects {
     display: flex;
     justify-content: flex-end;
-    position: relative;
     min-height: 940px;
+    position: relative;
 
     .third-headline {
-        // Shouldn't this be headingType?
-        @include bodyType(2.5rem);
+        @include headingType($body, 2.5rem, 400);
+        display: inline-block;
         line-height: 1.2;
         user-select: none;
-        // border: 1px solid red;
-        display: inline-block;
-        
-        // @media (min-width: 1681px) {
-        //     @include bodyType(calc(2.5rem));
-        // }
     }
     
     .container--left {
-        position: relative;
-        z-index: 11;
+        background-color: $mainBlack;
         display: flex;
-        width: calc(40% - 115px / 2);
         margin: 0;
         padding: 3% 0 0 6%;
-        background-color: $mainBlack;
-        // border: 1px solid $mainWhite;
+        position: relative;
+        width: calc(40% - 115px / 2);
+        z-index: 11;
 
         @media (max-width: 965px) {
-            position: absolute;
             bottom: 0;
+            height: 100%;
+            position: absolute;
             width: calc(100% - 115px);
             z-index: 2;
-            height: 100%;
         }
 
         @media (max-width: 768px) {
-            width: 100%;
             height: calc(100% - 115px);
             margin: auto 0 0 0;
             padding: 6% 6% 0 6%;
+            width: 100%;
         }
 
         .container--top,
@@ -47,7 +40,6 @@
             display: flex;
             height: 50%;
             width: 100%;
-            // border: 1px solid $mainWhite;
         }
 
         .constainer--top {
@@ -57,7 +49,6 @@
         .projects__category,
         .projects__list {
             height: 100%;
-            // border: 1px solid $mainAccent;
         }
 
         .projects__category {
@@ -70,11 +61,9 @@
 
         .list__item {
             @include bodyType(calc(2.25rem + (34 - 22.5) * ((100vw - 966px) / (1680 - 966))));
-            margin-bottom: 20px;
             line-height: 1;
+            margin-bottom: 20px;
             user-select: none;
-            // border: 1px solid red;
-            // display: inline-block;
             
             &:hover {
                 cursor: pointer;
@@ -89,29 +78,15 @@
                 @include bodyType(calc(2.78rem + (34 - 27.8) * ((100vw - 375px) / (768 - 375))));
                 line-height: 1;
             }
-            
-            // @media (min-width: 1681px) {
-            //     @include bodyType(3.4rem);
-            // }
-
-            // @media (max-width: 1452px) {
-            //     @include bodyType(calc(1.6rem + 0.9vw));
-            //     line-height: 1.2;
-            // }
-
-            // @media (max-width: 1263px) {
-            //     @include bodyType(calc(1.5rem + 0.6vw));
-            //     line-height: 1.2;
-            // }
         }
     }
     
     .container--right {
-        width: calc(60% - 115px / 2);
         margin: 0;
+        overflow: hidden;
         padding: 0;
         position: relative;
-        overflow: hidden;
+        width: calc(60% - 115px / 2);
 
         .summary--hide {
             transform: translateX(calc(-100% - 1px)) translate3d(0, 0, 0);
@@ -130,17 +105,16 @@
         }
         
         .projects__summary {
-            transition: transform 250ms ease-in-out;
-            transition-delay: 250ms;
-            z-index: 8;
+            background-color: $mainBlack;
             display: flex;
             flex-direction: column;
-            // position: relative;
-            position: absolute;
             height: 100%;
-            width: 100%;
-            background-color: $mainBlack;
             padding: 3vw 10% 5% 10%;
+            position: absolute;
+            transition: transform 250ms ease-in-out;
+            transition-delay: 250ms;
+            width: 100%;
+            z-index: 8;
 
             @media (max-width: 965px) {
                 padding: 5% 10% 5% 5%;
@@ -152,9 +126,9 @@
                 margin-bottom: 40px;
 
                 .accessories__close {
+                    color: $mainWhite;
                     font-size: 3rem;
                     line-height: 1;
-                    color: $mainWhite;
                     transition: transform ease-in-out 100ms;
 
                     &:hover {
@@ -164,26 +138,22 @@
                 }
     
                 .accessories__tag {
+                    color: $mainWhite;
                     font-size: 1.5rem;
+                    line-height: 1;
                     position: absolute;
                     right: 1.5rem;
+                    text-transform: uppercase;
                     top: auto;
                     transform: translateX(100%) rotateZ(90deg);
                     transform-origin: top left;
-                    line-height: 1;
-                    text-transform: uppercase;
-                    color: $mainWhite;
-                    // border: 1px solid $mainWhite;
                 }
 
             }
 
             .fourth-headline {
-                // Shouldn't this be headingType?
-                @include bodyType(5.5rem);
-                color: $mainWhite;
-                // border: 1px solid $mainWhite;
-                // Responsive Margins?
+                @include headingType($body, 5.5rem, 400);
+                line-height: 1;
                 margin-bottom: 20px;
                 
                 @media (max-width: 500px) {
@@ -192,22 +162,21 @@
             }
 
             .summary__skills {
+                align-content: space-between;
                 display: flex;
                 flex-wrap: wrap;
-                align-content: space-between;
                 height: auto;
-                width: auto;
-                // border: 1px solid $mainWhite;
                 margin-bottom: 20px;
+                width: auto;
 
                 .skills__pill {
                     border: 2px solid $mainWhite;
                     border-radius: 20% / 70%;
-                    min-width: 120px;
                     height: 40px;
+                    margin-right: 20px;
+                    min-width: 120px;
                     text-align: center;
                     text-transform: uppercase;
-                    margin-right: 20px;
 
                     &:last-child {
                         margin-right: 0;
@@ -215,8 +184,6 @@
     
                     p {
                         @include bodyType(1.768rem);
-                        color: $mainWhite;
-                        // border: 1px solid $mainWhite;
                         line-height: calc(4rem - 4px);
                         
                         @media (max-width: 500px) {
@@ -238,26 +205,19 @@
                 
                 iframe {
                     display: block;
+                    height: 100%;
+                    left: 0;
+                    padding: 2px;
                     position: absolute;
                     top: 0;
-                    left: 0;
                     width: 100%;
-                    height: 100%;
-                    padding: 2px;
                 }
             }
 
             .summary__description {
                 @include bodyType(2.02rem);
                 line-height: 1.4;
-                color: $mainWhite;
-                // border: 1px solid $mainWhite;
                 margin-bottom: 20px;
-                
-                // @media (min-width: 1681px) {
-                    //     @include bodyType(2.5rem);
-                    //     line-height: 1.4;
-                    // }
                     
                     @media (max-width: 768px) {
                         // Reversed! Save for use later
@@ -269,10 +229,9 @@
                         @include bodyType(calc(1.6rem + (19 - 16) * ((100vw - 375px) / (500 - 375))));
                         line-height: 1.4;  
                     }
-                }
+            }
 
             .summary__links {
-                // border: 1px solid $mainWhite;
                 display: flex;
 
                 li:first-child {
@@ -281,8 +240,8 @@
 
                 p {
                     @include bodyType(2.02rem);
-                    line-height: 1;
                     color: $mainWhite;
+                    line-height: 1;
                     
                     @media (max-width: 500px) {
                         @include bodyType(calc(1.8rem + (20.2 - 18) * ((100vw - 375px) / (500 - 375))));
@@ -298,20 +257,20 @@
         }
 
         .summary--macro-calculator {
-            background-color: $macroPrimary;
+            background-color: $dietPrimary;
 
             .summary__accessories {
                 .accessories__close {
-                    color: $macroSecondary;
+                    color: $dietSecondary;
                 }
     
                 .accessories__tag {
-                    color: $macroSecondary;
+                    color: $dietSecondary;
                 }
             }
 
             .fourth-headline {
-                color: $macroSecondary;
+                color: $dietSecondary;
             }
 
             .summary__skills {
@@ -336,10 +295,10 @@
                 }
                 
                 .skills__pill {
-                    border: 2px solid $macroSecondary;
+                    border: 2px solid $dietSecondary;
 
                     p {
-                        color: $macroSecondary;
+                        color: $dietSecondary;
                         
                     }
 
@@ -401,16 +360,16 @@
             }
 
             .summary__video {
-                background-color: $macroSecondary;
+                background-color: $dietSecondary;
             }
 
             .summary__description {
-                color: $macroSecondary;
+                color: $dietSecondary;
             }
 
             .summary__links {
                 p {
-                    color: $macroSecondary;
+                    color: $dietSecondary;
                 }
             }
         }
@@ -808,9 +767,7 @@
         }
 
         @media (max-width: 965px) {
-            // z-index: 10;
             width: calc(100% - 115px);
-            // display: none;
         }
 
         @media (max-width: 768px) {
@@ -818,4 +775,50 @@
             height: calc(100% - 115px);
             margin: auto 0 0 0;        }
         }
+
+    .projects__typed {
+        border: 1px solid red;
+        height: 100%;
+        margin: 0;
+        padding: 4.3% 6% 6% 75px;
+        width: 100%;
+
+        @include bodyType(calc(2.25rem + (34 - 22.5) * ((100vw - 966px) / (1680 - 966))));
+        line-height: 1.4;
+        user-select: none;  
+
+        #typed {
+            display: inline;
+        }
+    }
+
+    .typed-cursor {
+        @include bodyType(calc(2.25rem + (34 - 22.5) * ((100vw - 966px) / (1680 - 966))));
+        line-height: 1.4;
+        user-select: none;    
+    }
+
+    .typed-highlight--diet-calculator {
+        color: $dietSecondary;
+    }
+
+    .typed-highlight--recipease {
+        color: $recipeasePrimary;
+    }
+
+    .typed-highlight--fridge-verses {
+        color: $fridgeVersesPrimary;
+    }
+
+    .typed-highlight--nosuchthing {
+        color: $nosuchthingPrimary;
+    }
+
+    .typed-highlight--strainless {
+        color: $strainlessPrimary;
+    }
+
+    .typed-cursor.typed-cursor--blink {
+        animation: typedjsBlink 1s infinite;
+    }
 }

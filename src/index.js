@@ -6,7 +6,9 @@ import ScrollReveal from 'scrollreveal';
 // import { createPopper } from '@popperjs/core';
 import tippy, { followCursor } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
-import Matter from 'matter-js';
+import Typed from 'typed.js';
+import SmoothScroll from 'smooth-scroll';
+import { debounce, throttle } from 'lodash';
 
 // * Namespace
 const swimCodes = {};
@@ -14,6 +16,9 @@ const swimCodes = {};
 // * Cached Selectors
 // Breakpoints
 swimCodes.mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+swimCodes.breakpointListener = (build) => {
+    swimCodes.mobileBreakpoint.addListener(build);
+};
 
 // Mobile Nav
 swimCodes.nav = $('.header__nav');
@@ -43,6 +48,32 @@ swimCodes.strainlessVideo = document.querySelector('#strainlessVideo');
 swimCodes.strainlessPlayer = new Player(swimCodes.strainlessVideo);
 
 // * Functionality
+// Tippy
+swimCodes.swimDefinition = () => {
+    tippy('.branding', {
+        theme: 'urban-dictionary',
+        allowHTML: true,
+        // Add acronym best practices below
+        // Add in ARIA options
+        // Prevent user-select on header and branding images
+        content: `
+                <p class="definition-rank">Top Definition</p>
+                <h5 class="definition-heading">S.W.I.M.</h5>
+                <p class="definition">Acronym: Someone Who Isn't Me
+                    <span class="line-break">General use indicates that it is indeed the  same person.</span>
+                </p>
+                <p class="definition-example">S.W.I.M. decided to start coding.</p>
+            `,
+        arrow: false,
+        followCursor: true,
+        plugins: [followCursor],
+        maxWidth: 400,
+        touch: 'hold',
+        zIndex: 9998,
+        // role: 'tooltip',
+    });
+}
+
 // Projects
 swimCodes.projectEscClose = () => {
     $(document).keyup(function(e) {
@@ -223,12 +254,44 @@ swimCodes.strainlessProject = () => {
     });
 };
 
+// Typed.js
+swimCodes.projectsTypedOptions = {
+    // ^1000 – Add in random stutters for that as many ms
+    strings: [
+        // Diet Calculator
+        `Based on key body measurements and your goal, <span class="typed-highlight--diet-calculator">Diet Calculator</span> will provide you with the appropriate <span class="typed-highlight--diet-calculator">calories and macronutrient ratio</span> for your diet.`,
+        // Recipease
+        `<span class="typed-highlight--recipease">Recipease</span> is a quiz that will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the <span class="typed-highlight--recipease">Spoonacular API.`,
+        // Fridge Verses
+        `<span class="typed-highlight--fridge-verses">Fridge Verses</span> is a single-page app based on fridge magnet poetry. Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.`,
+        // NOSUCHTHING
+        `<span class="typed-highlight--nosuchthing">NOSUCHTHING</span> is an open-source experiment in health and wellness education paired with a suite of digital products centered around preventative health and improved wellness. Currently experimenting with the Webflow CMS API.`,
+        // Strainless
+        `<span class="typed-highlight--strainless">Strainless</span> is a quiz that will direct you towards the best strain of cannabis based on generally preferred or medicinal properties with the option to purchase from the Ontario Cannabis Store. This project brings together the Strain API, Otreeba API and an open-source Ontario Cannabis Store web scraper.`,
+    ],
+
+    typeSpeed: 60,
+    shuffle: true,
+    backDelay: 5000,
+    fadeOut: true,
+    fadeOutClass: 'typed-fade-out',
+    loop: true,
+    loopCount: Infinity,
+    cursorChar: ' _',
+    contentType: 'html',
+
+};
+
+swimCodes.projectsTyped = (element, options) => {
+    new Typed(element, options);
+};
+
 // Mobile Nav
 swimCodes.mobileNavBuild = (breakpoint) => {
     if (breakpoint.matches) {
         swimCodes.nav.prepend(`
                 <div class="nav__mobile mobile--wordmark">
-                    <a href="">SWIM</a>
+                    <a href="#top">swim_</a>
                 </div>
                 <div class="nav__mobile mobile--hamburger">
                     <div class="hamburger__bun bun__top"></div>
@@ -243,22 +306,39 @@ swimCodes.mobileNavBuild = (breakpoint) => {
     }
 };
 
-swimCodes.breakpointListener = (build) => {
-    swimCodes.mobileBreakpoint.addListener(build);
-};
-
 swimCodes.mobileNav = () => {
     swimCodes.nav.on('click', '.mobile--hamburger', function () {
         $('.bun__top').toggleClass('bun__top--active');
         $('.bun__bottom').toggleClass('bun__bottom--active');
         swimCodes.navLinks.toggleClass('nav__links--open');
+        $(document).on('scroll touchmove', function() {
+            $('.bun__top').removeClass('bun__top--active');
+            $('.bun__bottom').removeClass('bun__bottom--active');
+            swimCodes.navLinks.removeClass('nav__links--open');
+        })
     });
 };
 
+// Clean this up
+swimCodes.mobileLinkBehaviour  = (breakpoint) => {
+    if (breakpoint.matches) {
+        $('.main-link a').on('click', function() {
+            $('.bun__top').toggleClass('bun__top--active');
+            $('.bun__bottom').toggleClass('bun__bottom--active');
+            swimCodes.navLinks.toggleClass('nav__links--open');
+        })
+    }
+}
+
+
 // * Init
 swimCodes.init = function() {
+    const smoothScroll = new SmoothScroll('a[href*="#"]');
+    
     swimCodes.projectEscClose();
     swimCodes.projectCloseButton();
+    swimCodes.swimDefinition();
+    swimCodes.projectsTyped('#typed', swimCodes.projectsTypedOptions);
     swimCodes.macroProject();
     swimCodes.recipeaseProject();
     swimCodes.fridgeVersesProject();
@@ -267,161 +347,39 @@ swimCodes.init = function() {
     swimCodes.mobileNavBuild(swimCodes.mobileBreakpoint);
     swimCodes.breakpointListener(swimCodes.mobileNavBuild);
     swimCodes.mobileNav();
+    swimCodes.mobileLinkBehaviour(swimCodes.mobileBreakpoint);
+    swimCodes.breakpointListener(swimCodes.mobileLinkBehaviour);
 
     // TODO Move into Namespace
     // * ScrollReveal Related
-    ScrollReveal().reveal('.container;--right .main-paragraph', { reset: true })
+    ScrollReveal().reveal('.container--right .main-paragraph', { reset: true })
     ScrollReveal().reveal('.about__video', { reset: true });
 
-    // * Tippy Related
-    // Add in ARIA later
-    const instance = tippy('.branding', {
-        theme: 'urban-dictionary',
-        allowHTML: true,
-        // Add acronym best practices below
-        // Prevent user-select on header and branding images
-        content: `
-            <p class="definition-rank">Top Definition</p>
-            <h5 class="definition-heading">S.W.I.M.</h5>
-            <p class="definition">Acronym: Someone Who Isn't Me
-                <span class="line-break">General use indicates that it is indeed the  same person.</span>
-            </p>
-            <p class="definition-example">S.W.I.M. decided to start coding.</p>
-        `,
-        arrow: false,
-        followCursor: true,
-        plugins: [followCursor],
-        maxWidth: 300,
-        touch: true,
-    });
-
-    // $(document).on('touchstart', () => {
-    //     $('#tippy-1').trigger('touch');
-    // })
-
-    // * Matter.JS
-    // Aliases
-    const { Engine, Render, Bodies, World, MouseConstraint, Composites } = Matter;
-
-    // Where it will render
-    const skillsSection = document.querySelector('.skills__shapes');
-    const skillsCanvas = document.querySelector('.shapes__canvas');
-    
-    const sectionWidth = $(skillsSection).width();
-    const sectionHeight = $(skillsSection).height();
-    
-    const skillsCanvasHeight = $(skillsCanvas).height(sectionHeight);
-    const skillsCanvasWidth = $(skillsCanvas).width(sectionWidth);
-    
-    $(window).on('resize', function() {
-        const sectionWidth = $(skillsSection).width();
-        const sectionHeight = $(skillsSection).height();
-        const skillsCanvasHeight = $(skillsCanvas).height(sectionHeight);
-        const skillsCanvasWidth = $(skillsCanvas).width(sectionWidth);
+    $('.branding').on('touchstart', function() {
+        $('body').css({'-webkit-touch-callout': 'none', 'user-select': 'none'});
+        $(document).on('touchend touchcancel touchmove', setTimeout(function() {
+            $('body').css({ '-webkit-touch-callout': 'default', 'user-select': 'auto' });
+        }, 5000));
     })
 
-    // Image Loader
-    const loadImage = (path, onSuccess, onError) => {
-        const img = new Image();
-        img.onload = () => {
-            onSuccess(img.src);
-        };
-        img.onerror = onError();
-        img.src = path;
-    };
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
 
+    window.addEventListener('resize', _.debounce( () => {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        console.log('resize')
+    }, 300));
 
-    // Engine – computation and math
-    // Renderer – draws the result of the engine
-    const engine = Engine.create();
-    const render = Render.create({
-        // element: skillsSection,
-        canvas: skillsCanvas, 
-        engine: engine,
-        options: {
-            height: sectionHeight,
-            width: sectionWidth,
-            background: '#161616',
-            // background: '#fff',
-            wireframes: false,
-            pixelRatio: window.devicePixelRatio,
-        }
-    });
-
-    // Create Shapes
-    loadImage(
-        './assets/skills-icons--sketch.png', 
-        url => {
-            console.log('Success');
-            const createShape = (x, y) => {
-                return Bodies.polygon(x, y, 6, 25, {
-                    render: {
-                        // fillStyle: 'red',
-                        sprite: {
-                            texture: './assets/skills-icons--sketch.png',
-                            xScale: 0.5,
-                            yScale: 0.5,
-                        }
-                    }
-                })
+    $('.mobile--wordmark').on('click', function() {
+        if ($('.bun__top').hasClass('bun__top--active') === true && 
+            $('.bun__bottom').hasClass('bun__bottom--active') === true && 
+            swimCodes.navLinks.hasClass('nav__links--open') === true) {
+                $('.bun__top').removeClass('bun__top--active');
+                $('.bun__bottom').removeClass('bun__bottom--active');
+                swimCodes.navLinks.removeClass('nav__links--open');
             }
-
-            const initialShapes = Composites.stack(50, 50, 15, 5, 40, 40, (x, y) => {
-                return createShape(x, y);
-            })
-
-            World.add(engine.world, [
-                floor,
-                ceiling,
-                leftWall,
-                rightWall,
-                mouseControl,
-                initialShapes
-            ])
-        },
-        () => {
-            console.log('Error');
-        }
-    );
-
-    const wallOptions = {
-        isStatic: true,
-        render: {
-            visible: false,
-        }
-    }
-
-    const floor = Bodies.rectangle(sectionWidth / 2, sectionHeight + 50, sectionWidth + 100, 100,wallOptions);
-    const ceiling = Bodies.rectangle(sectionWidth / 2, -50, sectionWidth + 100, 100, wallOptions);
-    const leftWall = Bodies.rectangle(-50, sectionHeight / 2, 100, sectionHeight + 100, wallOptions);
-    const rightWall = Bodies.rectangle(sectionWidth + 50, sectionHeight / 2, 100, sectionHeight + 100, wallOptions);
-
-    const mouseControl = MouseConstraint.create(engine, {
-        element: skillsCanvas,
-        constraint: {
-            render: {
-                visible: false,
-            }
-        }
-    })
-
-    mouseControl.mouse.element.removeEventListener("mousewheel", mouseControl.mouse.mousewheel);
-    mouseControl.mouse.element.removeEventListener("DOMMouseScroll", mouseControl.mouse.mousewheel);
-
-    // mouseControl.mouse.element.removeEventListener('touchmove', mouseControl.mouse.mousemove);
-    // mouseControl.mouse.element.removeEventListener('touchstart', mouseControl.mouse.mousedown);
-    // mouseControl.mouse.element.removeEventListener('touchend', mouseControl.mouse.mouseup);
-
-    
-
-    // Run the engine and the renderer
-    Engine.run(engine);
-    Render.run(render);
-
-    window.addEventListener('deviceorientation', function(e) {
-        engine.world.gravity.x = e.gamma / 30;
-        engine.world.gravity.y = e.beta / 30;
-    })
+    });
 };
 
 // * Document Ready
@@ -429,21 +387,6 @@ $(function () {
     swimCodes.init();
 });
 
-// Projects Section Functionality
-// User clicks on a list__item from the projects__list
-// Div called projects__name slides into the space reserved by container--right
-// User clicks 'close' icon or text in top right corner to reverse that action
-
-// If a user clicks on another list__item while one is already open, it will close the open project and reveal the selected listen__item
-
-// If the user scrolls a pre-determined length away from the projects section, any open projects will close
-
-// On mobile, the project doesn't occupy the container--right but actually positions itself over top of the container--left
-// Projects can only be closed by navigating away from the project or by selecting close; You won't be able to select another project to close as you could on desktop
 
 // Smooth-Scrolling Functionality
 // User clicks on a link in the nav bar and are smooth-scrolled to the corresponding section on the page
-
-// Init
-// swimCodes.init = function () {
-    // };

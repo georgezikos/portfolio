@@ -1,20 +1,17 @@
 .tippy-box[data-theme~='urban-dictionary'] {
-    // @font-face {
-    //     font-family: 'Source Sans Pro', sans-serif;
-    //     src: url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
-    // }
-
-    // @font-face {
-    //     font-family: 'Lora', serif;
-    //     src: url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
-    // }
-
     background-color: #fff;
     border: 1px solid #e3e3e3;
     color: #2C353C;
     font-family: 'Source Sans Pro';
     padding: 5%;
-    width: 300px;
+    width: 400px;
+    // Screens below 375px;
+    margin-right: 7px;
+    // left: 0;
+
+    @media(max-width: 768px) {
+        width: 350px;
+    }
 
     .tippy-content {
         padding: 0;

@@ -1,25 +1,32 @@
+// Licenses
+/*
+* Font:       Beni
+* Style:      Regular, Bold
+* URL:        https://www.youworkforthem.com/font/T12269/beni
+* Foundry:    Nois
+* Foundry:    https://www.youworkforthem.com/designer/13s/nois
+* Copyright:  
+* Version:    17
+* Created:    May 08, 2020
+* License:    https://www.youworkforthem.com/font-license 
+* License:    The WebFont(s) listed in this document must follow the YouWorkForThem
+            * WebFont license rules. All other parties are strictly restricted 
+            * from using the WebFonts(s) listed without a purchased license. 
+            * All details above must always remain unaltered and visible in your CSS.
+*/
+
 // Base
 html {
     @include bodyType(62.5%);
     background: $mainBlack;
-    scroll-snap-type: y mandatory;
 }
 
-// canvas {
-//     width: 100%;
-//     height: 100%;
-//     background: white;
-// }
-
 body {
-    // background-image: url('../assets/pixels-a.svg'), url('../assets/pixels-b.svg');
-
-    background-position: 120% top, 180% -2%;
-
-    background-size: 55%;
-
-    background-repeat: no-repeat;
     background-attachment: scroll;
+    // background-image: url('../assets/pixels-a.svg'), url('../assets/pixels-b.svg');
+    background-position: 120% top, 180% -2%;
+    background-repeat: no-repeat;
+    background-size: 55%;
 }
 
 *::selection {
@@ -41,35 +48,39 @@ p {
 
 a {
     text-decoration: none;
+    color: inherit;
 
     &:visited {
-        color: auto;
+        color: inherit;
     }
 }
 
 ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
 
 .wrapper {
-    max-width: 1680px;
     margin: 0 auto;
+    max-width: 1680px;
 }
 
 .section {
-    height: 100vh;
-    min-height: 850px;
-    // background: $mainBlack;
+    border: 1px solid red;
     display: flex;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
-    scroll-snap-align: start;
+
+    // Revisit this on mobile
+    // @media(orientation: landscape) {
+    //     min-height: 850px;
+    // }
 }
 
 .section-container {
@@ -79,42 +90,34 @@ img {
     margin: 0 0 0 auto;
     padding: 3% 6%;
     width: calc(100% - 115px);
-    // border: 1px solid $mainWhite;
 
     @media (max-width: 768px) {
-        width: 100%;
         height: calc(100% - 115px);
         margin: auto 0 0;
+        width: 100%;
     }
 }
 
-// font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
-
-// Prevent User-Select on mobile because of Tippy.js
 .main-heading {
     @include headingType($heading, 52rem, 400);
     line-height: 0.64;
-    padding: 0;
-    // border: 1px solid $mainAccent;
     margin-right: 3.65%;
-    user-select: none;
+    padding: 0;
 
     @media (max-width: 1205px) {
         @include headingType($heading, calc(32.2rem + (520 - 322) * ((100vw - 768px) / (1205 - 768))), 400);
         line-height: 0.64;
     }
-// 40.3rem / 18.9
 
     @media (max-width: 768px) {
         @include headingType($heading, calc(18.9rem + (403 - 189) * ((100vw - 375px) / (768 - 375))), 400);
         line-height: 0.64;
     }
     
-    // 41.4 / 19.5
     .line-break {
         @include headingType($heading, 53.4rem, 600);
-        line-height: 0.72;
         display: block;
+        line-height: 0.72;
 
         @media (max-width: 1205px) {
             @include headingType($heading, calc(33.1rem + (534 - 331) * ((100vw - 768px) / (1205 - 768))), 600);
@@ -128,18 +131,13 @@ img {
     }
 }
 
-// font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
-
 .secondary-heading {
     @include headingType($body, 7.3rem, 400);
     line-height: 7.3rem;
     max-width: 945px;
-    user-select: none;
-    // border: 1px solid $mainAccent;
 
     .fa-long-arrow-right {
         margin: 0 2.14%;
-        // border: 1px solid red;
     }
 
     @media (max-width: 1205px)  {
@@ -156,8 +154,6 @@ img {
 .main-paragraph {
     @include bodyType(calc(4.1rem + (55 - 41) * ((100vw - 1229px) / (1680 - 1229))));
     line-height: 1.2;
-    // border: 1px solid $mainAccent;
-    user-select: none;
     
     @media (max-width: 1229px) {
         @include bodyType(calc(4.3rem + (55 - 43) * ((100vw - 768px) / (1229 - 769))));

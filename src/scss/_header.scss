@@ -1,6 +1,10 @@
 .section--header {
     position: relative;
 
+    // @media(max-width: 768px) {
+    //     height: calc(var(--vh, 1vh) * 100);
+    // }
+
     .header__copy {
         align-items: flex-end;
         display: flex;
@@ -29,7 +33,7 @@
             }
         
             .branding__wordmark {
-                -webkit-touch-callout: none;
+                // -webkit-touch-callout: none;
                 @keyframes wordmark {
                     from {
                         transform: rotateZ(0deg)
@@ -75,7 +79,7 @@
     transform: rotateZ(-90deg) translateX(-100%);
     transform-origin: top left;
     width: 100vh;
-    z-index: 999;
+    z-index: 9999;
 
     @media (max-width: 768px) {
         min-width: auto;
@@ -94,7 +98,7 @@
         @media (max-width: 768px) {
             align-items: stretch;
             background: $mainBlack;
-            border: 1px solid red;
+            // border: 1px solid red;
             bottom: 0;
             display: none;
             flex-direction: column;
@@ -133,14 +137,28 @@
             color: $mainWhite;
             height: 100%;
 
+            &:hover {
+                -webkit-text-stroke: 3px $mainWhite;
+                -webkit-text-fill-color: $mainBlack;
+                paint-order: stroke fill;
+
+                @media(max-width: 768px) {
+                    -webkit-text-stroke-width: 2.4px;
+                }
+
+                @media(max-width: 480px) {
+                    -webkit-text-stroke-width: 2.2px;
+                }
+            }
+            
             @media (max-width: 768px) {
-                border: 1px solid $mainAccent;
                 display: block;
             }
         }
         
         @media (max-width: 768px) {
-            border: 1px solid red;
+            @include bodyType(calc(5rem + (60 - 50) * ((100vw - 375px) / (768 - 375))));
+            line-height: 1.4;
             margin-bottom: 20px;
 
             &:last-child {
@@ -149,17 +167,10 @@
         }
     }
 
-    .nav__mobile {
-        // border: 1px solid $mainAccent;
-        width: 50%;
-    }
-
     .mobile--wordmark {
-        height: auto;
         a {
-            @include headingType($heading, 10rem, 700);
-            line-height: 0.59;
-            // border: 1px solid $mainWhite;
+            @include headingType($body, 5.2rem, 400);
+            line-height: 1;
             height: 100%;
         }
     }
@@ -168,7 +179,6 @@
         width: 60px;
         height: 60px;
         position: relative;
-        // border: 1px solid red;
 
         .hamburger__bun {
             position: absolute;
