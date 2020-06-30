@@ -291,7 +291,7 @@ swimCodes.mobileNavBuild = (breakpoint) => {
     if (breakpoint.matches) {
         swimCodes.nav.prepend(`
                 <div class="nav__mobile mobile--wordmark">
-                    <a href="#top">swim_</a>
+                    <a href="#top">swim _</a>
                 </div>
                 <div class="nav__mobile mobile--hamburger">
                     <div class="hamburger__bun bun__top"></div>

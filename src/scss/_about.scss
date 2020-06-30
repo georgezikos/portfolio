@@ -78,22 +78,8 @@
             display: block;
             margin-top: 4.25%;
 
-            .underline {
-                border-bottom: 4px solid $mainWhite;
-                display: inline-block;
-                padding-bottom: 1.8%;
-
-                &:hover {
-                    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; /*!emojicursor.app*/
-                }
-
-                @media (max-width: 768px) {
-                    border-bottom: 3px solid $mainWhite;
-                }
-
-                @media (max-width: 480px) {
-                    border-bottom: 2px solid $mainWhite;
-                }
+            .underline:hover {
+                cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; /*!emojicursor.app*/
             }
         }
     }
