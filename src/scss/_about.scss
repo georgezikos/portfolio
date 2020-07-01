@@ -28,6 +28,10 @@
         padding: 3% 0 3%;
         width: calc(40% - 115px / 2);
 
+        @media (max-width: 375px) {
+            padding-top: 6%;
+        }
+
         .about__video {
             height: 100%;
             position: relative;
