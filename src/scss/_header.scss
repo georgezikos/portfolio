@@ -122,12 +122,12 @@
     }
 
     .nav__links--open {
-        @keyframes fade {
+        @keyframes fadeMenu {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        animation: fade 125ms linear;
+        animation: fadeMenu 125ms linear;
         display: flex;
     }
     

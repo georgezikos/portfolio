@@ -54,7 +54,7 @@
 }
 
 .hidden {
-    @keyframes fade { 100% {opacity: 0; visibility: hidden;} }
-    animation: fade 250ms;
+    @keyframes fadeLoader { 100% {opacity: 0; visibility: hidden;} }
+    animation: fadeLoader 250ms;
     animation-fill-mode: forwards;
 }
