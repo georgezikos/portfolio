@@ -29,7 +29,7 @@
         width: calc(40% - 115px / 2);
 
         @media (max-width: 375px) {
-            padding-top: 6%;
+            padding-top: 10%;
         }
 
         .about__video {
@@ -91,6 +91,10 @@
             height: calc(50% - 115px / 2);
             margin: 0;
             width: 100%;
+        }
+
+        @media (max-width: 375px) {
+            padding-top: 6%;
         }
 
         .line-break {
