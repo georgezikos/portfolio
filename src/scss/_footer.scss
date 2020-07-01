@@ -17,7 +17,7 @@
     }
 
     @media (max-width: 375px) {
-        padding-top: 30px;
+        min-height: 697px;
     }
 
     h3 {
@@ -87,6 +87,10 @@
 
         @media (max-width: 768px) {
             width: 100%;
+        }
+
+        @media (max-width: 375px) {
+            padding-top: 
         }
     }
     
