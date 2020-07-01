@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -72,5 +73,6 @@ module.exports = {
                 concurrency: 100,
             }
         }),
+        new FaviconsWebpackPlugin('./src/fav.png'),
     ]   
 };
