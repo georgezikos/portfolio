@@ -5,11 +5,15 @@
     background-repeat: no-repeat;
     background-size: 40%;
     flex-direction: column;
-    height: 100vh;
     padding-top: 3%;
     
     @media (max-width: 768px) {
         background-size: 60%;
+        padding-top: 70px;
+    }
+
+    @media (max-width: 480px) {
+        padding-top: 140px;
     }
 
     h3 {

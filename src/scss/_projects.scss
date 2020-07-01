@@ -1,7 +1,16 @@
 .section--projects {
     justify-content: flex-end;
-    min-height: 940px;
     position: relative;
+
+    @media (max-width: 480px) {
+        height: 90vh;
+        min-height: 930px;
+    }
+
+    @media (max-width: 375spx) {
+        height: 90vh;
+        min-height: 900px;
+    }
 
     .third-headline {
         @include headingType($body, 2.5rem, 400);

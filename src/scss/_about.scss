@@ -13,6 +13,16 @@
         background-size: 90%;
     }
 
+    @media (max-width: 480px) {
+        height: 75vh;
+        min-height: 780px;
+    }
+
+    @media (max-width: 375px) {
+        height: 90vh;
+        min-height: 730px;
+    }
+
     .container--left {
         align-items: center;
         padding: 3% 0 3%;

@@ -8,7 +8,6 @@ import tippy, { followCursor } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import Typed from 'typed.js';
 import SmoothScroll from 'smooth-scroll';
-import { debounce, throttle } from 'lodash';
 
 // * Namespace
 const swimCodes = {};
@@ -337,7 +336,7 @@ swimCodes.init = function() {
         const loader = document.querySelector('.loader');
         loader.className += ' hidden';
         $('body').css({ 'overflow': '' });
-        $('header').removeClass('loader-blur');
+        $('header, section, main, footer').removeClass('loader-blur');
         setTimeout(function() { loader.parentNode.removeChild(loader) }, 6000);
     });
 
@@ -369,15 +368,6 @@ swimCodes.init = function() {
             $('body').css({ '-webkit-touch-callout': '', 'user-select': '', '-webkit-tap-highlight-color': '' });
         }, 5000));
     })
-
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-    window.addEventListener('resize', _.debounce( () => {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        console.log('resize')
-    }, 300));
 
     $('.mobile--wordmark').on('click', function() {
         if ($('.bun__top').hasClass('bun__top--active') === true && 
