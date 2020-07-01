@@ -73,6 +73,6 @@ module.exports = {
                 concurrency: 100,
             }
         }),
-        new FaviconsWebpackPlugin('./src/fav.png'),
+        new FaviconsWebpackPlugin('./src/fav.svg'),
     ]   
 };
