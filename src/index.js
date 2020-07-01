@@ -359,8 +359,9 @@ swimCodes.init = function() {
 
     // TODO Move into Namespace
     // * ScrollReveal Related
-    ScrollReveal().reveal('.container--right .main-paragraph', { reset: true })
-    ScrollReveal().reveal('.about__video', { reset: true });
+    ScrollReveal().reveal('.container--right > .main-paragraph', { reset: true })
+    ScrollReveal().reveal('.about__video video', { reset: true });
+    ScrollReveal().reveal('.section--footer .section-container', { reset: true });
 
     $('.branding').on('touchstart', function() {
         $('body').css({'-webkit-touch-callout': 'none', 'user-select': 'none', '-webkit-tap-highlight-color': 'transparent' });
