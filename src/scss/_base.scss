@@ -21,14 +21,6 @@ html {
     background: $mainBlack;
 }
 
-body {
-    background-attachment: scroll;
-    // background-image: url('../assets/pixels-a.svg'), url('../assets/pixels-b.svg');
-    background-position: 120% top, 180% -2%;
-    background-repeat: no-repeat;
-    background-size: 55%;
-}
-
 *::selection {
     background: rgba(76, 71, 249, 0.99);
 }
@@ -47,12 +39,8 @@ p {
 }
 
 a {
-    text-decoration: none;
     color: inherit;
-
-    &:visited {
-        color: inherit;
-    }
+    text-decoration: none;
 }
 
 ul {
@@ -72,11 +60,10 @@ img {
 }
 
 .section {
-    // border: 1px solid red;
     display: flex;
     height: calc(var(--vh, 1vh) * 100);
-    width: 100vw;
     min-height: 850px;
+    width: 100vw;
 
     @media (max-width: 375px) {
         min-height: auto;
@@ -107,7 +94,6 @@ img {
     @include headingType($heading, 52rem, 400);
     line-height: 0.64;
     margin-right: 3.65%;
-    padding: 0;
 
     @media (max-width: 1205px) {
         @include headingType($heading, calc(32.2rem + (520 - 322) * ((100vw - 768px) / (1205 - 768))), 400);

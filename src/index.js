@@ -356,9 +356,9 @@ swimCodes.init = function() {
     ScrollReveal().reveal('.about__video', { reset: true });
 
     $('.branding').on('touchstart', function() {
-        $('body').css({'-webkit-touch-callout': 'none', 'user-select': 'none'});
+        $('body').css({'-webkit-touch-callout': 'none', 'user-select': 'none', '-webkit-tap-highlight-color': 'transparent' });
         $(document).on('touchend touchcancel touchmove', setTimeout(function() {
-            $('body').css({ '-webkit-touch-callout': 'default', 'user-select': 'auto' });
+            $('body').css({ '-webkit-touch-callout': '', 'user-select': '', '-webkit-tap-highlight-color': '' });
         }, 5000));
     })
 

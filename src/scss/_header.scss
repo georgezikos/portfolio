@@ -1,9 +1,15 @@
 .section--header {
+    background-attachment: scroll;
+    background-image: url('../assets/pixels-a.svg');
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: 70%;
     position: relative;
 
-    // @media(max-width: 768px) {
-    //     height: calc(var(--vh, 1vh) * 100);
-    // }
+    @media (max-width: 768px) {
+        background-position: right 115px;
+        background-size: 90%;
+    }
 
     .header__copy {
         align-items: flex-end;
@@ -19,8 +25,14 @@
         .branding {
             height: 200px;
             position: relative;
-            width: 200px;
             user-select: none;
+            width: 200px;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+
+            &:hover {
+                cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🎱</text></svg>") 16 0,auto; /*!emojicursor.app*/
+            }
 
             @media (max-width: 1205px) {
                 height: calc(99px + (200 - 99) * ((100vw - 768px) / (1205 - 768)));
@@ -33,15 +45,9 @@
             }
         
             .branding__wordmark {
-                // -webkit-touch-callout: none;
                 @keyframes wordmark {
-                    from {
-                        transform: rotateZ(0deg)
-                    }
-                    
-                    to {
-                        transform: rotateZ(360deg)
-                    }
+                    from { transform: rotateZ(0deg) }
+                    to { transform: rotateZ(360deg) }
                 }
         
                 animation: wordmark 6s linear infinite running;
@@ -56,8 +62,6 @@
                 right: 0;
                 top: 0;
                 width: 62%;
-                user-select: none;
-                -webkit-touch-callout: none;
             }
         }
     }
@@ -78,8 +82,12 @@
     top: 0;
     transform: rotateZ(-90deg) translateX(-100%);
     transform-origin: top left;
+    user-select: none;
     width: 100vh;
     z-index: 9999;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 
     @media (max-width: 768px) {
         min-width: auto;
@@ -98,7 +106,6 @@
         @media (max-width: 768px) {
             align-items: stretch;
             background: $mainBlack;
-            // border: 1px solid red;
             bottom: 0;
             display: none;
             flex-direction: column;
@@ -115,17 +122,13 @@
     }
 
     .nav__links--open {
-        display: flex;
         @keyframes fade {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
+
         animation: fade 125ms linear;
+        display: flex;
     }
     
     .main-link {
@@ -138,8 +141,8 @@
             height: 100%;
 
             &:hover {
-                color: $mainBlack;
                 @include stroke(1.2px);
+                color: $mainBlack;
 
                 @media(max-width: 768px) {
                     @include stroke(1px);
@@ -162,34 +165,37 @@
         }
     }
 
-    .mobile--wordmark {
+    .mobile--wordmark {        
         a {
             @include headingType($body, 5.2rem, 400);
-            line-height: 1;
             height: 100%;
+            line-height: 1;
         }
     }
 
     .mobile--hamburger {
-        width: 60px;
         height: 60px;
+        perspective: 1000;
         position: relative;
+        width: 60px;
 
         &:hover {
             cursor: pointer;
         }
 
         .hamburger__bun {
-            position: absolute;
-            width: 100%;
-            height: 5px;
             background: $mainWhite;
+            height: 5px;
+            position: absolute;
+            transform-style: preserve-3d;
             transition: all 150ms ease-in-out;
+            width: 100%;
+            will-change: transform;
         }
 
         .bun__top {
-            top: 16px;
             left: 0;
+            top: 16px;
         }
         
         .bun__bottom {
@@ -198,15 +204,15 @@
         }
         
         .bun__top--active {
-            transform: rotateZ(135deg) translateY(18px);
-            top: 38px;
             left: 12.5px;
+            top: 38px;
+            transform: rotate3d(0, 0, 1, 135deg) translate3d(0, 18px, 0);
         }
     
         .bun__bottom--active {
-            transform: rotateZ(-135deg) translateY(18px);
-            top: 38px;
             left: -12.5px;
+            top: 38px;
+            transform: rotate3d(0, 0, 1, -135deg) translate3d(0, 18px, 0)
         }
     }
 }                

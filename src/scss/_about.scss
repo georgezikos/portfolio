@@ -1,32 +1,37 @@
 .section--about {
-    display: flex;
+    background-attachment: scroll;
+    background-image: url('../assets/pixels-b.svg');
+    background-position: 170% top;
+    background-repeat: no-repeat;
+    background-size: 70%;
     flex-wrap: wrap;
-    // height: 100vh;
     justify-content: flex-end;
 
     @media (max-width: 768px) {
         align-content: flex-end;
+        background-position: 170% bottom;
+        background-size: 90%;
     }
 
     .container--left {
         align-items: center;
-        margin: 0 0 0 auto;
         padding: 3% 0 3%;
         width: calc(40% - 115px / 2);
 
         .about__video {
-            border: 1px solid red;
             height: 100%;
             position: relative;
             width: 90%;
-            mix-blend-mode: add;
-
+            
             video {
                 height: 100%;
                 left: 0;
                 position: absolute;
                 top: 0;
+                user-select: none;
                 width: 100%;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
             }
 
             @media (max-width: 1229px) {

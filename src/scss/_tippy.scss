@@ -2,12 +2,13 @@
     background-color: #fff;
     border: 1px solid #e3e3e3;
     color: #2C353C;
-    font-family: 'Source Sans Pro';
+    font-family: 'Source Sans Pro', Arial, 'Helvetica Neue', Helvetica, sans-serif;
     padding: 5%;
     width: 400px;
-    // Screens below 375px;
-    margin-right: 7px;
-    // left: 0;
+
+    @media (max-width: 375px) {
+        margin-right: 7px;
+    }
 
     @media(max-width: 768px) {
         width: 350px;
@@ -30,7 +31,7 @@
 
     .definition-heading {
         color: #134FE6;
-        font-family: 'Lora';
+        font-family: 'Lora', Georgia, Times, 'Times New Roman', serif;
         font-size: 3.8rem;
         font-weight: 700;
         line-height: 1;

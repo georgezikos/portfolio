@@ -1,7 +1,7 @@
 // Primary Palette
+$mainAccent: #4C47F9;
 $mainBlack: #161616;
 $mainWhite: #DDDCE1;
-$mainAccent: #4C47F9;
 
 // Diet Calculator Palette
 $dietPrimary: #165A96;
@@ -47,7 +47,7 @@ $strainlessSecondary: #34437C;
 }
 
 $body: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
-$heading: 'Beni';
+$heading: 'Beni', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 @mixin headingType($fontFace, $sizeValue, $fontWeight, $colorValue: $mainWhite) {
     color: $colorValue;
@@ -61,18 +61,17 @@ $heading: 'Beni';
     font-family: $body;
     font-size: $sizeValue;
     font-weight: 400;
-    letter-spacing: 0rem;
     line-height: $sizeValue;
 }
 
 @mixin stroke($size: 1px, $color: $mainWhite) {
     text-shadow:
         -#{$size} -#{$size} 0 $color,
-        0        -#{$size} 0 $color,
-        #{$size} -#{$size} 0 $color,
-        #{$size}  0        0 $color,
-        #{$size}  #{$size} 0 $color,
-        0         #{$size} 0 $color,
-        -#{$size}  #{$size} 0 $color,
-        -#{$size}  0        0 $color;
+        0         -#{$size} 0 $color,
+        #{$size}  -#{$size} 0 $color,
+        #{$size}  0         0 $color,
+        #{$size}  #{$size}  0 $color,
+        0         #{$size}  0 $color,
+        -#{$size} #{$size}  0 $color,
+        -#{$size} 0         0 $color;
 }

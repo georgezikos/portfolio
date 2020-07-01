@@ -1,8 +1,6 @@
 .section--projects {
-    display: flex;
     justify-content: flex-end;
     min-height: 940px;
-    height: 100vh;
     position: relative;
 
     .third-headline {
@@ -13,14 +11,12 @@
 
         @media (max-width: 768px) {
             @include headingType($body, calc(2.1rem + (25 - 21) * ((100vw - 375px) / (768 - 375))), 400);
-            // border: 1px solid red;
             line-height: 1;
         }
     }
     
     .container--left {
         background-color: $mainBlack;
-        display: flex;
         margin: 0;
         padding: 3% 0 0 6%;
         position: relative;
@@ -74,6 +70,12 @@
             
             &:hover {
                 cursor: pointer;
+
+                &::after {
+                    @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+                    animation: fade 200ms linear;
+                    content: ' _';
+                }
             }
             
             @media (max-width: 965px) {
@@ -84,7 +86,6 @@
             @media (max-width: 768px) {
                 @include bodyType(calc(2.1rem + (34 - 21) * ((100vw - 375px) / (768 - 375))));
                 line-height: 1;
-                // border: 1px solid red;
             }
         }
     }
@@ -132,6 +133,9 @@
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 40px;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
 
                 .accessories__close {
                     color: $mainWhite;
@@ -175,7 +179,10 @@
                 flex-wrap: wrap;
                 height: auto;
                 margin-bottom: 20px;
+                user-select: none;
                 width: auto;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
 
                 .skills__pill {
                     border: 2px solid $mainWhite;
@@ -203,13 +210,16 @@
             }
 
             .summary__video {
-                // Vimeo Styles
-                padding: 56.25% 0 0 0;
-                position: relative;
-
                 // My Styles
                 background-color: $mainWhite;
                 margin-bottom: 20px;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+
+                // Vimeo Styles
+                padding: 56.25% 0 0 0;
+                position: relative;
                 
                 iframe {
                     display: block;
@@ -228,7 +238,6 @@
                 margin-bottom: 20px;
                     
                     @media (max-width: 768px) {
-                        // Reversed! Save for use later
                         @include bodyType(calc(1.6rem + (19 - 16) * ((100vw - 768px) / (500 - 768))));
                         line-height: 1.4;  
                     }
@@ -241,6 +250,9 @@
 
             .summary__links {
                 display: flex;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
 
                 li:first-child {
                     margin-right: 40px;
@@ -266,6 +278,11 @@
 
         .summary--macro-calculator {
             background-color: $dietPrimary;
+
+            ::selection {
+                background: rgba(224, 147, 179, 0.99);
+                color: rgba(22, 90, 150, 0.99);
+            }
 
             .summary__accessories {
                 .accessories__close {
@@ -385,6 +402,11 @@
         .summary--recipease {
             background-color: $recipeasePrimary;
 
+            ::selection {
+                background: rgba(145, 79, 0, 0.99);
+                color: rgba(253, 166, 61, 0.99);
+            }
+
             .summary__accessories {
                 .accessories__close {
                     color: $recipeaseSecondary;
@@ -496,6 +518,11 @@
 
         .summary--fridge-verses {
             background-color: $fridgeVersesPrimary;
+
+            ::selection {
+                background: rgba(0, 82, 70, 0.99);
+                color: rgba(1, 185, 159, 0.99);
+            }
 
             .summary__accessories {
                 .accessories__close {
@@ -609,6 +636,11 @@
         .summary--nosuchthing {
             background-color: $nosuchthingPrimary;
 
+            ::selection {
+                background: rgba(255, 226, 226, 0.99);
+                color: rgba(227, 87, 66, 0.99);
+            }
+
             .summary__accessories {
                 .accessories__close {
                     color: $nosuchthingSecondary;
@@ -692,6 +724,11 @@
 
         .summary--strainless {
             background-color: $strainlessPrimary;
+
+            ::selection {
+                background: rgba(52, 67, 124, 0.99);
+                color: rgba(168, 226, 228, 0.99);
+            }
 
             .summary__accessories {
                 .accessories__close {
@@ -779,13 +816,13 @@
         }
 
         @media (max-width: 768px) {
-            width: 100%;
             height: calc(100% - 115px);
-            margin: auto 0 0 0;        }
+            margin: auto 0 0 0;
+            width: 100%;
         }
+    }
 
     .projects__typed {
-        border: 1px solid red;
         height: 100%;
         margin: 0;
         padding: 4.3% 6% 6% 75px;
