@@ -14,13 +14,13 @@
     }
 
     @media (max-width: 480px) {
-        height: 70vh;
+        height: 100vh;
         min-height: 740px;
     }
 
     @media (max-width: 375px) {
-        // height: 80vh;
         height: 660px;
+        min-height: auto;
     }
 
     .header__copy {

@@ -9,15 +9,14 @@
     
     @media (max-width: 768px) {
         background-size: 60%;
-        padding-top: 70px;
-    }
-
-    @media (max-width: 480px) {
-        padding-top: 140px;
+        height: calc(100vh - 115px);
+        padding-top: 180px;
     }
 
     @media (max-width: 375px) {
-        height: 697px;
+        height: 800px;
+        min-height: auto;
+        padding-bottom: 40px;
     }
 
     h3 {
@@ -65,10 +64,6 @@
     .third-headline {
         @include bodyType(calc(3.6rem + (55 - 36) * ((100vw - 375px) / (1680 - 375))));
         line-height: 1;
-    }
-
-    @media (max-width: 768px) {
-        height: calc(100vh - 115px);
     }
 
     .section-container {

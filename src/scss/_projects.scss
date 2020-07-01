@@ -3,13 +3,13 @@
     position: relative;
 
     @media (max-width: 480px) {
-        height: 90vh;
+        height: 100vh;
         min-height: 930px;
     }
 
     @media (max-width: 375px) {
-        // height: 90vh;
-        height: 900px;
+        height: 920px;
+        min-height: auto;
     }
 
     .third-headline {
