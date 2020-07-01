@@ -1,0 +1,60 @@
+.loader {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    bottom: 0;
+    display: flex;
+    left: 0;
+    justify-content: center;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+
+    .loader__branding {
+        background-color: #000;
+        border-radius: 50%;
+        height: calc(320px + (600 - 300) * ((100vw - 375px) / (1680 - 375)));
+        padding: 1.5%;
+        position: relative;
+        user-select: none;
+        width: calc(320px + (600 - 300) * ((100vw - 375px) / (1680 - 375)));
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (max-width: 768px) {
+            padding: 2.6%;
+        }
+
+        @media (max-width: 480px) {
+            padding: 3%;
+        }
+        
+        .branding__wordmark {
+            @keyframes wordmark {
+                from { transform: rotateZ(0deg) }
+                to { transform: rotateZ(360deg) }
+            }
+    
+            animation: wordmark 2.5s linear infinite running;
+        }
+
+        .branding__globe {
+            bottom: 0;
+            height: 62%;
+            left: 0;
+            margin: auto;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 62%;
+        }
+    }
+}
+
+.hidden {
+    @keyframes fade { 100% {opacity: 0; visibility: hidden;} }
+    animation: fade 250ms;
+    animation-fill-mode: forwards;
+}
