@@ -336,7 +336,9 @@ swimCodes.init = function() {
     window.addEventListener('load', function() {
         const loader = document.querySelector('.loader');
         loader.className += ' hidden';
-        // loader.parentNode.removeChild(loader);
+        $('body').css({ 'overflow': '' });
+        $('header').removeClass('loader-blur');
+        setTimeout(function() { loader.parentNode.removeChild(loader) }, 6000);
     });
 
     const smoothScroll = new SmoothScroll('a[href*="#"]');
