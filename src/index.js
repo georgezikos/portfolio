@@ -31,20 +31,20 @@ swimCodes.fridgeVerses = $('.summary--fridge-verses');
 swimCodes.strainless = $('.summary--strainless');
 
 // Vimeo Players
-swimCodes.macroVideo = document.querySelector('#macroVideo');
-swimCodes.macroPlayer = new Player(swimCodes.macroVideo);
+// swimCodes.macroVideo = document.querySelector('#macroVideo');
+// swimCodes.macroPlayer = new Player(swimCodes.macroVideo);
 
-swimCodes.recipeaseVideo = document.querySelector('#recipeaseVideo');
-swimCodes.recipeasePlayer = new Player(swimCodes.recipeaseVideo);
+// swimCodes.recipeaseVideo = document.querySelector('#recipeaseVideo');
+// swimCodes.recipeasePlayer = new Player(swimCodes.recipeaseVideo);
 
-swimCodes.fridgeVersesVideo = document.querySelector('#fridgeVersesVideo');
-swimCodes.fridgeVersesPlayer = new Player(swimCodes.fridgeVersesVideo);
+// swimCodes.fridgeVersesVideo = document.querySelector('#fridgeVersesVideo');
+// swimCodes.fridgeVersesPlayer = new Player(swimCodes.fridgeVersesVideo);
 
-swimCodes.nosuchthingVideo = document.querySelector('#nosuchthingVideo');
-swimCodes.nosuchthingPlayer = new Player(swimCodes.nosuchthingVideo);
+// swimCodes.nosuchthingVideo = document.querySelector('#nosuchthingVideo');
+// swimCodes.nosuchthingPlayer = new Player(swimCodes.nosuchthingVideo);
 
-swimCodes.strainlessVideo = document.querySelector('#strainlessVideo');
-swimCodes.strainlessPlayer = new Player(swimCodes.strainlessVideo);
+// swimCodes.strainlessVideo = document.querySelector('#strainlessVideo');
+// swimCodes.strainlessPlayer = new Player(swimCodes.strainlessVideo);
 
 // * Functionality
 // Tippy
@@ -79,19 +79,19 @@ swimCodes.projectEscClose = () => {
         if (e.keyCode === 27) {
             if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
                 $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
-                swimCodes.macroPlayer.pause();
+                // swimCodes.macroPlayer.pause();
             } else if ($('.summary--recipease').hasClass('summary--display') === true) {
                 $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '');
-                swimCodes.recipeasePlayer.pause();
+                // swimCodes.recipeasePlayer.pause();
             } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
                 $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '');
-                swimCodes.nosuchthingPlayer.pause();
+                // swimCodes.nosuchthingPlayer.pause();
             } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
                 $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '');
-                swimCodes.fridgeVersesPlayer.pause();
+                // swimCodes.fridgeVersesPlayer.pause();
             } else if ($('.summary--strainless').hasClass('summary--display') === true) {
                 $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '');
-                swimCodes.strainlessPlayer.pause();
+                // swimCodes.strainlessPlayer.pause();
             }
         }
     });
@@ -101,19 +101,19 @@ swimCodes.projectCloseButton = () => {
     $('.accessories__close').on('click', function() {
         if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
             $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
-            swimCodes.macroPlayer.pause();
+            // swimCodes.macroPlayer.pause();
         } else if ($('.summary--recipease').hasClass('summary--display') === true) {
             $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '');
-            swimCodes.recipeasePlayer.pause();
+            // swimCodes.recipeasePlayer.pause();
         } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
             $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '');
-            swimCodes.nosuchthingPlayer.pause();
+            // swimCodes.nosuchthingPlayer.pause();
         } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
             $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '');
-            swimCodes.fridgeVersesPlayer.pause();
+            // swimCodes.fridgeVersesPlayer.pause();
         } else if ($('.summary--strainless').hasClass('summary--display') === true) {
             $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '');
-            swimCodes.strainlessPlayer.pause();
+            // swimCodes.strainlessPlayer.pause();
         }
     });
 };
@@ -131,16 +131,16 @@ swimCodes.macroProject = () => {
         $(swimCodes.macroCalculator).toggleClass('summary--hover summary--display').css('z-index', '8');
         if ($(swimCodes.recipease).hasClass('summary--display') === true) {
             $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.recipeasePlayer.pause();
+            // swimCodes.recipeasePlayer.pause();
         } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
             $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.fridgeVersesPlayer.pause();
+            // swimCodes.fridgeVersesPlayer.pause();
         } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
             $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.nosuchthingPlayer.pause();
+            // swimCodes.nosuchthingPlayer.pause();
         } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.strainlessPlayer.pause();
+            // swimCodes.strainlessPlayer.pause();
         }
     });
 };
@@ -158,16 +158,16 @@ swimCodes.recipeaseProject = () => {
         $(swimCodes.recipease).toggleClass('summary--hover summary--display').css('z-index', '8');
         if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
             $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.macroPlayer.pause();
+            // swimCodes.macroPlayer.pause();
         } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
             $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.fridgeVersesPlayer.pause();
+            // swimCodes.fridgeVersesPlayer.pause();
         } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
             $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.nosuchthingPlayer.pause();
+            // swimCodes.nosuchthingPlayer.pause();
         } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.strainlessPlayer.pause();
+            // swimCodes.strainlessPlayer.pause();
         }
     });
 };
@@ -185,16 +185,16 @@ swimCodes.fridgeVersesProject = () => {
         $(swimCodes.fridgeVerses).toggleClass('summary--hover summary--display').css('z-index', '8');
         if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
             $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.macroPlayer.pause();
+            // swimCodes.macroPlayer.pause();
         } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
             $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.recipeasePlayer.pause();
+            // swimCodes.recipeasePlayer.pause();
         } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
             $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.nosuchthingPlayer.pause();
+            // swimCodes.nosuchthingPlayer.pause();
         } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.strainlessPlayer.pause();
+            // swimCodes.strainlessPlayer.pause();
         }
     });
 };
@@ -212,16 +212,16 @@ swimCodes.nosuchthingProject = () => {
         $(swimCodes.nosuchthing).toggleClass('summary--hover summary--display').css('z-index', '8');
         if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
             $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.macroPlayer.pause();
+            // swimCodes.macroPlayer.pause();
         } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
             $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.recipeasePlayer.pause();
+            // swimCodes.recipeasePlayer.pause();
         } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
             $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.fridgeVersesPlayer.pause();
+            // swimCodes.fridgeVersesPlayer.pause();
         } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.strainlessPlayer.pause();
+            // swimCodes.strainlessPlayer.pause();
         }
     });
 };
@@ -239,16 +239,16 @@ swimCodes.strainlessProject = () => {
         $(swimCodes.strainless).toggleClass('summary--hover summary--display').css('z-index', '8');
         if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
             $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.macroPlayer.pause();
+            // swimCodes.macroPlayer.pause();
         } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
             $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.recipeasePlayer.pause();
+            // swimCodes.recipeasePlayer.pause();
         } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
             $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.fridgeVersesPlayer.pause();
+            // swimCodes.fridgeVersesPlayer.pause();
         } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
             $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-            swimCodes.nosuchthingPlayer.pause();
+            // swimCodes.nosuchthingPlayer.pause();
         } 
     });
 };

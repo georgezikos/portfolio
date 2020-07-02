@@ -231,17 +231,48 @@
                 -webkit-touch-callout: none;
 
                 // Vimeo Styles
-                padding: 56.25% 0 0 0;
-                position: relative;
+                // padding: 56.25% 0 0 0;
+                // position: relative;
                 
-                iframe {
-                    display: block;
+                // iframe 
+                img {
+                    // display: block;
                     height: 100%;
-                    left: 0;
+                    // left: 0;
                     padding: 2px;
-                    position: absolute;
-                    top: 0;
+                    // position: absolute;
+                    // top: 0;
                     width: 100%;
+                }
+
+                .mockup {
+                    display: block;
+                }
+
+                .mockup--desktop {
+                    @media (max-width: 768px) {
+                        display: none;
+                    }
+                }
+
+                .mockup--tablet {
+                    display: none;
+
+                    @media (max-width: 768px) {
+                        display: block;
+                    }
+
+                    @media (max-width: 480px) {
+                        display: none;
+                    }
+                }
+
+                .mockup--mobile {
+                    display: none;
+
+                    @media (max-width: 480px) {
+                        display: block;
+                    }
                 }
             }
 
@@ -271,7 +302,7 @@
                     margin-right: 40px;
                 }
 
-                p {
+                a {
                     @include bodyType(2.02rem);
                     color: $mainWhite;
                     line-height: 1;
@@ -406,7 +437,7 @@
             }
 
             .summary__links {
-                p {
+                a {
                     color: $dietSecondary;
                 }
             }
@@ -523,7 +554,7 @@
             }
 
             .summary__links {
-                p {
+                a {
                     color: $recipeaseSecondary;
                 }
             }
@@ -640,7 +671,7 @@
             }
 
             .summary__links {
-                p {
+                a {
                     color: $fridgeVersesSecondary;
                 }
             }
@@ -729,7 +760,7 @@
             }
 
             .summary__links {
-                p {
+                a {
                     color: $nosuchthingSecondary;
                 }
             }
@@ -818,7 +849,7 @@
             }
 
             .summary__links {
-                p {
+                a {
                     color: $strainlessSecondary;
                 }
             }
