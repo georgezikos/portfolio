@@ -81,8 +81,10 @@
             margin-bottom: 20px;
             user-select: none;
             
-            &:hover {
+            &:hover,
+            &:focus {
                 cursor: pointer;
+                outline: none;
 
                 &::after {
                     @keyframes fade { from { opacity: 0 } to { opacity: 1 } }

@@ -6,6 +6,7 @@ import ScrollReveal from 'scrollreveal';
 // import { createPopper } from '@popperjs/core';
 import tippy, { followCursor } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/shift-away-extreme.css';
 import Typed from 'typed.js';
 import SmoothScroll from 'smooth-scroll';
 
@@ -52,11 +53,8 @@ swimCodes.swimDefinition = () => {
     tippy('.branding', {
         theme: 'urban-dictionary',
         allowHTML: true,
-        // Add acronym best practices below
-        // Add in ARIA options
-        // Prevent user-select on header and branding images
         content: `
-                <p class="definition-rank">Top Definition</p>
+                <mark class="definition-rank">Top Definition</mark>
                 <h5 class="definition-heading">S.W.I.M.</h5>
                 <p class="definition">Acronym: Someone Who Isn't Me
                     <span class="line-break">General use indicates that it is indeed the  same person.</span>
@@ -69,7 +67,7 @@ swimCodes.swimDefinition = () => {
         maxWidth: 400,
         touch: 'hold',
         zIndex: 9998,
-        // role: 'tooltip',
+        role: 'tooltip',
     });
 }
 
@@ -119,16 +117,17 @@ swimCodes.projectCloseButton = () => {
 };
 
 swimCodes.macroProject = () => {
-    $('.list__item--macro-calculator').on('mouseenter', function () {
+    $('.list__item--macro-calculator').on('mouseenter focusin', function () {
         if ($(swimCodes.macroCalculator).hasClass('summary--display') !== true) {
             $(swimCodes.macroCalculator).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseleave', function () {
+    }).on('mouseleave focusout', function () {
         if ($(swimCodes.macroCalculator).hasClass('summary--display') !== true) {
             $(swimCodes.macroCalculator).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function () {
         $(swimCodes.macroCalculator).toggleClass('summary--hover summary--display').css('z-index', '8');
+        
         if ($(swimCodes.recipease).hasClass('summary--display') === true) {
             $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.recipeasePlayer.pause();
@@ -142,15 +141,32 @@ swimCodes.macroProject = () => {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
+    }).on('keyup', function(e) {
+        if (e.keyCode === 13) {
+            $(swimCodes.macroCalculator).toggleClass('summary--hover summary--display').css('z-index', '8');
+            if ($(swimCodes.recipease).hasClass('summary--display') === true) {
+                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.recipeasePlayer.pause();
+            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
+                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.fridgeVersesPlayer.pause();
+            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
+                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.nosuchthingPlayer.pause();
+            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
+                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.strainlessPlayer.pause();
+            }
+        }
     });
 };
 
 swimCodes.recipeaseProject = () => {
-    $('.list__item--recipease').on('mouseenter', function() {
+    $('.list__item--recipease').on('mouseenter focusin', function() {
         if ($(swimCodes.recipease).hasClass('summary--display') !== true) {
             $(swimCodes.recipease).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseleave', function() {
+    }).on('mouseleave focusout', function() {
         if ($(swimCodes.recipease).hasClass('summary--display') !== true) {
             $(swimCodes.recipease).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9');
         }
@@ -169,15 +185,32 @@ swimCodes.recipeaseProject = () => {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
+    }).on('keyup', function (e) {
+        if (e.keyCode === 13) {
+            $(swimCodes.recipease).toggleClass('summary--hover summary--display').css('z-index', '8');
+            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
+                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.macroPlayer.pause();
+            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
+                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.fridgeVersesPlayer.pause();
+            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
+                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.nosuchthingPlayer.pause();
+            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
+                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.strainlessPlayer.pause();
+            }
+        };
     });
 };
 
 swimCodes.fridgeVersesProject = () => {
-    $('.list__item--fridge-verses').on('mouseenter', function() {
+    $('.list__item--fridge-verses').on('mouseenter focusin', function() {
         if ($(swimCodes.fridgeVerses).hasClass('summary--display') !== true) {
             $(swimCodes.fridgeVerses).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseleave', function() {
+    }).on('mouseleave focusout', function() {
         if ($(swimCodes.fridgeVerses).hasClass('summary--display') !== true) {
             $(swimCodes.fridgeVerses).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
@@ -196,15 +229,32 @@ swimCodes.fridgeVersesProject = () => {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
+    }).on('keyup', function (e) {
+        if (e.keyCode === 13) {
+            $(swimCodes.fridgeVerses).toggleClass('summary--hover summary--display').css('z-index', '8');
+            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
+                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.macroPlayer.pause();
+            } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
+                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.recipeasePlayer.pause();
+            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
+                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.nosuchthingPlayer.pause();
+            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
+                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.strainlessPlayer.pause();
+            }
+        };
     });
 };
 
 swimCodes.nosuchthingProject = () => {
-    $('.list__item--nosuchthing').on('mouseenter', function() {
+    $('.list__item--nosuchthing').on('mouseenter focusin', function() {
         if ($(swimCodes.nosuchthing).hasClass('summary--display') !== true) {
             $(swimCodes.nosuchthing).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseleave', function() {
+    }).on('mouseleave focusout', function() {
         if ($(swimCodes.nosuchthing).hasClass('summary--display') !== true) {
             $(swimCodes.nosuchthing).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
@@ -223,15 +273,32 @@ swimCodes.nosuchthingProject = () => {
             $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
+    }).on('keyup', function (e) {
+        if (e.keyCode === 13) {
+            $(swimCodes.nosuchthing).toggleClass('summary--hover summary--display').css('z-index', '8');
+            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
+                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.macroPlayer.pause();
+            } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
+                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.recipeasePlayer.pause();
+            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
+                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.fridgeVersesPlayer.pause();
+            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
+                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.strainlessPlayer.pause();
+            }
+        };
     });
 };
 
 swimCodes.strainlessProject = () => {
-    $('.list__item--strainless').on('mouseenter', function() {
+    $('.list__item--strainless').on('mouseenter focusin', function() {
         if ($(swimCodes.strainless).hasClass('summary--display') !== true) {
             $(swimCodes.strainless).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
-    }).on('mouseleave', function() {
+    }).on('mouseleave focusout', function() {
         if ($(swimCodes.strainless).hasClass('summary--display') !== true) {
             $(swimCodes.strainless).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
@@ -250,6 +317,23 @@ swimCodes.strainlessProject = () => {
             $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.nosuchthingPlayer.pause();
         } 
+    }).on('keyup', function (e) {
+        if (e.keyCode === 13) {
+            $(swimCodes.strainless).toggleClass('summary--hover summary--display').css('z-index', '8');
+            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
+                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.macroPlayer.pause();
+            } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
+                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.recipeasePlayer.pause();
+            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
+                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.fridgeVersesPlayer.pause();
+            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
+                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+                // swimCodes.nosuchthingPlayer.pause();
+            }
+        };
     });
 };
 
@@ -260,7 +344,7 @@ swimCodes.projectsTypedOptions = {
         // Diet Calculator
         `Based on key body measurements and your goal, <span class="typed-highlight--diet-calculator">Diet Calculator</span> will provide you with the appropriate <span class="typed-highlight--diet-calculator">calories and macronutrient ratio</span> for your diet.`,
         // Recipease
-        `<span class="typed-highlight--recipease">Recipease</span> is a quiz that will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the <span class="typed-highlight--recipease">Spoonacular API.`,
+        `<span class="typed-highlight--recipease">Recipease</span> is a quiz that will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the <span class="typed-highlight--recipease">Spoonacular API.</span>`,
         // Fridge Verses
         `<span class="typed-highlight--fridge-verses">Fridge Verses</span> is a single-page app based on fridge magnet poetry. Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.`,
         // NOSUCHTHING
@@ -363,7 +447,7 @@ swimCodes.init = function() {
     ScrollReveal().reveal('.about__video video', { reset: true });
     ScrollReveal().reveal('.section--footer .section-container', { reset: true });
 
-    $('.branding').on('touchstart', function() {
+    $('.branding, abbr').on('touchstart', function() {
         $('body').css({'-webkit-touch-callout': 'none', 'user-select': 'none', '-webkit-tap-highlight-color': 'transparent' });
         $(document).on('touchend touchcancel touchmove', setTimeout(function() {
             $('body').css({ '-webkit-touch-callout': '', 'user-select': '', '-webkit-tap-highlight-color': '' });
@@ -384,6 +468,15 @@ swimCodes.init = function() {
         const href = $(this).attr('href');
         $(this).attr('href', href.replace('notsofast.', ''))
     })
+
+    tippy('[data-tippy-content]', {
+        animation: 'shift-away-extreme',
+        arrow: false,
+        theme: 'swim',
+        touch: ['hold', 300],
+        trigger: 'focus',
+        zIndex: 9998,
+    });
 };
 
 // * Document Ready

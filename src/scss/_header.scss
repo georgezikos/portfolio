@@ -46,6 +46,10 @@
                 cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🎱</text></svg>") 16 0,auto; /*!emojicursor.app*/
             }
 
+            &:focus {
+                outline: none;
+            }
+
             @media (max-width: 1205px) {
                 height: calc(99px + (200 - 99) * ((100vw - 768px) / (1205 - 768)));
                 width: calc(99px + (200 - 99) * ((100vw - 768px) / (1205 - 768)));
@@ -151,7 +155,9 @@
             color: $mainWhite;
             height: 100%;
 
-            &:hover {
+            &:hover,
+            &:focus {
+                outline: none;
                 @include stroke(1.2px);
                 color: $mainBlack;
 

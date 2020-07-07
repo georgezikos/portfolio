@@ -56,3 +56,12 @@
         line-height: 1;
     }
 }
+
+.tippy-box[data-theme~='swim'] {
+    @include bodyType(1.5rem);
+    background-color: $mainBlack;
+    border: 2px solid $mainWhite;
+    border-radius: 0px;
+    color: $mainWhite;
+    padding: 8px;
+}

@@ -27,7 +27,7 @@
         <div class="section-container">
             <div class="header__copy">
                 <h1 class="main-heading">George<span class="line-break">Zikos</span></h1>
-                <div class="branding">
+                <div class="branding" tabindex="0">
                     <img class="branding__wordmark" src="./assets/logo--wordmark.svg" alt="#">
                     <img class="branding__globe" src="./assets/logo--globe.svg" alt="#">
                 </div>
@@ -39,15 +39,15 @@
     <!-- <section class="section section--about wrapper" id="about"> -->
         <div class="section-container container--left">
             <div class="about__video">
-                <video src="./assets/about.mp4" autoplay loop muted playsinline></video>
+                <video src="./assets/about.mp4" autoplay loop muted playsinline tabindex="-1"></video>
             </div>
         </div>
         <div class="section-container container--right">
             <p class="main-paragraph">
                 Former wellness professional in the pursuit of making meaningful contributions to people’s lives through technology.
-                <span class="line-break">
+                <address class="line-break main-paragraph">
                     Reach out at <a class="email underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener noreferrer">hello<code class="main-paragraph">&#64;</code>swim<code class="main-paragraph">&#x2e;</code>codes</a>
-                </span>
+                </address>
             </p>
         </div>
     </section>
@@ -59,9 +59,9 @@
                     <h3 class="third-headline">Live</h3>
                 </div>
                 <ul class="projects__list">
-                    <li class="list__item list__item--macro-calculator">Diet Calculator</li>
-                    <li class="list__item list__item--recipease">Recipease</li>
-                    <li class="list__item list__item--fridge-verses">Fridge Verses</li>
+                    <li class="list__item list__item--macro-calculator" tabindex="0">Diet Calculator</li>
+                    <li class="list__item list__item--recipease" tabindex="0">Recipease</li>
+                    <li class="list__item list__item--fridge-verses" tabindex="0">Fridge Verses</li>
                 </ul>
             </div>
             <div class="container--bottom">
@@ -69,8 +69,8 @@
                     <h3 class="third-headline">WIP</h3>
                 </div>
                 <ul class="projects__list">
-                    <li class="list__item list__item--nosuchthing">NOSUCHTHING</li>
-                    <li class="list__item list__item--strainless">Strainless</li>
+                    <li class="list__item list__item--nosuchthing" tabindex="0">NOSUCHTHING</li>
+                    <li class="list__item list__item--strainless" tabindex="0">Strainless</li>
                 </ul>
             </div>
         </div>
@@ -108,7 +108,7 @@
                             
                 <ul class="summary__links">
                     <!-- <li><p>View Live</p></li> -->
-                    <li><a href="https://github.com/georgezikos/george-zikos-project-three">Visit Repository</a></li>
+                    <li><a href="https://github.com/georgezikos/george-zikos-project-three" tabindex="-1">Visit Repository</a></li>
                 </ul>
                             
             </div>      
@@ -145,8 +145,8 @@
                 <p class="summary__description">This quiz will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the Spoonacular API.</p>
                 
                 <ul class="summary__links">
-                    <li><a href="https://marie-and-george-project-four.github.io/recipease/">View Live</a></li>
-                    <li><a href="https://github.com/marie-and-george-project-four/recipease">Visit Repository</a></li>
+                    <li><a href="https://marie-and-george-project-four.github.io/recipease/" tabindex="-1">View Live</a></li>
+                    <li><a href="https://github.com/marie-and-george-project-four/recipease" tabindex="-1">Visit Repository</a></li>
                 </ul>
                 
             </div>
@@ -183,8 +183,8 @@
                 <p class="summary__description">A single-page app based on fridge magnet poetry. Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.</p>
                 
                 <ul class="summary__links">
-                    <li><a href="https://zevg-project6.github.io/Refridgeration-Versification/">View Live</a></li>
-                    <li><a href="https://github.com/ZEVG-project6/Refridgeration-Versification">Visit Repository</i></p></li>
+                    <li><a href="https://zevg-project6.github.io/Refridgeration-Versification/" tabindex="-1">View Live</a></li>
+                    <li><a href="https://github.com/ZEVG-project6/Refridgeration-Versification" tabindex="-1">Visit Repository</i></p></li>
                 </ul>
                 
             </div>
@@ -220,7 +220,7 @@
                 <p class="summary__description">Open-source health and wellness education paired with a suite of digital products centered around preventative health and improved wellness. Currently experimenting with the Webflow CMS API.</p>
                 
                 <ul class="summary__links">
-                    <li><a href="https://nst-home.webflow.io/">View Live</a></li>
+                    <li><a href="https://nst-home.webflow.io/" tabindex="-1">View Live</a></li>
                     <!-- <li><p>Visit Repository</p></li> -->
                 </ul>
                 
@@ -266,15 +266,13 @@
     <footer class="section section--footer wrapper loader-blur" id="contact">
     <!-- <footer class="section section--footer wrapper" id="contact"> -->
         <div class="footer__skills-banner">
-            <!-- Add Webflow -->
-            <!-- Add abbreviation best-practices -->
             <ul class="skills-banner__list">
-                <li class="main-skill">
-                    HTML
+                <li class="main-skill" data-tippy-content="Hypertext Markup Language">
+                    <abbr title="Hypertext Markup Language">HTML</abbr>
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
-                    CSS
+                <li class="main-skill" data-tippy-content="Cascading Style Sheets">
+                    <abbr title="Cascading Style Sheets">CSS</abbr>
                 </li>
                 <span class="list__divider">•</span>
                 <li class="main-skill">
@@ -285,12 +283,12 @@
                     React
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
-                    BEM
+                <li class="main-skill" data-tippy-content="Block Element Modifiers">
+                    <abbr title="Block Element Modifiers">BEM</abbr>
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
-                    Sass
+                <li class="main-skill" data-tippy-content="Syntactically Awesome Style Sheets">
+                    <abbr title="Syntactically Awesome Style Sheets">SASS</abbr>
                 </li>
                 <span class="list__divider">•</span>
                 <li class="main-skill">
@@ -315,57 +313,64 @@
                 <span class="list__divider">•</span>
                 <li class="main-skill">
                     Adobe Creative Suite
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill">
+                    Webflow
                 </li>
                 <span class="list__divider">•</span>
             </ul>
-            <!-- Figure out how to avoid this list with SR and accessible keyboard navigation -->
             <ul class="skills-banner__list skills-banner__list--wrap">
-                <li class="main-skill">
-                    HTML
+                <li class="main-skill" data-tippy-content="Hypertext Markup Language" tabindex="0">
+                    <abbr title="Hypertext Markup Language">HTML</abbr>
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
-                    CSS
+                <li class="main-skill" data-tippy-content="Cascading Style Sheets" tabindex="0">
+                    <abbr title="Cascading Style Sheets">CSS</abbr>
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     Javascript
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     React
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
-                    BEM
+                <li class="main-skill" data-tippy-content="Block Element Modifiers" tabindex="0">
+                    <abbr title="Block Element Modifiers">BEM</abbr>
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
-                    Sass
+                <li class="main-skill" data-tippy-content="Syntactically Awesome Style Sheets" tabindex="0">
+                    <abbr title="Syntactically Awesome Style Sheets">SASS</abbr>
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     jQuery
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     GitHub
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     Visual Studio Code
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     Sketch
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     Figma
                 </li>
                 <span class="list__divider">•</span>
-                <li class="main-skill">
+                <li class="main-skill" tabindex="0">
                     Adobe Creative Suite
+                </li>
+                <span class="list__divider">•</span>
+                <li class="main-skill" tabindex="0">
+                    Webflow
                 </li>
                 <span class="list__divider">•</span>
             </ul>
@@ -378,12 +383,20 @@
                     <p class="third-headline">Toronto, Canada</p>
                 </li>
                 <li class="list__item--contacts">
-                    <a class="email third-headline underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener noreferrer">hello<code class="third-headline">&#64;</code>swim<code class="third-headline">&#x2e;</code>codes</a>
-                    <li class="list__item--contacts">
-                        <!-- Abbreviation best practices -->
-                        <a href="drive." class="third-headline">CV <i class="fal fa-file-pdf"></i></a>
-                    </li>
+
+                    <address>
+
+                        <a class="email third-headline underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener noreferrer">hello<code class="third-headline">&#64;</code>swim<code class="third-headline">&#x2e;</code>codes</a>
+
+                    </address>
+                
                 </li>
+                
+                <li class="list__item--contacts">
+                    <a href="drive." class="third-headline" data-tippy-content="Curriculum Vitae (Course of Life)"><abbr title="Curriculum Vitae / Course of Life">CV</abbr> <i class="fal fa-file-pdf"></i></a>
+                </li>
+                
+
             </ul>
 
             <a href="#top" class="third-headline top">Top <i class="far fa-arrow-right"></i></a>
