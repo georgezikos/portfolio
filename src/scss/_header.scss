@@ -191,10 +191,17 @@
     }
 
     .mobile--hamburger {
+        background-color: transparent;
+        border: none;
         height: 60px;
+        padding: 0;
         perspective: 1000;
         position: relative;
         width: 60px;
+
+        &:focus {
+            outline: $mainAccent thin dotted;
+        }
 
         &:hover {
             cursor: pointer;

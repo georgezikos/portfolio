@@ -23,6 +23,7 @@ swimCodes.breakpointListener = (build) => {
 // Mobile Nav
 swimCodes.nav = $('.header__nav');
 swimCodes.navLinks = $('.nav__links');
+swimCodes.hamburger = $('.mobile--hamburger');
 
 // Projects
 swimCodes.macroCalculator = $('.summary--macro-calculator');
@@ -376,10 +377,10 @@ swimCodes.mobileNavBuild = (breakpoint) => {
                 <div class="nav__mobile mobile--wordmark">
                     <a href="#top">swim _</a>
                 </div>
-                <div class="nav__mobile mobile--hamburger">
+                <button class="nav__mobile mobile--hamburger">
                     <div class="hamburger__bun bun__top"></div>
                     <div class="hamburger__bun bun__bottom"></div>
-                </div>
+                </button>
             `);
     } else {
         $('.nav__mobile').remove();
@@ -477,6 +478,14 @@ swimCodes.init = function() {
         trigger: 'focus',
         zIndex: 9998,
     });
+
+    $('.branding').on('focus', function() {
+        if (swimCodes.navLinks.hasClass('nav__links--open') === true) {
+            swimCodes.navLinks.removeClass('nav__links--open');
+            $('.bun__top').removeClass('bun__top--active');
+            $('.bun__bottom').removeClass('bun__bottom--active');
+        }
+    })
 };
 
 // * Document Ready
