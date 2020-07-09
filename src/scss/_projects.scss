@@ -81,15 +81,20 @@
             margin-bottom: 20px;
             user-select: none;
 
-            &:hover,
-            &:focus {
-                cursor: pointer;
-                outline: none;
+            button {
+                width: 100%;
 
-                &::after {
-                    @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
-                    animation: fade 200ms linear;
-                    content: ' _';
+                &:focus {
+                    outline: none;
+                }
+
+                &:hover,
+                &:focus {
+                    &::after {
+                        @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+                        animation: fade 200ms linear;
+                        content: ' _';
+                    }
                 }
             }
             
@@ -156,12 +161,10 @@
                     color: $mainWhite;
                     font-size: 3rem;
                     line-height: 1;
-                    transition: transform ease-in-out 100ms;
 
-                    &:hover {
-                        cursor: pointer;
-                        transform: scale(1.15);
-                    }
+                    i { transition: transform ease-in-out 100ms; }
+
+                    &:hover > i { transform: scale(1.15); }
                 }
     
                 .accessories__tag {
@@ -313,11 +316,11 @@
                         @include bodyType(calc(1.8rem + (20.2 - 18) * ((100vw - 375px) / (500 - 375))));
                         line-height: 1;
                     }
-
                 }
 
                 .fa-arrow-right {
-                    transform: rotateZ(45deg);
+                    transform: rotateZ(-45deg);
+                    margin-left: 8px;
                 }
             }
         }
@@ -432,6 +435,8 @@
 
             .summary__video {
                 background-color: $dietSecondary;
+
+                img { color: $dietPrimary; }
             }
 
             .summary__description {
@@ -549,6 +554,8 @@
 
             .summary__video {
                 background-color: $recipeaseSecondary;
+
+                img { color: $recipeasePrimary; }
             }
 
             .summary__description {
@@ -666,6 +673,8 @@
 
             .summary__video {
                 background-color: $fridgeVersesSecondary;
+
+                img { color: $fridgeVersesPrimary; }
             }
 
             .summary__description {
@@ -755,6 +764,8 @@
 
             .summary__video {
                 background-color: $nosuchthingSecondary;
+
+                img { color: $nosuchthingPrimary; }
             }
 
             .summary__description {
@@ -844,6 +855,8 @@
 
             .summary__video {
                 background-color: $strainlessSecondary;
+
+                img { color: $strainlessPrimary; }
             }
 
             .summary__description {

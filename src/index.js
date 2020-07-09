@@ -1,9 +1,7 @@
 import './scss/styles.scss';
 import $ from 'jquery';
-import Player from '@vimeo/player';
+// import Player from '@vimeo/player';
 import ScrollReveal from 'scrollreveal';
-// import PanelSnap from 'panelsnap'
-// import { createPopper } from '@popperjs/core';
 import tippy, { followCursor } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away-extreme.css';
@@ -14,6 +12,8 @@ import SmoothScroll from 'smooth-scroll';
 const swimCodes = {};
 
 // * Cached Selectors
+swimCodes.$body = $('body');
+
 // Breakpoints
 swimCodes.mobileBreakpoint = window.matchMedia('(max-width: 768px)');
 swimCodes.breakpointListener = (build) => {
@@ -21,16 +21,18 @@ swimCodes.breakpointListener = (build) => {
 };
 
 // Mobile Nav
-swimCodes.nav = $('.header__nav');
-swimCodes.navLinks = $('.nav__links');
-swimCodes.hamburger = $('.mobile--hamburger');
+swimCodes.$nav = $('.header__nav');
+swimCodes.$navLinks = $('.nav__links');
+
+// Branding
+swimCodes.branding = $('.branding');
 
 // Projects
-swimCodes.macroCalculator = $('.summary--macro-calculator');
-swimCodes.recipease = $('.summary--recipease');
-swimCodes.nosuchthing = $('.summary--nosuchthing');
-swimCodes.fridgeVerses = $('.summary--fridge-verses');
-swimCodes.strainless = $('.summary--strainless');
+swimCodes.$macroCalculator = $('.summary--macro-calculator');
+swimCodes.$recipease = $('.summary--recipease');
+swimCodes.$nosuchthing = $('.summary--nosuchthing');
+swimCodes.$fridgeVerses = $('.summary--fridge-verses');
+swimCodes.$strainless = $('.summary--strainless');
 
 // Vimeo Players
 // swimCodes.macroVideo = document.querySelector('#macroVideo');
@@ -49,6 +51,30 @@ swimCodes.strainless = $('.summary--strainless');
 // swimCodes.strainlessPlayer = new Player(swimCodes.strainlessVideo);
 
 // * Functionality
+// Page Loader
+swimCodes.loader = () => {
+    window.addEventListener('load', function () {
+        const loader = document.querySelector('.loader');
+        loader.className += ' hidden';
+        swimCodes.$body.css({ 'overflow': '' });
+        $('header, section, main, footer').removeClass('loader-blur');
+        setTimeout(function () { loader.parentNode.removeChild(loader) }, 6000);
+    });
+};
+
+// Smooth Scroll
+swimCodes.smoothScroll = () => {
+    new SmoothScroll('a[href*="#"]');
+};
+
+// Email Protection
+swimCodes.notSoFast = () => {
+    $('a.email').on('click', function() {
+        const href = $(this).attr('href');
+        $(this).attr('href', href.replace('notsofast.', ''))
+    });
+};
+
 // Tippy
 swimCodes.swimDefinition = () => {
     tippy('.branding', {
@@ -70,26 +96,53 @@ swimCodes.swimDefinition = () => {
         zIndex: 9998,
         role: 'tooltip',
     });
-}
+};
+
+swimCodes.accessibleTooltip = () => {
+    tippy('[data-tippy-content]', {
+        animation: 'shift-away-extreme',
+        arrow: false,
+        theme: 'swim',
+        touch: ['hold', 300],
+        trigger: 'focus',
+        zIndex: 9998,
+    });
+};
+
+// Mobile Touch and Hold
+swimCodes.touchHold = () => {
+    swimCodes.branding.on('touchstart', function () {
+        swimCodes.$body.css({ '-webkit-touch-callout': 'none', 'user-select': 'none', '-webkit-tap-highlight-color': 'transparent' });
+        $(document).on('touchend touchcancel touchmove', setTimeout(function () {
+            swimCodes.$body.css({ '-webkit-touch-callout': '', 'user-select': '', '-webkit-tap-highlight-color': '' });
+        }, 5000));
+    });
+    $('abbr').on('touchstart', function () {
+        swimCodes.$body.css({ '-webkit-touch-callout': 'none', 'user-select': 'none', '-webkit-tap-highlight-color': 'transparent' });
+        $(document).on('touchend touchcancel touchmove', setTimeout(function () {
+            swimCodes.$body.css({ '-webkit-touch-callout': '', 'user-select': '', '-webkit-tap-highlight-color': '' });
+        }, 5000));
+    });
+};
 
 // Projects
 swimCodes.projectEscClose = () => {
     $(document).keyup(function(e) {
         if (e.keyCode === 27) {
-            if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
-                $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
+            if (swimCodes.$macroCalculator.hasClass('summary--display') === true) {
+                swimCodes.$macroCalculator.toggleClass('summary--display summary--hide').css('z-index', '');
                 // swimCodes.macroPlayer.pause();
-            } else if ($('.summary--recipease').hasClass('summary--display') === true) {
-                $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '');
+            } else if (swimCodes.$recipease.hasClass('summary--display') === true) {
+                swimCodes.$recipease.toggleClass('summary--display summary--hide').css('z-index', '');
                 // swimCodes.recipeasePlayer.pause();
-            } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
-                $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '');
+            } else if (swimCodes.$nosuchthing.hasClass('summary--display') === true) {
+                swimCodes.$nosuchthing.toggleClass('summary--display summary--hide').css('z-index', '');
                 // swimCodes.nosuchthingPlayer.pause();
-            } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
-                $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '');
+            } else if (swimCodes.$fridgeVerses.hasClass('summary--display') === true) {
+                swimCodes.$fridgeVerses.toggleClass('summary--display summary--hide').css('z-index', '');
                 // swimCodes.fridgeVersesPlayer.pause();
-            } else if ($('.summary--strainless').hasClass('summary--display') === true) {
-                $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '');
+            } else if (swimCodes.$strainless.hasClass('summary--display') === true) {
+                swimCodes.$strainless.toggleClass('summary--display summary--hide').css('z-index', '');
                 // swimCodes.strainlessPlayer.pause();
             }
         }
@@ -98,243 +151,158 @@ swimCodes.projectEscClose = () => {
 
 swimCodes.projectCloseButton = () => {
     $('.accessories__close').on('click', function() {
-        if ($('.summary--macro-calculator').hasClass('summary--display') === true) {
-            $('.summary--macro-calculator').toggleClass('summary--display summary--hide').css('z-index', '');
+        if (swimCodes.$macroCalculator.hasClass('summary--display') === true) {
+            swimCodes.$macroCalculator.toggleClass('summary--display summary--hide').css('z-index', '');
             // swimCodes.macroPlayer.pause();
-        } else if ($('.summary--recipease').hasClass('summary--display') === true) {
-            $('.summary--recipease').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if (swimCodes.$recipease.hasClass('summary--display') === true) {
+            swimCodes.$recipease.toggleClass('summary--display summary--hide').css('z-index', '');
             // swimCodes.recipeasePlayer.pause();
-        } else if ($('.summary--nosuchthing').hasClass('summary--display') === true) {
-            $('.summary--nosuchthing').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if (swimCodes.$nosuchthing.hasClass('summary--display') === true) {
+            swimCodes.$nosuchthing.toggleClass('summary--display summary--hide').css('z-index', '');
             // swimCodes.nosuchthingPlayer.pause();
-        } else if ($('.summary--fridge-verses').hasClass('summary--display') === true) {
-            $('.summary--fridge-verses').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if (swimCodes.$fridgeVerses.hasClass('summary--display') === true) {
+            swimCodes.$fridgeVerses.toggleClass('summary--display summary--hide').css('z-index', '');
             // swimCodes.fridgeVersesPlayer.pause();
-        } else if ($('.summary--strainless').hasClass('summary--display') === true) {
-            $('.summary--strainless').toggleClass('summary--display summary--hide').css('z-index', '');
+        } else if (swimCodes.$strainless.hasClass('summary--display') === true) {
+            swimCodes.$strainless.toggleClass('summary--display summary--hide').css('z-index', '');
             // swimCodes.strainlessPlayer.pause();
         }
     });
 };
 
 swimCodes.macroProject = () => {
-    $('.list__item--macro-calculator').on('mouseenter focusin', function () {
-        if ($(swimCodes.macroCalculator).hasClass('summary--display') !== true) {
-            $(swimCodes.macroCalculator).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
+    $('.list__item--macro-calculator button').on('mouseenter focusin', function () {
+        if (swimCodes.$macroCalculator.hasClass('summary--display') !== true) {
+            swimCodes.$macroCalculator.removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
     }).on('mouseleave focusout', function () {
-        if ($(swimCodes.macroCalculator).hasClass('summary--display') !== true) {
-            $(swimCodes.macroCalculator).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
+        if (swimCodes.$macroCalculator.hasClass('summary--display') !== true) {
+            swimCodes.$macroCalculator.removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function () {
-        $(swimCodes.macroCalculator).toggleClass('summary--hover summary--display').css('z-index', '8');
+        swimCodes.$macroCalculator.toggleClass('summary--hover summary--display').css('z-index', '8');
         
-        if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-            $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+        if (swimCodes.$recipease.hasClass('summary--display') === true) {
+            swimCodes.$recipease.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.recipeasePlayer.pause();
-        } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-            $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$fridgeVerses.hasClass('summary--display') === true) {
+            swimCodes.$fridgeVerses.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.fridgeVersesPlayer.pause();
-        } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-            $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$nosuchthing.hasClass('summary--display') === true) {
+            swimCodes.$nosuchthing.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.nosuchthingPlayer.pause();
-        } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-            $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$strainless.hasClass('summary--display') === true) {
+            swimCodes.$strainless.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
-        }
-    }).on('keyup', function(e) {
-        if (e.keyCode === 13) {
-            $(swimCodes.macroCalculator).toggleClass('summary--hover summary--display').css('z-index', '8');
-            if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.recipeasePlayer.pause();
-            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.fridgeVersesPlayer.pause();
-            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.nosuchthingPlayer.pause();
-            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.strainlessPlayer.pause();
-            }
         }
     });
 };
 
 swimCodes.recipeaseProject = () => {
-    $('.list__item--recipease').on('mouseenter focusin', function() {
-        if ($(swimCodes.recipease).hasClass('summary--display') !== true) {
-            $(swimCodes.recipease).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
+    $('.list__item--recipease button').on('mouseenter focusin', function() {
+        if (swimCodes.$recipease.hasClass('summary--display') !== true) {
+            swimCodes.$recipease.removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
     }).on('mouseleave focusout', function() {
-        if ($(swimCodes.recipease).hasClass('summary--display') !== true) {
-            $(swimCodes.recipease).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9');
+        if (swimCodes.$recipease.hasClass('summary--display') !== true) {
+            swimCodes.$recipease.removeClass('summary--hover').addClass('summary--hide').css('z-index', '9');
         }
     }).on('click', function() {
-        $(swimCodes.recipease).toggleClass('summary--hover summary--display').css('z-index', '8');
-        if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-            $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+        swimCodes.$recipease.toggleClass('summary--hover summary--display').css('z-index', '8');
+        if (swimCodes.$macroCalculator.hasClass('summary--display') === true) {
+            swimCodes.$macroCalculator.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.macroPlayer.pause();
-        } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-            $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$fridgeVerses.hasClass('summary--display') === true) {
+            swimCodes.$fridgeVerses.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.fridgeVersesPlayer.pause();
-        } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-            $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$nosuchthing.hasClass('summary--display') === true) {
+            swimCodes.$nosuchthing.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.nosuchthingPlayer.pause();
-        } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-            $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$strainless.hasClass('summary--display') === true) {
+            swimCodes.$strainless.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
-    }).on('keyup', function (e) {
-        if (e.keyCode === 13) {
-            $(swimCodes.recipease).toggleClass('summary--hover summary--display').css('z-index', '8');
-            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.macroPlayer.pause();
-            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.fridgeVersesPlayer.pause();
-            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.nosuchthingPlayer.pause();
-            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.strainlessPlayer.pause();
-            }
-        };
     });
 };
 
 swimCodes.fridgeVersesProject = () => {
-    $('.list__item--fridge-verses').on('mouseenter focusin', function() {
-        if ($(swimCodes.fridgeVerses).hasClass('summary--display') !== true) {
-            $(swimCodes.fridgeVerses).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
+    $('.list__item--fridge-verses button').on('mouseenter focusin', function() {
+        if (swimCodes.$fridgeVerses.hasClass('summary--display') !== true) {
+            swimCodes.$fridgeVerses.removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
     }).on('mouseleave focusout', function() {
-        if ($(swimCodes.fridgeVerses).hasClass('summary--display') !== true) {
-            $(swimCodes.fridgeVerses).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
+        if (swimCodes.$fridgeVerses.hasClass('summary--display') !== true) {
+            swimCodes.$fridgeVerses.removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
-        $(swimCodes.fridgeVerses).toggleClass('summary--hover summary--display').css('z-index', '8');
-        if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-            $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+        swimCodes.$fridgeVerses.toggleClass('summary--hover summary--display').css('z-index', '8');
+        if (swimCodes.$macroCalculator.hasClass('summary--display') === true) {
+            swimCodes.$macroCalculator.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.macroPlayer.pause();
-        } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-            $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$recipease.hasClass('summary--display') === true) {
+            swimCodes.$recipease.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.recipeasePlayer.pause();
-        } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-            $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$nosuchthing.hasClass('summary--display') === true) {
+            swimCodes.$nosuchthing.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.nosuchthingPlayer.pause();
-        } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-            $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$strainless.hasClass('summary--display') === true) {
+            swimCodes.$strainless.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
-    }).on('keyup', function (e) {
-        if (e.keyCode === 13) {
-            $(swimCodes.fridgeVerses).toggleClass('summary--hover summary--display').css('z-index', '8');
-            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.macroPlayer.pause();
-            } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.recipeasePlayer.pause();
-            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.nosuchthingPlayer.pause();
-            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.strainlessPlayer.pause();
-            }
-        };
     });
 };
 
 swimCodes.nosuchthingProject = () => {
-    $('.list__item--nosuchthing').on('mouseenter focusin', function() {
-        if ($(swimCodes.nosuchthing).hasClass('summary--display') !== true) {
-            $(swimCodes.nosuchthing).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
+    $('.list__item--nosuchthing button').on('mouseenter focusin', function() {
+        if (swimCodes.$nosuchthing.hasClass('summary--display') !== true) {
+            swimCodes.$nosuchthing.removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
     }).on('mouseleave focusout', function() {
-        if ($(swimCodes.nosuchthing).hasClass('summary--display') !== true) {
-            $(swimCodes.nosuchthing).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
+        if (swimCodes.$nosuchthing.hasClass('summary--display') !== true) {
+            swimCodes.$nosuchthing.removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
-        $(swimCodes.nosuchthing).toggleClass('summary--hover summary--display').css('z-index', '8');
-        if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-            $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+        swimCodes.$nosuchthing.toggleClass('summary--hover summary--display').css('z-index', '8');
+        if (swimCodes.$macroCalculator.hasClass('summary--display') === true) {
+            swimCodes.$macroCalculator.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.macroPlayer.pause();
-        } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-            $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$recipease.hasClass('summary--display') === true) {
+            swimCodes.$recipease.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.recipeasePlayer.pause();
-        } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-            $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$fridgeVerses.hasClass('summary--display') === true) {
+            swimCodes.$fridgeVerses.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.fridgeVersesPlayer.pause();
-        } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-            $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$strainless.hasClass('summary--display') === true) {
+            swimCodes.$strainless.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.strainlessPlayer.pause();
         }
-    }).on('keyup', function (e) {
-        if (e.keyCode === 13) {
-            $(swimCodes.nosuchthing).toggleClass('summary--hover summary--display').css('z-index', '8');
-            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.macroPlayer.pause();
-            } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.recipeasePlayer.pause();
-            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.fridgeVersesPlayer.pause();
-            } else if ($(swimCodes.strainless).hasClass('summary--display') === true) {
-                $(swimCodes.strainless).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.strainlessPlayer.pause();
-            }
-        };
     });
 };
 
 swimCodes.strainlessProject = () => {
-    $('.list__item--strainless').on('mouseenter focusin', function() {
-        if ($(swimCodes.strainless).hasClass('summary--display') !== true) {
-            $(swimCodes.strainless).removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
+    $('.list__item--strainless button').on('mouseenter focusin', function() {
+        if (swimCodes.$strainless.hasClass('summary--display') !== true) {
+            swimCodes.$strainless.removeClass('summary--hide').addClass('summary--hover').css('z-index', '9');
         }
     }).on('mouseleave focusout', function() {
-        if ($(swimCodes.strainless).hasClass('summary--display') !== true) {
-            $(swimCodes.strainless).removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
+        if (swimCodes.$strainless.hasClass('summary--display') !== true) {
+            swimCodes.$strainless.removeClass('summary--hover').addClass('summary--hide').css('z-index', '9')
         }
     }).on('click', function() {
-        $(swimCodes.strainless).toggleClass('summary--hover summary--display').css('z-index', '8');
-        if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-            $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
+        swimCodes.$strainless.toggleClass('summary--hover summary--display').css('z-index', '8');
+        if (swimCodes.$macroCalculator.hasClass('summary--display') === true) {
+            swimCodes.$macroCalculator.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.macroPlayer.pause();
-        } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-            $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$recipease.hasClass('summary--display') === true) {
+            swimCodes.$recipease.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.recipeasePlayer.pause();
-        } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-            $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$fridgeVerses.hasClass('summary--display') === true) {
+            swimCodes.$fridgeVerses.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.fridgeVersesPlayer.pause();
-        } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-            $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
+        } else if (swimCodes.$nosuchthing.hasClass('summary--display') === true) {
+            swimCodes.$nosuchthing.toggleClass('summary--display summary--hide').css('z-index', '7');
             // swimCodes.nosuchthingPlayer.pause();
         } 
-    }).on('keyup', function (e) {
-        if (e.keyCode === 13) {
-            $(swimCodes.strainless).toggleClass('summary--hover summary--display').css('z-index', '8');
-            if ($(swimCodes.macroCalculator).hasClass('summary--display') === true) {
-                $(swimCodes.macroCalculator).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.macroPlayer.pause();
-            } else if ($(swimCodes.recipease).hasClass('summary--display') === true) {
-                $(swimCodes.recipease).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.recipeasePlayer.pause();
-            } else if ($(swimCodes.fridgeVerses).hasClass('summary--display') === true) {
-                $(swimCodes.fridgeVerses).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.fridgeVersesPlayer.pause();
-            } else if ($(swimCodes.nosuchthing).hasClass('summary--display') === true) {
-                $(swimCodes.nosuchthing).toggleClass('summary--display summary--hide').css('z-index', '7');
-                // swimCodes.nosuchthingPlayer.pause();
-            }
-        };
     });
 };
 
@@ -373,63 +341,88 @@ swimCodes.projectsTyped = (element, options) => {
 // Mobile Nav
 swimCodes.mobileNavBuild = (breakpoint) => {
     if (breakpoint.matches) {
-        swimCodes.nav.prepend(`
-                <div class="nav__mobile mobile--wordmark">
-                    <a href="#top">swim _</a>
-                </div>
-                <button class="nav__mobile mobile--hamburger">
-                    <div class="hamburger__bun bun__top"></div>
-                    <div class="hamburger__bun bun__bottom"></div>
-                </button>
-            `);
+        swimCodes.$nav.prepend(`
+            <div class="nav__mobile mobile--wordmark">
+                <a href="#top" title="Someone Who Isn't Me">swim _</a>
+            </div>
+            <button class="nav__mobile mobile--hamburger">
+                <div class="hamburger__bun bun__top"></div>
+                <div class="hamburger__bun bun__bottom"></div>
+            </button>
+        `);
+        // Cache Selectors
+        swimCodes.$bunTop = $('.bun__top');
+        swimCodes.$bunBottom = $('.bun__bottom');
     } else {
         $('.nav__mobile').remove();
-        if (swimCodes.navLinks.hasClass('nav__links--open') === true) {
-            swimCodes.navLinks.removeClass('nav__links--open');
+        if (swimCodes.$navLinks.hasClass('nav__links--open') === true) {
+            swimCodes.$navLinks.removeClass('nav__links--open');
         }
     }
 };
 
 swimCodes.mobileNav = () => {
-    swimCodes.nav.on('click', '.mobile--hamburger', function () {
-        $('.bun__top').toggleClass('bun__top--active');
-        $('.bun__bottom').toggleClass('bun__bottom--active');
-        swimCodes.navLinks.toggleClass('nav__links--open');
+    swimCodes.$nav.on('click', '.mobile--hamburger', function () {
+        swimCodes.$bunTop.toggleClass('bun__top--active');
+        swimCodes.$bunBottom.toggleClass('bun__bottom--active');
+        swimCodes.$navLinks.toggleClass('nav__links--open');
         $(document).on('scroll touchmove', function() {
-            $('.bun__top').removeClass('bun__top--active');
-            $('.bun__bottom').removeClass('bun__bottom--active');
-            swimCodes.navLinks.removeClass('nav__links--open');
+            swimCodes.$bunTop.removeClass('bun__top--active');
+            swimCodes.$bunBottom.removeClass('bun__bottom--active');
+            swimCodes.$navLinks.removeClass('nav__links--open');
         })
     });
 };
 
-// Clean this up
-swimCodes.mobileLinkBehaviour  = (breakpoint) => {
+swimCodes.mobileLinkBehaviour = (breakpoint) => {
     if (breakpoint.matches) {
         $('.main-link a').on('click', function() {
-            $('.bun__top').toggleClass('bun__top--active');
-            $('.bun__bottom').toggleClass('bun__bottom--active');
-            swimCodes.navLinks.toggleClass('nav__links--open');
+            swimCodes.$bunTop.toggleClass('bun__top--active');
+            swimCodes.$bunBottom.toggleClass('bun__bottom--active');
+            swimCodes.$navLinks.toggleClass('nav__links--open');
         })
     }
-}
+};
 
+swimCodes.mobileMenuTabBehaviour = () => {
+    swimCodes.branding.on('focus', function () {
+        if (swimCodes.$navLinks.hasClass('nav__links--open') === true) {
+            swimCodes.$navLinks.removeClass('nav__links--open');
+            swimCodes.$bunTop.removeClass('bun__top--active');
+            swimCodes.$bunBottom.removeClass('bun__bottom--active');
+        }
+    })
+};
+
+swimCodes.mobileWordmark = () => {
+    $('.mobile--wordmark').on('click', function () {
+        if (swimCodes.$bunTop.hasClass('bun__top--active') === true &&
+            swimCodes.$bunBottom.hasClass('bun__bottom--active') === true &&
+            swimCodes.$navLinks.hasClass('nav__links--open') === true) {
+            swimCodes.$bunTop.removeClass('bun__top--active');
+            swimCodes.$bunBottom.removeClass('bun__bottom--active');
+            swimCodes.$navLinks.removeClass('nav__links--open');
+        }
+    });
+};
+
+// ScrollReveal
+swimCodes.scrollReveal = () => {
+    ScrollReveal().reveal('.container--right > .main-paragraph', { reset: true });
+    ScrollReveal().reveal('.about__video video', { scale: 0.5, reset: true });
+    ScrollReveal().reveal('.section--footer .section-container', { reset: true, delay: 150 });
+}
 
 // * Init
 swimCodes.init = function() {
-    window.addEventListener('load', function() {
-        const loader = document.querySelector('.loader');
-        loader.className += ' hidden';
-        $('body').css({ 'overflow': '' });
-        $('header, section, main, footer').removeClass('loader-blur');
-        setTimeout(function() { loader.parentNode.removeChild(loader) }, 6000);
-    });
-
-    const smoothScroll = new SmoothScroll('a[href*="#"]');
-    
+    swimCodes.loader();
+    swimCodes.smoothScroll();
+    swimCodes.notSoFast();
+    swimCodes.swimDefinition();
+    swimCodes.accessibleTooltip();
+    swimCodes.touchHold();
     swimCodes.projectEscClose();
     swimCodes.projectCloseButton();
-    swimCodes.swimDefinition();
     swimCodes.projectsTyped('#typed', swimCodes.projectsTypedOptions);
     swimCodes.macroProject();
     swimCodes.recipeaseProject();
@@ -441,58 +434,12 @@ swimCodes.init = function() {
     swimCodes.mobileNav();
     swimCodes.mobileLinkBehaviour(swimCodes.mobileBreakpoint);
     swimCodes.breakpointListener(swimCodes.mobileLinkBehaviour);
-
-    // TODO Move into Namespace
-    // * ScrollReveal Related
-    ScrollReveal().reveal('.container--right > .main-paragraph', { reset: true })
-    ScrollReveal().reveal('.about__video video', { reset: true });
-    ScrollReveal().reveal('.section--footer .section-container', { reset: true });
-
-    $('.branding, abbr').on('touchstart', function() {
-        $('body').css({'-webkit-touch-callout': 'none', 'user-select': 'none', '-webkit-tap-highlight-color': 'transparent' });
-        $(document).on('touchend touchcancel touchmove', setTimeout(function() {
-            $('body').css({ '-webkit-touch-callout': '', 'user-select': '', '-webkit-tap-highlight-color': '' });
-        }, 5000));
-    })
-
-    $('.mobile--wordmark').on('click', function() {
-        if ($('.bun__top').hasClass('bun__top--active') === true && 
-            $('.bun__bottom').hasClass('bun__bottom--active') === true && 
-            swimCodes.navLinks.hasClass('nav__links--open') === true) {
-                $('.bun__top').removeClass('bun__top--active');
-                $('.bun__bottom').removeClass('bun__bottom--active');
-                swimCodes.navLinks.removeClass('nav__links--open');
-            }
-    });
-
-    $('a.email').on('click', function() {
-        const href = $(this).attr('href');
-        $(this).attr('href', href.replace('notsofast.', ''))
-    })
-
-    tippy('[data-tippy-content]', {
-        animation: 'shift-away-extreme',
-        arrow: false,
-        theme: 'swim',
-        touch: ['hold', 300],
-        trigger: 'focus',
-        zIndex: 9998,
-    });
-
-    $('.branding').on('focus', function() {
-        if (swimCodes.navLinks.hasClass('nav__links--open') === true) {
-            swimCodes.navLinks.removeClass('nav__links--open');
-            $('.bun__top').removeClass('bun__top--active');
-            $('.bun__bottom').removeClass('bun__bottom--active');
-        }
-    })
+    swimCodes.mobileMenuTabBehaviour();
+    swimCodes.mobileWordmark();
+    swimCodes.scrollReveal();
 };
 
 // * Document Ready
 $(function () {
     swimCodes.init();
 });
-
-
-// Smooth-Scrolling Functionality
-// User clicks on a link in the nav bar and are smooth-scrolled to the corresponding section on the page

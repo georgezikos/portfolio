@@ -27,6 +27,14 @@ html {
 
 *:focus {
     outline: thin dotted $mainAccent;
+
+    &:active {
+        outline: none;
+    }
+}
+
+*:active {
+    outline: none;
 }
 
 h1,
@@ -36,6 +44,21 @@ h4,
 h5,
 h6 {
     margin: 0;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: inherit;
+    padding: 0;
+    text-align: inherit;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 p {
@@ -63,7 +86,11 @@ ul {
 }
 
 img {
+    @include bodyType(1.5rem);
+    border: 0;
+    color: inherit;
     display: block;
+    line-height: 1;
     max-width: 100%;
 }
 

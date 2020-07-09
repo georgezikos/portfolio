@@ -8,19 +8,17 @@
     <script src="https://kit.fontawesome.com/54ea624771.js" crossorigin="anonymous"></script>
 </head>
 <body style="overflow: hidden">
-<!-- <body> -->
     <header class="section section--header wrapper loader-blur" id="top">
-    <!-- <header class="section section--header wrapper" id="top"> -->
         <nav class="header__nav">
             <ul class="nav__links">
                 <li class="main-link">
-                    <a href="#about">About</a>
+                    <a href="#about" title="About Me">About</a>
                 </li>
                 <li class="main-link">
-                    <a href="#projects">Projects</a>
+                    <a href="#projects" title="Notable Projects">Projects</a>
                 </li>
                 <li class="main-link">
-                    <a href="#contact">Contact</a>
+                    <a href="#contact" title="Contact Me">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -36,32 +34,32 @@
         </div>
     </header>
     <section class="section section--about wrapper loader-blur" id="about">
-    <!-- <section class="section section--about wrapper" id="about"> -->
         <div class="section-container container--left">
             <div class="about__video">
                 <video src="./assets/about.mp4" autoplay loop muted playsinline tabindex="-1"></video>
+                <span class="sr-only">A looping Apple Memoji depicting the site's author, George Zikos.</span>
             </div>
         </div>
         <div class="section-container container--right">
             <p class="main-paragraph">
                 Former wellness professional in the pursuit of making meaningful contributions to people’s lives through technology.
                 <address class="line-break main-paragraph">
-                    Reach out at <a class="email underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener noreferrer">hello<code class="main-paragraph">&#64;</code>swim<code class="main-paragraph">&#x2e;</code>codes</a>
+                    Reach out at <a class="email underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener" title="Contact Me">hello<code class="main-paragraph">&#64;</code>swim<code class="main-paragraph">&#x2e;</code>codes</a>
+                    <span class="sr-only">This link will open your default email client.</span>
                 </address>
             </p>
         </div>
     </section>
     <main class="section section--projects wrapper loader-blur" id="projects">
-    <!-- <main class="section section--projects wrapper" id="projects"> -->
         <div class="section-container container--left">
             <div class="container--top">
                 <div class="projects__category">
                     <h3 class="third-headline">Live</h3>
                 </div>
                 <ul class="projects__list">
-                    <li class="list__item list__item--macro-calculator" tabindex="0">Diet Calculator</li>
-                    <li class="list__item list__item--recipease" tabindex="0">Recipease</li>
-                    <li class="list__item list__item--fridge-verses" tabindex="0">Fridge Verses</li>
+                    <li class="list__item list__item--macro-calculator"><button>Diet Calculator</button></li>
+                    <li class="list__item list__item--recipease"><button>Recipease</button></li>
+                    <li class="list__item list__item--fridge-verses"><button>Fridge Verses</button></li>
                 </ul>
             </div>
             <div class="container--bottom">
@@ -69,15 +67,15 @@
                     <h3 class="third-headline">WIP</h3>
                 </div>
                 <ul class="projects__list">
-                    <li class="list__item list__item--nosuchthing" tabindex="0">NOSUCHTHING</li>
-                    <li class="list__item list__item--strainless" tabindex="0">Strainless</li>
+                    <li class="list__item list__item--nosuchthing"><button>NOSUCHTHING</button></li>
+                    <li class="list__item list__item--strainless"><button>Strainless</button></li>
                 </ul>
             </div>
         </div>
         <div class="section-container container--right">
             <div class="projects__summary summary--macro-calculator summary--hide">
                 <div class="summary__accessories">
-                    <i class="fal fa-times accessories__close"></i>
+                    <button class="accessories__close" tabindex="-1"><i class="fal fa-times"></i></button>
                     <p class="accessories__tag">Diet Calculator <i class="far fa-arrow-right"></i></p>
                 </div>
                 
@@ -108,14 +106,14 @@
                             
                 <ul class="summary__links">
                     <!-- <li><p>View Live</p></li> -->
-                    <li><a href="https://github.com/georgezikos/george-zikos-project-three" tabindex="-1">Visit Repository</a></li>
+                    <li><a href="https://github.com/georgezikos/george-zikos-project-three" target="_blank" rel="noopener" tabindex="-1" title="Visit the GitHub Repository" aria-label="Opens in a New Window">Visit Repository<i class="far fa-arrow-right" aria-hidden="true"></i></a></li>
                 </ul>
                             
             </div>      
             <div class="projects__summary summary--recipease summary--hide">
                 
                 <div class="summary__accessories">
-                    <i class="fal fa-times accessories__close"></i>
+                    <button class="accessories__close" tabindex="-1"><i class="fal fa-times"></i></button>
                     <p class="accessories__tag">Recipease <i class="far fa-arrow-right"></i></p>
                 </div>
                 
@@ -145,15 +143,15 @@
                 <p class="summary__description">This quiz will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the Spoonacular API.</p>
                 
                 <ul class="summary__links">
-                    <li><a href="https://marie-and-george-project-four.github.io/recipease/" tabindex="-1">View Live</a></li>
-                    <li><a href="https://github.com/marie-and-george-project-four/recipease" tabindex="-1">Visit Repository</a></li>
+                    <li><a href="https://marie-and-george-project-four.github.io/recipease/" target="_blank" rel="noopener" tabindex="-1" title="View Project Live" aria-label="Opens in a New Window">View Live<i class="far fa-arrow-right" aria-hidden="true"></i></a></li>
+                    <li><a href="https://github.com/marie-and-george-project-four/recipease" target="_blank" rel="noopener" tabindex="-1" title="Visit the GitHub Repository" aria-label="Opens in a New Window">Visit Repository<i class="far fa-arrow-right" aria-hidden="true"></i></a></li>
                 </ul>
                 
             </div>
             <div class="projects__summary summary--fridge-verses summary--hide">
                 
                 <div class="summary__accessories">
-                    <i class="fal fa-times accessories__close"></i>
+                    <button class="accessories__close" tabindex="-1"><i class="fal fa-times"></i></button>
                     <p class="accessories__tag">Fridge Verses <i class="far fa-arrow-right"></i></p>
                 </div>
                 
@@ -183,15 +181,15 @@
                 <p class="summary__description">A single-page app based on fridge magnet poetry. Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.</p>
                 
                 <ul class="summary__links">
-                    <li><a href="https://zevg-project6.github.io/Refridgeration-Versification/" tabindex="-1">View Live</a></li>
-                    <li><a href="https://github.com/ZEVG-project6/Refridgeration-Versification" tabindex="-1">Visit Repository</i></p></li>
+                    <li><a href="https://zevg-project6.github.io/Refridgeration-Versification/" target="_blank" rel="noopener" tabindex="-1" title="View Project Live" aria-label="Opens in a New Window">View Live<i class="far fa-arrow-right" aria-hidden="true"></i></a></li>
+                    <li><a href="https://github.com/ZEVG-project6/Refridgeration-Versification" target="_blank" rel="noopener" tabindex="-1" title="Visit the GitHub Repository" aria-label="Opens in a New Window">Visit Repository<i class="far fa-arrow-right" aria-hidden="true"></i></p></li>
                 </ul>
                 
             </div>
             <div class="projects__summary summary--nosuchthing summary--hide">
                 
                 <div class="summary__accessories">
-                    <i class="fal fa-times accessories__close"></i>
+                    <button class="accessories__close" tabindex="-1"><i class="fal fa-times"></i></button>
                     <p class="accessories__tag">NOSUCHTHING <i class="far fa-arrow-right"></i></p>
                 </div>
                 
@@ -220,7 +218,7 @@
                 <p class="summary__description">Open-source health and wellness education paired with a suite of digital products centered around preventative health and improved wellness. Currently experimenting with the Webflow CMS API.</p>
                 
                 <ul class="summary__links">
-                    <li><a href="https://nst-home.webflow.io/" tabindex="-1">View Live</a></li>
+                    <li><a href="https://nst-home.webflow.io/" target="_blank" rel="noopener" tabindex="-1" title="View Project Live" aria-label="Opens in a New Window">View Live<i class="far fa-arrow-right" aria-hidden="true"></i></a></li>
                     <!-- <li><p>Visit Repository</p></li> -->
                 </ul>
                 
@@ -228,7 +226,7 @@
             <div class="projects__summary summary--strainless summary--hide">
                 
                 <div class="summary__accessories">
-                    <i class="fal fa-times accessories__close"></i>
+                    <button class="accessories__close" tabindex="-1"><i class="fal fa-times"></i></button>
                     <p class="accessories__tag">Strainless <i class="far fa-arrow-right"></i></p>
                 </div>
                 
@@ -264,7 +262,6 @@
         </div>         
     </main>
     <footer class="section section--footer wrapper loader-blur" id="contact">
-    <!-- <footer class="section section--footer wrapper" id="contact"> -->
         <div class="footer__skills-banner">
             <ul class="skills-banner__list">
                 <li class="main-skill" data-tippy-content="Hypertext Markup Language">
@@ -394,20 +391,22 @@
 
                     <address>
 
-                        <a class="email third-headline underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener noreferrer">hello<code class="third-headline">&#64;</code>swim<code class="third-headline">&#x2e;</code>codes</a>
+                        <a class="email third-headline underline" href="mailto:hello&#64;notsofast.swim&#x2e;codes?subject=Important!&body=Hi." target="_blank" rel="noopener" title="Contact Me">hello<code class="third-headline">&#64;</code>swim<code class="third-headline">&#x2e;</code>codes</a>
+                        <span class="sr-only">This link will open your default email client.</span>
 
                     </address>
                 
                 </li>
                 
                 <li class="list__item--contacts">
-                    <a href="drive." class="third-headline" data-tippy-content="Curriculum Vitae / Course of Life" aria-label="CV PDF File"><span class="sr-only">Curriculum Vitae / Course of Life</span><abbr title="Curriculum Vitae / Course of Life">CV</abbr> <i aria-hidden="true" class="fal fa-file-pdf"></i></a>
+                    <a href="drive." class="third-headline" data-tippy-content="Curriculum Vitae / Course of Life" aria-label="CV PDF File" target="_blank" rel="noopener" title="View CV"><span class="sr-only">Curriculum Vitae / Course of Life</span><abbr title="Curriculum Vitae / Course of Life">CV</abbr> <i aria-hidden="true" class="fal fa-file-pdf"></i></a>
+                    <span class="sr-only">This link will open in a new window.</span>
                 </li>
                 
 
             </ul>
 
-            <a href="#top" class="third-headline top" aria-label="Return to the Top of the Page">Top <i class="far fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="#top" class="third-headline top" aria-label="Return to Top of Page" title="Return to Top">Top <i class="far fa-arrow-right" aria-hidden="true"></i></a>
         </div>
     </footer>
 
