@@ -308,18 +308,17 @@ swimCodes.strainlessProject = () => {
 
 // Typed.js
 swimCodes.projectsTypedOptions = {
-    // ^1000 – Add in random stutters for that as many ms
     strings: [
         // Diet Calculator
-        `Based on key body measurements and your goal, <span class="typed-highlight--diet-calculator">Diet Calculator</span> will provide you with the appropriate <span class="typed-highlight--diet-calculator">calories and macronutrient ratio</span> for your diet.`,
+        `Based on key body measurements and your goal, <span class="typed-highlight--diet-calculator">Diet Calculator</span> will provide you with the appropriate <span class="typed-highlight--diet-calculator">calories and macronutrient ratio for your diet.</span>`,
         // Recipease
-        `<span class="typed-highlight--recipease">Recipease</span> is a quiz that will help you find recipes that accommodate your dietary preference, intolerances and caloric restrictions by tapping into the <span class="typed-highlight--recipease">Spoonacular API.</span>`,
+        `<span class="typed-highlight--recipease">Recipease</span> is a quiz that will help you <span class="typed-highlight--recipease">find recipes that accommodate your diet</span> preference, food intolerances and caloric restrictions by tapping into the Spoonacular API.`,
         // Fridge Verses
-        `<span class="typed-highlight--fridge-verses">Fridge Verses</span> is a single-page app based on fridge magnet poetry. Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.`,
+        `<span class="typed-highlight--fridge-verses">Fridge Verses</span> is a single-page app based on <span class="typed-highlight--fridge-verses">fridge magnet poetry.</span> Using the Datamuse API user’s are able to generate random words, drag and drop the words into a poem, and publish their work to our gallery. All made possible with Firebase, React Beautiful DnD and Material UI along with our own offensive-word filter.`,
         // NOSUCHTHING
-        `<span class="typed-highlight--nosuchthing">NOSUCHTHING</span> is an open-source experiment in health and wellness education paired with a suite of digital products centered around preventative health and improved wellness. Currently experimenting with the Webflow CMS API.`,
+        `<span class="typed-highlight--nosuchthing">NOSUCHTHING</span> is an open-source experiment in <span class="typed-highlight--nosuchthing">health and wellness education</span> paired with a suite of digital products centered around preventative health and improved wellness. Currently experimenting with the Webflow CMS API.`,
         // Strainless
-        `<span class="typed-highlight--strainless">Strainless</span> is a quiz that will direct you towards the best strain of cannabis based on generally preferred or medicinal properties with the option to purchase from the Ontario Cannabis Store. This project brings together the Strain API, Otreeba API and an open-source Ontario Cannabis Store web scraper.`,
+        `<span class="typed-highlight--strainless">Strainless</span> is a quiz that will help you <span class="typed-highlight--strainless">find the best strain of cannabis based on generally preferred or medicinal properties</span> with the option to purchase from the Ontario Cannabis Store. This project brings together the Strain API, Otreeba API and an open-source Ontario Cannabis Store web scraper.`,
     ],
 
     typeSpeed: 60,
@@ -439,7 +438,12 @@ swimCodes.init = function() {
     swimCodes.scrollReveal();
 };
 
+swimCodes.ready = (callback) => {
+    if (document.readyState != 'loading') callback();
+    else document.addEventListener('DOMContentLoaded', callback);
+}
+
 // * Document Ready
-$(function () {
+swimCodes.ready(() => {
     swimCodes.init();
 });
