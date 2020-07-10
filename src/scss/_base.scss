@@ -16,35 +16,23 @@
 */
 
 // Base
+.loader-blur { filter: blur(12px); }
+
 html {
     @include bodyType(62.5%);
     background: $mainBlack;
 }
 
-*::selection {
-    background: rgba(76, 71, 249, 0.99);
-}
+*::selection { background: rgba(76, 71, 249, 0.99); }
 
 *:focus {
     outline: thin dotted $mainAccent;
-
-    &:active {
-        outline: none;
-    }
+    &:active { outline: none; }
 }
 
-*:active {
-    outline: none;
-}
+*:active { outline: none; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-}
+h1, h2, h3, h4, h5, h6 { margin: 0; }
 
 button {
     background-color: transparent;
@@ -55,24 +43,17 @@ button {
     line-height: inherit;
     padding: 0;
     text-align: inherit;
-
-    &:hover {
-        cursor: pointer;
-    }
+    &:hover { cursor: pointer; }
 }
 
-p {
-    margin: 0;
-}
+p { margin: 0; }
 
 a {
     color: inherit;
     text-decoration: none;
 }
 
-abbr[title] {
-    text-decoration: none;
-}
+abbr[title] { text-decoration: none; }
 
 address {
     display: inline-block;
@@ -104,16 +85,10 @@ img {
     height: 100vh;
     min-height: 953px;
     width: 100vw;
-    // border: 1px solid red;
 
     @media (max-width: 375px) {
         min-height: auto;
     }
-
-    // Revisit this on mobile
-    // @media(orientation: landscape) {
-    //     min-height: 850px;
-    // }
 }
 
 .section-container {
@@ -168,9 +143,7 @@ img {
     line-height: 7.3rem;
     max-width: 945px;
 
-    .fa-long-arrow-right {
-        margin: 0 2.14%;
-    }
+    .fa-long-arrow-right { margin: 0 2.14%; }
 
     @media (max-width: 1205px)  {
         @include headingType($body, calc(4.34rem + (73 - 43.4) * ((100vw - 768px) / (1205 - 768))), 400);
@@ -197,25 +170,17 @@ img {
         line-height: 1.2;
     }
 
-    @media (max-width: 480px) {
-        line-height: 1.4;
-    }
+    @media (max-width: 480px) { line-height: 1.4; }
 }
 
-.fa-arrow-right {
-    transform: rotateZ(45deg);
-}
+.fa-arrow-right { transform: rotateZ(45deg); }
 
 .underline {
     border-bottom: 4px solid $mainWhite;
     display: inline-block;
     padding-bottom: 1.8%;
 
-    @media (max-width: 768px) {
-        border-bottom: 3px solid $mainWhite;
-    }
+    @media (max-width: 768px) { border-bottom: 3px solid $mainWhite; }
 
-    @media (max-width: 480px) {
-        border-bottom: 2px solid $mainWhite;
-    }
+    @media (max-width: 480px) { border-bottom: 2px solid $mainWhite; }
 }

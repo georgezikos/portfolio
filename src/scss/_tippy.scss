@@ -6,17 +6,11 @@
     padding: 5%;
     width: 400px;
 
-    @media (max-width: 375px) {
-        margin-right: 7px;
-    }
+    @media (max-width: 375px) { margin-right: 7px; }
 
-    @media(max-width: 768px) {
-        width: 350px;
-    }
+    @media(max-width: 768px) { width: 350px; }
 
-    .tippy-content {
-        padding: 0;
-    }
+    .tippy-content { padding: 0; }
 
     .definition-rank {
         background: #EFFF00;
@@ -44,9 +38,7 @@
         line-height: 1.4;
         margin-bottom: 16px;
 
-        .line-break {
-            display: block;
-        }
+        .line-break { display: block; }
     }
 
     .definition-example {

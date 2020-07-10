@@ -33,21 +33,15 @@
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
 
-        .fa-arrow-right {
-            transform: rotateZ(-90deg)
-        }
+        .fa-arrow-right { transform: rotateZ(-90deg) }
     }
 
     .underline {
         padding-bottom: 18px;
 
-        &:hover {
-            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; /*!emojicursor.app*/
-        }
+        &:hover { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✉️</text></svg>") 16 0,auto; }
 
-        @media (max-width: 768px) {
-            padding-bottom: 3%;
-        }
+        @media (max-width: 768px) { padding-bottom: 3%; }
 
         @media (max-width: 480px) {
             border-bottom: 3px solid $mainWhite;
@@ -57,13 +51,8 @@
     
     
     a[href^="drive"] {
-        &:hover {
-            cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>💾</text></svg>") 16 0,auto; /*!emojicursor.app*/
-        }
-        
-        &:active {
-            outline: none;
-        }
+        &:hover { cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>💾</text></svg>") 16 0,auto; }
+        &:active { outline: none; }
     }
 
     .third-headline {
@@ -79,15 +68,10 @@
 
         .list__item--contacts {
             margin-bottom: 20px;
-
-            &:last-child {
-                margin-bottom: 60px;
-            }
+            &:last-child { margin-bottom: 60px; }
         }
 
-        @media (max-width: 768px) {
-            width: 100%;
-        }
+        @media (max-width: 768px) { width: 100%; }
     }
     
     .footer__skills-banner {
@@ -100,19 +84,10 @@
         overflow: hidden;
         perspective: 1000;
         width: calc(100vw - 215px);
-        
-        &:hover > .skills-banner__list {
-            animation-play-state: paused;
-        }
+        &:hover > .skills-banner__list { animation-play-state: paused; }
+        &:focus-within > .skills-banner__list { animation-play-state: paused; }
+        @media (min-width: 1681px) { width: auto; }
 
-        &:focus-within > .skills-banner__list {
-            animation-play-state: paused;
-        }
-        
-        @media (min-width: 1681px) {
-            width: auto;
-        }
-        
         @media (max-width: 768px) {
             margin: 0;
             width: 100vw;
@@ -143,10 +118,7 @@
             .main-skill {
                 white-space: nowrap;
                 will-change: transform;
-                
-                &:active {
-                    outline: none;
-                }
+                &:active { outline: none; }
             }
             
             .list__divider {

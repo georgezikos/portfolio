@@ -23,13 +23,9 @@
         -webkit-touch-callout: none;
         -webkit-tap-highlight-color: transparent;
 
-        @media (max-width: 768px) {
-            padding: 2.6%;
-        }
+        @media (max-width: 768px) { padding: 2.6%; }
 
-        @media (max-width: 480px) {
-            padding: 3%;
-        }
+        @media (max-width: 480px) { padding: 3%; }
         
         .branding__wordmark {
             @keyframes wordmark {
