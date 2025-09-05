@@ -1,26 +1,2450 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer theme {
+    :root {
+        /* Color Primitives */
+        --color-grey-0: #ffffff;
+        --color-grey-100: #f8f8f8;
+        --color-grey-200: #e9e9e9;
+        --color-grey-500: #9b9b9b;
+        --color-grey-700: #444444;
+        --color-grey-750: #3f3f3f;
+        --color-grey-800: #222222;
+        --color-grey-900: #000000;
+
+        /* Typography Primitives */
+        --typography-font-family-inter:
+            "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; /* Make this fallback more robust */
+        --typography-font-weight-350: 350;
+
+        --typography-paragraph-spacing-16: 16px;
+        --typography-paragraph-spacing-18: 18px;
+        --typography-paragraph-spacing-20: 20px;
+        --typography-paragraph-spacing-23: 23px;
+
+        /* Sizing Primitives */
+        --size-3: 3px;
+        --size-4: 4px;
+        --size-6: 6px;
+        --size-8: 8px;
+        --size-9: 9px;
+        --size-10: 10px;
+        --size-11: 11px;
+        --size-12: 12px;
+        --size-13: 13px;
+        --size-14: 14px;
+        --size-15: 15px;
+        --size-16: 16px;
+        --size-18: 18px;
+        --size-20: 20px;
+        --size-22: 22px;
+        --size-24: 24px;
+        --size-28: 28px;
+        --size-32: 32px;
+        --size-44: 44px;
+        --size-48: 48px;
+        --size-56: 56px;
+        --size-88: 88px;
+        --size-96: 96px;
+        --size-104: 104px;
+        --size-128: 128px;
+        --size-160: 160px;
+        --size-172: 172px;
+        --size-180: 180px;
+        --size-188: 188px;
+        --size-208: 208px;
+        --size-256: 256px;
+        --size-320: 320px;
+        --size-623: 623px;
+        --size-742: 742px;
+        --size-871: 871px;
+        --size-935: 935px;
+
+        /* Border & Radius Primitives */
+        --radius-7: 7px;
+        --radius-8: 8px;
+        --radius-10: 10px;
+        --radius-pill: 9999px;
+        --border-width-025: 0.25px;
+        --border-width-075: 0.75px;
+        --border-width-08: 0.8px;
+
+        /* Screen Width Primitives */
+        --screen-width-360: 360px;
+        --screen-width-375: 375px;
+        --screen-width-390: 390px;
+        --screen-width-427: 427px;
+        --screen-width-428: 428px;
+        --screen-width-430: 430px;
+        --screen-width-767: 767px;
+        --screen-width-768: 768px;
+        --screen-width-834: 834px;
+        --screen-width-1023: 1023px;
+        --screen-width-1024: 1024px;
+        --screen-width-1152: 1152px;
+        --screen-width-1279: 1279px;
+        --screen-width-1280: 1280px;
+        --screen-width-1366: 1366px;
+        --screen-width-1439: 1439px;
+        --screen-width-1440: 1440px;
+        --screen-width-1600: 1600px;
+        --screen-width-1919: 1919px;
+        --screen-width-1920: 1920px;
+        --screen-width-2560: 2560px;
+
+        /* Typography Tokens */
+        --typography-font-family-base: var(--typography-font-family-inter);
+        --typography-font-weight-base: var(--typography-font-weight-350);
+        --typography-letter-spacing-base: -0.031em;
+
+        --typography-body-lg-main-xl-paragraph-spacing: var(
+            --typography-paragraph-spacing-23
+        );
+        --typography-body-lg-main-lg-paragraph-spacing: var(
+            --typography-paragraph-spacing-20
+        );
+        --typography-body-lg-main-md-lg-paragraph-spacing: var(
+            --typography-paragraph-spacing-20
+        );
+        --typography-body-lg-main-md-paragraph-spacing: var(
+            --typography-paragraph-spacing-20
+        );
+        --typography-body-lg-main-sm-paragraph-spacing: var(
+            --typography-paragraph-spacing-20
+        );
+        --typography-body-lg-main-xs-paragraph-spacing: var(
+            --typography-paragraph-spacing-18
+        );
+        --typography-body-lg-main-xxs-paragraph-spacing: var(
+            --typography-paragraph-spacing-18
+        );
+        --typography-body-lg-main-tiny-paragraph-spacing: var(
+            --typography-paragraph-spacing-16
+        );
+        /* Responsive */
+        --typography-body-lg-main-paragraph-spacing: var(
+            --typography-body-lg-main-tiny-paragraph-spacing
+        );
+
+        /* Border Tokens */
+        --border-width-hairline-xl: var(--border-width-025);
+        --border-width-hairline-lg: var(--border-width-025);
+        --border-width-hairline-md-lg: var(--border-width-025);
+        --border-width-hairline-md: var(--border-width-025);
+        --border-width-hairline-sm: var(--border-width-025);
+        --border-width-hairline-xs: var(--border-width-025);
+        --border-width-hairline-xxs: var(--border-width-025);
+        --border-width-hairline-tiny: var(--border-width-025);
+
+        --border-width-thin-xl: var(--border-width-08);
+        --border-width-thin-lg: var(--border-width-08);
+        --border-width-thin-md-lg: var(--border-width-08);
+        --border-width-thin-md: var(--border-width-075);
+        --border-width-thin-sm: var(--border-width-075);
+        --border-width-thin-xs: var(--border-width-075);
+        --border-width-thin-xxs: var(--border-width-075);
+        --border-width-thin-tiny: var(--border-width-075);
+        /* Responsive */
+        --border-width-hairline: var(--border-width-hairline-tiny);
+        --border-width-thin: var(--border-width-thin-tiny);
+
+        /* Radius Tokens */
+        --radius-base-xl: var(--radius-10);
+        --radius-base-lg: var(--radius-10);
+        --radius-base-md-lg: var(--radius-10);
+        --radius-base-md: var(--radius-10);
+        --radius-base-sm: var(--radius-10);
+        --radius-base-xs: var(--radius-10);
+        --radius-base-xxs: var(--radius-8);
+        --radius-base-tiny: var(--radius-7);
+        /* Responsive */
+        --radius-base: var(--radius-base-tiny);
+
+        /* Link Style Tokens */
+        --typography-link-underline: underline;
+        --typography-link-underline-style: solid;
+        --typography-link-underline-position: from-font;
+        --typography-link-skip-ink: auto;
+
+        --typography-link-base-underline-thickness: 5.5%;
+        --typography-link-base-underline-offset: -3%;
+
+        --typography-link-cta-underline-thickness: 6%;
+        --typography-link-cta-underline-offset: 6.5%;
+
+        /* Grid System Tokens */
+        --lg-xl-grid-margin: var(--size-20);
+        --lg-xl-grid-gutter: var(--size-16);
+        --md-lg-grid-margin: var(--size-16);
+        --md-lg-grid-gutter: var(--size-14);
+        --sm-grid-margin: var(--size-16);
+        --sm-grid-gutter: var(--size-14);
+        --xxs-xs-grid-margin: var(--size-12);
+        --xxs-xs-grid-gutter: var(--size-12);
+        --tiny-grid-margin: var(--size-11);
+        --tiny-grid-gutter: var(--size-12);
+        /* Responsive */
+        --grid-margin: var(--tiny-grid-margin);
+        --grid-gutter: var(--tiny-grid-gutter);
+    }
+
+    /* Dark Theme Tokens */
+    [data-theme="dark"] {
+        --surface-primary: var(--color-grey-900);
+        --surface-secondary: var(--color-grey-800);
+        --surface-tertiary: var(--color-grey-700);
+
+        --border-color-primary: var(--color-grey-500);
+        --border-color-secondary: var(--color-grey-800);
+
+        --text-primary: var(--color-grey-200);
+        --text-secondary: var(--color-grey-500);
+    }
+
+    /* Light Theme Override - explicit light mode */
+    [data-theme="light"] {
+        --surface-primary: var(--color-grey-100);
+        --surface-secondary: var(--color-grey-200);
+        --surface-tertiary: var(--color-grey-0);
+
+        --border-color-primary: var(--color-grey-750);
+        --border-color-secondary: var(--color-grey-200);
+
+        --text-primary: var(--color-grey-900);
+        --text-secondary: var(--color-grey-750);
+    }
+
+    /* Auto Dark Theme - follows system preference when no explicit theme is set */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme]) {
+            --surface-primary: var(--color-grey-900);
+            --surface-secondary: var(--color-grey-800);
+            --surface-tertiary: var(--color-grey-700);
+
+            --border-color-primary: var(--color-grey-500);
+            --border-color-secondary: var(--color-grey-800);
+
+            --text-primary: var(--color-grey-200);
+            --text-secondary: var(--color-grey-500);
+        }
+    }
+
+    /* Link Styles */
+    [data-element="project-partner__name"] a, [data-element="project-main__background"] a, [data-element="project-section__body"] a {
+        text-decoration-thickness: var(
+            --typography-link-base-underline-thickness
+        ) !important;
+        text-underline-offset: var(--typography-link-base-underline-offset) !important;
+    }
+
+    [data-element="section-content-experience__link"], [data-element="project-section__link"] {
+        text-decoration-thickness: var(
+            --typography-link-cta-underline-thickness
+        ) !important;
+        text-underline-offset: var(--typography-link-cta-underline-offset) !important;
+    }
 }
+
+@layer base {
+    html {
+        font-family: var(--typography-font-family-base);
+        font-weight: var(--typography-font-weight-base);
+        letter-spacing: var(--typography-letter-spacing-base);
+        font-style: normal;
+        /* font-variant-numeric: lining-nums tabular-nums; */ /* Apply selectively */
+        font-feature-settings: "cpsp" on;
+        /* Cross-platform font smoothing */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* font-smooth: always; */ /* Firefox experimental */
+        text-rendering: optimizeLegibility;
+        /* Windows-specific improvements */
+        /* font-variant-ligatures: common-ligatures; */ /* Apply selectively */
+        font-kerning: normal;
+        /* Prevent font size inflation on mobile */
+        /* Gain a better understanding of this rule */
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        height: 100%;
+    }
+
+    body {
+        background: var(--surface-primary);
+        color: var(--text-primary);
+        height: 100%;
+    }
+
+    #__next {
+        height: 100%;
+    }
+
+    a {
+        text-decoration-line: var(--typography-link-underline);
+        -moz-text-decoration-line: var(--typography-link-underline);
+        text-decoration-style: var(--typography-link-underline-style);
+        -moz-text-decoration-style: var(--typography-link-underline-style);
+        text-underline-position: var(--typography-link-underline-position);
+        text-decoration-skip-ink: var(--typography-link-skip-ink);
+        text-underline-position: from-font;
+    }
+}
+
+@layer components {
+    :root {
+        /* Atom Spacing Tokens */
+        --atom-projects-category-tag-xl-padding-x: var(--size-14);
+        --atom-projects-category-tag-xl-padding-y: var(--size-12);
+        --atom-projects-category-tag-lg-padding-x: var(--size-12);
+        --atom-projects-category-tag-lg-padding-y: var(--size-10);
+        --atom-projects-category-tag-md-lg-padding-x: var(--size-12);
+        --atom-projects-category-tag-md-lg-padding-y: var(--size-10);
+        --atom-projects-category-tag-md-padding-x: var(--size-12);
+        --atom-projects-category-tag-md-padding-y: var(--size-10);
+        --atom-projects-category-tag-sm-padding-x: var(--size-12);
+        --atom-projects-category-tag-sm-padding-y: var(--size-10);
+        --atom-projects-category-tag-xs-padding-x: var(--size-12);
+        --atom-projects-category-tag-xs-padding-y: var(--size-10);
+        --atom-projects-category-tag-xxs-padding-x: var(--size-12);
+        --atom-projects-category-tag-xxs-padding-y: var(--size-10);
+        --atom-projects-category-tag-tiny-padding-x: var(--size-12);
+        --atom-projects-category-tag-tiny-padding-y: var(--size-10);
+        /* Responsive */
+        --atom-projects-category-tag-padding-x: var(
+            --atom-projects-category-tag-tiny-padding-x
+        );
+        --atom-projects-category-tag-padding-y: var(
+            --atom-projects-category-tag-tiny-padding-y
+        );
+
+        --atom-project-subheading-container-xl-padding-bottom: var(--size-12);
+        --atom-project-subheading-container-lg-padding-bottom: var(--size-12);
+        --atom-project-subheading-container-md-lg-padding-bottom: var(
+            --size-12
+        );
+        --atom-project-subheading-container-md-padding-bottom: var(--size-12);
+        --atom-project-subheading-container-sm-padding-bottom: var(--size-12);
+        --atom-project-subheading-container-xs-padding-bottom: var(--size-12);
+        --atom-project-subheading-container-xxs-padding-bottom: var(--size-12);
+        --atom-project-subheading-container-tiny-padding-bottom: var(--size-12);
+        /* Responsive */
+        --atom-project-subheading-container-padding-bottom: var(
+            --atom-project-subheading-container-tiny-padding-bottom
+        );
+
+        --atom-global-theme-toggle-xl-height: var(--size-28);
+        --atom-global-theme-toggle-lg-height: var(--size-24);
+        --atom-global-theme-toggle-md-lg-height: var(--size-24);
+        --atom-global-theme-toggle-md-height: var(--size-24);
+        --atom-global-theme-toggle-sm-height: var(--size-24);
+        --atom-global-theme-toggle-xs-height: var(--size-24);
+        --atom-global-theme-toggle-xxs-height: var(--size-24);
+        --atom-global-theme-toggle-tiny-height: var(--size-22);
+        /* Responsive */
+        --atom-global-theme-toggle-height: var(
+            --atom-global-theme-toggle-tiny-height
+        );
+
+        --atom-global-theme-toggle-xl-width: var(--size-56);
+        --atom-global-theme-toggle-lg-width: var(--size-48);
+        --atom-global-theme-toggle-md-lg-width: var(--size-48);
+        --atom-global-theme-toggle-md-width: var(--size-48);
+        --atom-global-theme-toggle-sm-width: var(--size-48);
+        --atom-global-theme-toggle-xs-width: var(--size-48);
+        --atom-global-theme-toggle-xxs-width: var(--size-48);
+        --atom-global-theme-toggle-tiny-width: var(--size-44);
+        /* Responsive */
+        --atom-global-theme-toggle-width: var(
+            --atom-global-theme-toggle-tiny-width
+        );
+
+        --atom-global-theme-toggle-xl-padding: 1.4px;
+        --atom-global-theme-toggle-lg-padding: 1.2px;
+        --atom-global-theme-toggle-md-lg-padding: 1.2px;
+        --atom-global-theme-toggle-md-padding: 1.2px;
+        --atom-global-theme-toggle-sm-padding: 1.2px;
+        --atom-global-theme-toggle-xs-padding: 1.2px;
+        --atom-global-theme-toggle-xxs-padding: 1.2px;
+        --atom-global-theme-toggle-tiny-padding: 1.1px;
+        /* Responsive */
+        --atom-global-theme-toggle-padding: var(
+            --atom-global-theme-toggle-tiny-padding
+        );
+
+        /* Molecule Spacing Tokens */
+        --molecule-home-featured-h: 60vh;
+        --molecule-home-featured-h: 60dvh;
+
+        --molecule-projects-taxonomy-col-gap: var(--size-4);
+        --molecule-projects-taxonomy-row-gap: var(--size-6);
+
+        --molecule-project-subsection-xl-row-gap: var(--size-22);
+        --molecule-project-subsection-lg-row-gap: var(--size-20);
+        --molecule-project-subsection-md-lg-row-gap: var(--size-20);
+        --molecule-project-subsection-md-row-gap: var(--size-20);
+        --molecule-project-subsection-sm-row-gap: var(--size-20);
+        --molecule-project-subsection-xs-row-gap: var(--size-20);
+        --molecule-project-subsection-xxs-row-gap: var(--size-20);
+        --molecule-project-subsection-tiny-row-gap: var(--size-18);
+        /* Responsive */
+        --molecule-project-subsection-row-gap: var(
+            --molecule-project-subsection-tiny-row-gap
+        );
+
+        --molecule-projects-subsections-project-results-xl-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-results-lg-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-results-md-lg-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-results-md-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-results-sm-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-results-xs-row-gap: var(
+            --size-22
+        );
+        --molecule-projects-subsections-project-results-xxs-row-gap: var(
+            --size-22
+        );
+        --molecule-projects-subsections-project-results-tiny-row-gap: var(
+            --size-22
+        );
+        /* Responsive */
+        --molecule-projects-subsections-project-results-row-gap: var(
+            --molecule-projects-subsections-project-results-tiny-row-gap
+        );
+
+        --molecule-projects-connected-projects-xl-row-gap: var(--size-24);
+        --molecule-projects-connected-projects-lg-row-gap: var(--size-24);
+        --molecule-projects-connected-projects-md-lg-row-gap: var(--size-24);
+        --molecule-projects-connected-projects-md-row-gap: var(--size-24);
+        --molecule-projects-connected-projects-xs-col-gap: var(--size-8);
+        --molecule-projects-connected-projects-xxs-col-gap: var(--size-8);
+        --molecule-projects-connected-projects-tiny-col-gap: var(--size-8);
+        /* Responsive */
+        --molecule-projects-connected-projects-col-gap: var(
+            --molecule-projects-connected-projects-tiny-col-gap
+        );
+        --molecule-projects-connected-projects-row-gap: var(
+            --molecule-projects-connected-projects-md-row-gap
+        );
+
+        --molecule-projects-connected-project-xl-row-gap: var(--size-14);
+        --molecule-projects-connected-project-lg-row-gap: var(--size-14);
+        --molecule-projects-connected-project-md-lg-row-gap: var(--size-14);
+        --molecule-projects-connected-project-md-row-gap: var(--size-14);
+        --molecule-projects-connected-project-sm-row-gap: var(--size-14);
+        --molecule-projects-connected-project-xs-row-gap: var(--size-14);
+        --molecule-projects-connected-project-xxs-row-gap: var(--size-14);
+        --molecule-projects-connected-project-tiny-row-gap: var(--size-14);
+        /* Responsive */
+        --molecule-projects-connected-project-row-gap: var(
+            --molecule-projects-connected-project-tiny-row-gap
+        );
+
+        --molecule-projects-subsections-project-partners-xl-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-partners-lg-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-partners-md-lg-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-partners-md-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-partners-sm-row-gap: var(
+            --size-24
+        );
+        --molecule-projects-subsections-project-partners-xs-row-gap: var(
+            --size-22
+        );
+        --molecule-projects-subsections-project-partners-xxs-row-gap: var(
+            --size-22
+        );
+        --molecule-projects-subsections-project-partners-tiny-row-gap: var(
+            --size-22
+        );
+        /* Responsive */
+        --molecule-projects-subsections-project-partners-row-gap: var(
+            --molecule-projects-subsections-project-partners-tiny-row-gap
+        );
+
+        --molecule-projects-project-partner-xl-row-gap: var(--size-14);
+        --molecule-projects-project-partner-lg-row-gap: var(--size-12);
+        --molecule-projects-project-partner-md-lg-row-gap: var(--size-12);
+        --molecule-projects-project-partner-md-row-gap: var(--size-12);
+        --molecule-projects-project-partner-sm-row-gap: var(--size-12);
+        --molecule-projects-project-partner-xs-row-gap: var(--size-12);
+        --molecule-projects-project-partner-xxs-row-gap: var(--size-12);
+        --molecule-projects-project-partner-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --molecule-projects-project-partner-row-gap: var(
+            --molecule-projects-project-partner-tiny-row-gap
+        );
+
+        --molecule-projects-project-partner-names-xl-row-gap: var(--size-12);
+        --molecule-projects-project-partner-names-lg-row-gap: var(--size-10);
+        --molecule-projects-project-partner-names-md-lg-row-gap: var(--size-10);
+        --molecule-projects-project-partner-names-md-row-gap: var(--size-10);
+        --molecule-projects-project-partner-names-sm-row-gap: var(--size-10);
+        --molecule-projects-project-partner-names-xs-row-gap: var(--size-10);
+        --molecule-projects-project-partner-names-xxs-row-gap: var(--size-10);
+        --molecule-projects-project-partner-names-tiny-row-gap: var(--size-10);
+        /* Responsive */
+        --molecule-projects-project-partner-names-row-gap: var(
+            --molecule-projects-project-partner-names-tiny-row-gap
+        );
+
+        --molecule-global-main-nav-xl-col-gap: var(--size-28);
+        --molecule-global-main-nav-lg-col-gap: var(--size-24);
+        --molecule-global-main-nav-md-lg-col-gap: var(--size-24);
+        --molecule-global-main-nav-md-col-gap: var(--size-24);
+        --molecule-global-main-nav-sm-col-gap: var(--size-24);
+        --molecule-global-main-nav-xs-col-gap: var(--size-22);
+        --molecule-global-main-nav-xxs-col-gap: var(--size-22);
+        --molecule-global-main-nav-tiny-col-gap: var(--size-22);
+        /* Responsive */
+        --molecule-global-main-nav-col-gap: var(
+            --molecule-global-main-nav-tiny-col-gap
+        );
+
+        --molecule-info-info-list-xl-row-gap: var(--size-18);
+        --molecule-info-info-list-lg-row-gap: var(--size-18);
+        --molecule-info-info-list-md-lg-row-gap: var(--size-18);
+        --molecule-info-info-list-md-row-gap: var(--size-18);
+        --molecule-info-info-list-sm-row-gap: var(--size-18);
+        --molecule-info-info-list-xs-row-gap: var(--size-16);
+        --molecule-info-info-list-xxs-row-gap: var(--size-16);
+        --molecule-info-info-list-tiny-row-gap: var(--size-15);
+        /* Responsive */
+        --molecule-info-info-list-row-gap: var(
+            --molecule-info-info-list-tiny-row-gap
+        );
+
+        --molecule-info-info-list-list-items-xl-row-gap: var(--size-13);
+        --molecule-info-info-list-list-items-lg-row-gap: var(--size-13);
+        --molecule-info-info-list-list-items-md-lg-row-gap: var(--size-13);
+        --molecule-info-info-list-list-items-md-row-gap: var(--size-13);
+        --molecule-info-info-list-list-items-sm-row-gap: var(--size-13);
+        --molecule-info-info-list-list-items-xs-row-gap: var(--size-12);
+        --molecule-info-info-list-list-items-xxs-row-gap: var(--size-12);
+        --molecule-info-info-list-list-items-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --molecule-info-info-list-list-items-row-gap: var(
+            --molecule-info-info-list-list-items-tiny-row-gap
+        );
+
+        --molecule-info-experience-xl-row-gap: var(--size-14);
+        --molecule-info-experience-lg-row-gap: var(--size-12);
+        --molecule-info-experience-md-lg-row-gap: var(--size-12);
+        --molecule-info-experience-md-row-gap: var(--size-12);
+        --molecule-info-experience-sm-row-gap: var(--size-12);
+        --molecule-info-experience-xs-row-gap: var(--size-12);
+        --molecule-info-experience-xxs-row-gap: var(--size-12);
+        --molecule-info-experience-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --molecule-info-experience-row-gap: var(
+            --molecule-info-experience-tiny-row-gap
+        );
+
+        --molecule-info-section-content-info-list-xl-row-gap: var(--size-28);
+        --molecule-info-section-content-info-list-lg-row-gap: var(--size-28);
+        --molecule-info-section-content-info-list-md-lg-row-gap: var(--size-24);
+        --molecule-info-section-content-info-list-md-row-gap: var(--size-24);
+        --molecule-info-section-content-info-list-sm-row-gap: var(--size-28);
+        --molecule-info-section-content-info-list-xs-row-gap: var(--size-28);
+        --molecule-info-section-content-info-list-xxs-row-gap: var(--size-24);
+        --molecule-info-section-content-info-list-tiny-row-gap: var(--size-22);
+        /* Responsive */
+        --molecule-info-section-content-info-list-row-gap: var(
+            --molecule-info-section-content-info-list-tiny-row-gap
+        );
+
+        --molecule-info-section-content-experience-list-xl-row-gap: var(
+            --size-22
+        );
+        --molecule-info-section-content-experience-list-lg-row-gap: var(
+            --size-22
+        );
+        --molecule-info-section-content-experience-list-md-lg-row-gap: var(
+            --size-20
+        );
+        --molecule-info-section-content-experience-list-md-row-gap: var(
+            --size-20
+        );
+        --molecule-info-section-content-experience-list-sm-row-gap: var(
+            --size-20
+        );
+        --molecule-info-section-content-experience-list-xs-row-gap: var(
+            --size-20
+        );
+        --molecule-info-section-content-experience-list-xxs-row-gap: var(
+            --size-20
+        );
+        --molecule-info-section-content-experience-list-tiny-row-gap: var(
+            --size-18
+        );
+        /* Responsive */
+        --molecule-info-section-content-experience-list-row-gap: var(
+            --molecule-info-section-content-experience-list-tiny-row-gap
+        );
+
+        --molecule-projects-preview-multi-xl-gap: var(--size-8);
+        --molecule-projects-preview-multi-lg-gap: var(--size-8);
+        --molecule-projects-preview-multi-md-lg-gap: var(--size-6);
+        --molecule-projects-preview-multi-md-gap: var(--size-6);
+        --molecule-projects-preview-multi-sm-gap: var(--size-8);
+        --molecule-projects-preview-multi-xs-gap: var(--size-12);
+        --molecule-projects-preview-multi-xxs-gap: var(--size-12);
+        --molecule-projects-preview-multi-tiny-gap: var(--size-12);
+        /* Responsive */
+        --molecule-projects-preview-multi-gap: var(
+            --molecule-projects-preview-multi-tiny-gap
+        );
+
+        --molecule-main-list-xl-spacing: var(--size-4);
+        --molecule-main-list-lg-spacing: var(--size-4);
+        --molecule-main-list-md-lg-spacing: var(--size-4);
+        --molecule-main-list-md-spacing: var(--size-4);
+        --molecule-main-list-sm-spacing: var(--size-4);
+        --molecule-main-list-xs-spacing: var(--size-4);
+        --molecule-main-list-xxs-spacing: var(--size-4);
+        --molecule-main-list-tiny-spacing: var(--size-3);
+        /* Responsive */
+        --molecule-main-list-spacing: var(--molecule-main-list-tiny-spacing);
+
+        --molecule-global-main-list-list-items-xl-row-gap: var(--size-13);
+        --molecule-global-main-list-list-items-lg-row-gap: var(--size-13);
+        --molecule-global-main-list-list-items-md-lg-row-gap: var(--size-13);
+        --molecule-global-main-list-list-items-md-row-gap: var(--size-13);
+        --molecule-global-main-list-list-items-sm-row-gap: var(--size-13);
+        --molecule-global-main-list-list-items-xs-row-gap: var(--size-12);
+        --molecule-global-main-list-list-items-xxs-row-gap: var(--size-12);
+        --molecule-global-main-list-list-items-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --molecule-global-main-list-list-items-row-gap: var(
+            --molecule-global-main-list-list-items-tiny-row-gap
+        );
+
+        --molecule-global-main-list-list-counter-xl-gap: var(--size-10);
+        --molecule-global-main-list-list-counter-lg-gap: var(--size-9);
+        --molecule-global-main-list-list-counter-md-lg-gap: var(--size-9);
+        --molecule-global-main-list-list-counter-md-gap: var(--size-9);
+        --molecule-global-main-list-list-counter-sm-gap: var(--size-9);
+        --molecule-global-main-list-list-counter-xs-gap: var(--size-8);
+        --molecule-global-main-list-list-counter-xxs-gap: var(--size-8);
+        --molecule-global-main-list-list-counter-tiny-gap: var(--size-8);
+        /* Responsive */
+        --molecule-global-main-list-list-counter-gap: var(
+            --molecule-global-main-list-list-counter-tiny-gap
+        );
+
+        --molecule-projects-project-result-xl-row-gap: var(--size-14);
+        --molecule-projects-project-result-lg-row-gap: var(--size-12);
+        --molecule-projects-project-result-md-lg-row-gap: var(--size-12);
+        --molecule-projects-project-result-md-row-gap: var(--size-12);
+        --molecule-projects-project-result-sm-row-gap: var(--size-12);
+        --molecule-projects-project-result-xs-row-gap: var(--size-12);
+        --molecule-projects-project-result-xxs-row-gap: var(--size-12);
+        --molecule-projects-project-result-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --molecule-projects-project-result-row-gap: var(
+            --molecule-projects-project-result-tiny-row-gap
+        );
+
+        /* Organism Spacing Tokens */
+        --organism-projects-meta-xl-col-gap: var(--size-32);
+        --organism-projects-meta-lg-col-gap: var(--size-32);
+        --organism-projects-meta-md-lg-col-gap: var(--size-28);
+
+        --organism-projects-meta-xl-row-gap: var(--size-14);
+        --organism-projects-meta-lg-row-gap: var(--size-12);
+        --organism-projects-meta-md-lg-row-gap: var(--size-12);
+        --organism-projects-meta-md-row-gap: var(--size-12);
+        --organism-projects-meta-sm-row-gap: var(--size-12);
+        --organism-projects-meta-xs-row-gap: var(--size-12);
+        --organism-projects-meta-xxs-row-gap: var(--size-12);
+        --organism-projects-meta-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --organism-projects-meta-col-gap: var(
+            --organism-projects-meta-md-lg-col-gap
+        );
+        --organism-projects-meta-row-gap: var(
+            --organism-projects-meta-tiny-row-gap
+        );
+
+        --organism-project-section-heading-group-xl-row-gap: var(--size-16);
+        --organism-project-section-heading-group-lg-row-gap: var(--size-16);
+        --organism-project-section-heading-group-md-lg-row-gap: var(--size-16);
+        --organism-project-section-heading-group-md-row-gap: var(--size-16);
+        --organism-project-section-heading-group-sm-row-gap: var(--size-16);
+        --organism-project-section-heading-group-xs-row-gap: var(--size-14);
+        --organism-project-section-heading-group-xxs-row-gap: var(--size-14);
+        --organism-project-section-heading-group-tiny-row-gap: var(--size-13);
+        /* Responsive */
+        --organism-project-section-heading-group-row-gap: var(
+            --organism-project-section-heading-group-tiny-row-gap
+        );
+
+        --organism-project-section-main-xl-row-gap: var(--size-18);
+        --organism-project-section-main-lg-row-gap: var(--size-18);
+        --organism-project-section-main-md-lg-row-gap: var(--size-18);
+        --organism-project-section-main-md-row-gap: var(--size-18);
+        --organism-project-section-main-sm-row-gap: var(--size-18);
+        --organism-project-section-main-xs-row-gap: var(--size-16);
+        --organism-project-section-main-xxs-row-gap: var(--size-16);
+        --organism-project-section-main-tiny-row-gap: var(--size-15);
+        /* Responsive */
+        --organism-project-section-main-row-gap: var(
+            --organism-project-section-main-tiny-row-gap
+        );
+
+        --organism-project-section-xl-row-gap: var(--size-28);
+        --organism-project-section-lg-row-gap: var(--size-24);
+        --organism-project-section-md-lg-row-gap: var(--size-24);
+        --organism-project-section-md-row-gap: var(--size-24);
+        --organism-project-section-sm-row-gap: var(--size-24);
+        --organism-project-section-xs-row-gap: var(--size-24);
+        --organism-project-section-xxs-row-gap: var(--size-24);
+        --organism-project-section-tiny-row-gap: var(--size-24);
+        /* Responsive */
+        --organism-project-section-row-gap: var(
+            --organism-project-section-tiny-row-gap
+        );
+
+        --organism-projects-connected-work-sm-row-gap: var(--size-12);
+        --organism-projects-connected-work-xs-row-gap: var(--size-12);
+        --organism-projects-connected-work-xxs-row-gap: var(--size-12);
+        --organism-projects-connected-work-tiny-row-gap: var(--size-12);
+        /* Responsive */
+        --organism-projects-connected-work-row-gap: var(
+            --organism-projects-connected-work-tiny-row-gap
+        );
+
+        --organism-info-info-section-body-xl-max-width: var(--size-935);
+        --organism-info-info-section-body-lg-max-width: var(--size-871);
+        --organism-info-info-section-body-md-lg-max-width: var(--size-742);
+        --organism-info-info-section-body-md-max-width: var(--size-623);
+        /* Responsive */
+        --organism-info-info-section-body-max-width: var(
+            --organism-info-info-section-body-md-max-width
+        );
+
+        --organism-info-info-section-sm-row-gap: var(--size-18);
+        --organism-info-info-section-xs-row-gap: var(--size-16);
+        --organism-info-info-section-xxs-row-gap: var(--size-16);
+        --organism-info-info-section-tiny-row-gap: var(--size-15);
+        /* Responsive */
+        --organism-info-info-section-row-gap: var(
+            --organism-info-info-section-tiny-row-gap
+        );
+
+        --organism-projects-featured-project-xl-gap: var(--size-32);
+        --organism-projects-featured-project-lg-gap: var(--size-32);
+        --organism-projects-featured-project-md-lg-gap: var(--size-28);
+        --organism-projects-featured-project-md-gap: var(--size-28);
+        --organism-projects-featured-project-sm-gap: var(--size-18);
+        --organism-projects-featured-project-xs-gap: var(--size-18);
+        --organism-projects-featured-project-xxs-gap: var(--size-18);
+        --organism-projects-featured-project-tiny-gap: var(--size-18);
+        /* Responsive */
+        --organism-projects-featured-project-gap: var(
+            --organism-projects-featured-project-tiny-gap
+        );
+
+        --organism-projects-featured-project-xl-padding-bottom: var(--size-24);
+        --organism-projects-featured-project-lg-padding-bottom: var(--size-24);
+        --organism-projects-featured-project-md-lg-padding-bottom: var(
+            --size-20
+        );
+        --organism-projects-featured-project-md-padding-bottom: var(--size-20);
+        /* Responsive */
+        --organism-projects-featured-project-padding-bottom: var(
+            --organism-projects-featured-project-md-padding-bottom
+        );
+
+        /* Template Spacing Tokens */
+        --template-global-xl-padding-top: var(--size-20);
+        --template-global-lg-padding-top: var(--size-20);
+        --template-global-md-lg-padding-top: var(--size-18);
+        --template-global-md-padding-top: var(--size-18);
+        --template-global-sm-padding-top: var(--size-18);
+        --template-global-xs-padding-top: var(--size-16);
+        --template-global-xxs-padding-top: var(--size-16);
+        --template-global-tiny-padding-top: var(--size-15);
+        /* Responsive */
+        --template-global-padding-top: var(--template-global-tiny-padding-top);
+
+        --template-global-xl-padding-bottom: var(--size-16);
+        --template-global-lg-padding-bottom: var(--size-16);
+        --template-global-md-lg-padding-bottom: var(--size-16);
+        --template-global-md-padding-bottom: var(--size-16);
+        --template-global-sm-padding-bottom: var(--size-16);
+        --template-global-xs-padding-bottom: var(--size-12);
+        --template-global-xxs-padding-bottom: var(--size-12);
+        --template-global-tiny-padding-bottom: var(--size-11);
+        /* Responsive */
+        --template-global-padding-bottom: var(
+            --template-global-tiny-padding-bottom
+        );
+
+        --template-global-xl-spacing-xl: var(--size-320);
+        --template-global-lg-spacing-xl: var(--size-256);
+        --template-global-md-lg-spacing-xl: var(--size-208);
+        --template-global-md-spacing-xl: var(--size-188);
+        --template-global-sm-spacing-xl: var(--size-188);
+        --template-global-xs-spacing-xl: var(--size-180);
+        --template-global-xxs-spacing-xl: var(--size-172);
+        --template-global-tiny-spacing-xl: var(--size-172);
+        /* Responsive */
+        --template-global-spacing-xl: var(--template-global-tiny-spacing-xl);
+
+        --template-projects-xl-spacing-lg: var(--size-160);
+        --template-projects-lg-spacing-lg: var(--size-128);
+        --template-projects-md-lg-spacing-lg: var(--size-104);
+        --template-projects-md-spacing-lg: var(--size-96);
+        --template-projects-sm-spacing-lg: var(--size-96);
+        --template-projects-xs-spacing-lg: var(--size-96);
+        --template-projects-xxs-spacing-lg: var(--size-88);
+        --template-projects-tiny-spacing-lg: var(--size-88);
+        /* Responsive */
+        --template-projects-spacing-lg: var(
+            --template-projects-tiny-spacing-lg
+        );
+
+        --template-projects-xl-row-gap-base: var(--size-32);
+        --template-projects-lg-row-gap-base: var(--size-32);
+        --template-projects-md-lg-row-gap-base: var(--size-28);
+        --template-projects-md-row-gap-base: var(--size-28);
+        --template-projects-sm-row-gap-base: var(--size-28);
+        --template-projects-xs-row-gap-base: var(--size-28);
+        --template-projects-xxs-row-gap-base: var(--size-24);
+        --template-projects-tiny-row-gap-base: var(--size-22);
+        /* Responsive */
+        --template-projects-row-gap-base: var(
+            --template-projects-tiny-row-gap-base
+        );
+
+        --template-projects-xl-row-gap-sm: var(--size-20);
+        --template-projects-lg-row-gap-sm: var(--size-20);
+        --template-projects-md-lg-row-gap-sm: var(--size-18);
+        --template-projects-md-row-gap-sm: var(--size-18);
+        --template-projects-sm-row-gap-sm: var(--size-18);
+        --template-projects-xs-row-gap-sm: var(--size-18);
+        --template-projects-xxs-row-gap-sm: var(--size-18);
+        --template-projects-tiny-row-gap-sm: var(--size-18);
+        /* Responsive */
+        --template-projects-row-gap-sm: var(
+            --template-projects-tiny-row-gap-sm
+        );
+
+        --template-projects-project-main-showcase-sm-row-gap: var(--size-24);
+        --template-projects-project-main-showcase-xs-row-gap: var(--size-18);
+        --template-projects-project-main-showcase-xxs-row-gap: var(--size-18);
+        --template-projects-project-main-showcase-tiny-row-gap: var(--size-18);
+        /* Responsive */
+        --template-projects-project-main-showcase-row-gap: var(
+            --template-projects-project-main-showcase-tiny-row-gap
+        );
+
+        --template-info-info-main-xl-row-gap: var(--size-32);
+        --template-info-info-main-lg-row-gap: var(--size-32);
+        --template-info-info-main-md-lg-row-gap: var(--size-28);
+        --template-info-info-main-md-row-gap: var(--size-28);
+        --template-info-info-main-sm-row-gap: var(--size-28);
+        --template-info-info-main-xs-row-gap: var(--size-28);
+        --template-info-info-main-xxs-row-gap: var(--size-24);
+        --template-info-info-main-tiny-row-gap: var(--size-22);
+        /* Responsive */
+        --template-info-info-main-row-gap: var(
+            --template-info-info-main-tiny-row-gap
+        );
+
+        --template-home-xl-row-gap-base: var(--size-12);
+        --template-home-lg-row-gap-base: var(--size-12);
+        --template-home-md-lg-row-gap-base: var(--size-10);
+        --template-home-md-row-gap-base: var(--size-10);
+        --template-home-sm-row-gap-base: var(--size-10);
+        --template-home-xs-row-gap-base: var(--size-10);
+        --template-home-xxs-row-gap-base: var(--size-10);
+        --template-home-tiny-row-gap-base: var(--size-10);
+        /* Responsive */
+        --template-home-row-gap-base: var(--template-home-tiny-row-gap-base);
+
+        --template-projects-work-main-xl-row-gap: var(--size-32);
+        --template-projects-work-main-lg-row-gap: var(--size-32);
+        --template-projects-work-main-md-lg-row-gap: var(--size-28);
+        --template-projects-work-main-md-row-gap: var(--size-28);
+        --template-projects-work-main-sm-row-gap: var(--size-28);
+        --template-projects-work-main-xs-row-gap: var(--size-28);
+        --template-projects-work-main-xxs-row-gap: var(--size-24);
+        --template-projects-work-main-tiny-row-gap: var(--size-22);
+        /* Responsive */
+        --template-projects-work-main-row-gap: var(
+            --template-projects-work-main-tiny-row-gap
+        );
+    }
+
+    /* Responsive System */
+    /* xxs */
+    @media (min-width: 375px) {
+        :root {
+            /* Radius Tokens */
+            --radius-base: var(--radius-base-xxs);
+
+            /* Grid System Tokens */
+            --grid-margin: var(--xxs-xs-grid-margin);
+            --grid-gutter: var(--xxs-xs-grid-gutter);
+
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-xxs-paragraph-spacing
+            );
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-xxs-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-xxs-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-xxs-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-xxs-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-xxs-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-xxs-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-xxs-row-gap
+            );
+
+            --molecule-projects-subsections-project-results-row-gap: var(
+                --molecule-projects-subsections-project-results-xxs-row-gap
+            );
+
+            --molecule-projects-connected-projects-col-gap: var(
+                --molecule-projects-connected-projects-xxs-col-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-xxs-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-xxs-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-xxs-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-xxs-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-xxs-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-xxs-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-xxs-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-xxs-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-xxs-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-xxs-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-xxs-gap
+            );
+
+            --molecule-main-list-spacing: var(--molecule-main-list-xxs-spacing);
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-xxs-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-xxs-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-xxs-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-xxs-row-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-xxs-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-xxs-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-xxs-row-gap
+            );
+
+            --organism-projects-connected-work-row-gap: var(
+                --organism-projects-connected-work-xxs-row-gap
+            );
+
+            --organism-info-info-section-row-gap: var(
+                --organism-info-info-section-xxs-row-gap
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-xxs-gap
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-xxs-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-xxs-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(--template-global-xxs-spacing-xl);
+
+            --template-projects-spacing-lg: var(
+                --template-projects-xxs-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-xxs-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-xxs-row-gap-sm
+            );
+
+            --template-projects-project-main-showcase-row-gap: var(
+                --template-projects-project-main-showcase-xxs-row-gap
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-xxs-row-gap
+            );
+
+            --template-home-row-gap-base: var(--template-home-xxs-row-gap-base);
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-xxs-row-gap
+            );
+        }
+    }
+
+    /* xs */
+    @media (min-width: 428px) {
+        :root {
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-xs-paragraph-spacing
+            );
+
+            /* Radius Tokens */
+            --radius-base: var(--radius-base-xs);
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-xs-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-xs-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-xs-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-xs-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-xs-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-xs-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-xs-row-gap
+            );
+
+            --molecule-projects-subsections-project-results-row-gap: var(
+                --molecule-projects-subsections-project-results-xs-row-gap
+            );
+
+            --molecule-projects-connected-projects-col-gap: var(
+                --molecule-projects-connected-projects-xs-col-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-xs-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-xs-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-xs-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-xs-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-xs-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-xs-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-xs-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-xs-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-xs-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-xs-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-xs-gap
+            );
+
+            --molecule-main-list-spacing: var(--molecule-main-list-xs-spacing);
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-xs-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-xs-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-xs-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-xs-row-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-xs-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-xs-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-xs-row-gap
+            );
+
+            --organism-projects-connected-work-row-gap: var(
+                --organism-projects-connected-work-xs-row-gap
+            );
+
+            --organism-info-info-section-row-gap: var(
+                --organism-info-info-section-xs-row-gap
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-xs-gap
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-xs-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-xs-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(--template-global-xs-spacing-xl);
+
+            --template-projects-spacing-lg: var(
+                --template-projects-xs-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-xs-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-xs-row-gap-sm
+            );
+
+            --template-projects-project-main-showcase-row-gap: var(
+                --template-projects-project-main-showcase-xs-row-gap
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-xs-row-gap
+            );
+
+            --template-home-row-gap-base: var(--template-home-xs-row-gap-base);
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-xs-row-gap
+            );
+        }
+    }
+
+    /* sm */
+    @media (min-width: 768px) {
+        :root {
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-sm-paragraph-spacing
+            );
+
+            /* Radius Tokens */
+            --radius-base: var(--radius-base-sm);
+
+            /* Grid System Tokens */
+            --grid-margin: var(--sm-grid-margin);
+            --grid-gutter: var(--sm-grid-gutter);
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-sm-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-sm-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-sm-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-sm-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-sm-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-sm-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-sm-row-gap
+            );
+
+            --molecule-projects-subsections-project-results-row-gap: var(
+                --molecule-projects-subsections-project-results-sm-row-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-sm-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-sm-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-sm-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-sm-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-sm-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-sm-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-sm-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-sm-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-sm-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-sm-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-sm-gap
+            );
+
+            --molecule-main-list-spacing: var(--molecule-main-list-sm-spacing);
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-sm-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-sm-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-sm-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-sm-row-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-sm-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-sm-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-sm-row-gap
+            );
+
+            --organism-projects-connected-work-row-gap: var(
+                --organism-projects-connected-work-sm-row-gap
+            );
+
+            --organism-info-info-section-row-gap: var(
+                --organism-info-info-section-sm-row-gap
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-sm-gap
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-sm-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-sm-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(--template-global-sm-spacing-xl);
+
+            --template-projects-spacing-lg: var(
+                --template-projects-sm-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-sm-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-sm-row-gap-sm
+            );
+
+            --template-projects-project-main-showcase-row-gap: var(
+                --template-projects-project-main-showcase-sm-row-gap
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-sm-row-gap
+            );
+
+            --template-home-row-gap-base: var(--template-home-sm-row-gap-base);
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-sm-row-gap
+            );
+        }
+    }
+
+    /* md */
+    @media (min-width: 1024px) {
+        :root {
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-md-paragraph-spacing
+            );
+
+            /* Grid System Tokens */
+            --grid-margin: var(--md-lg-grid-margin);
+            --grid-gutter: var(--md-lg-grid-gutter);
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-md-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-md-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-md-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-md-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-md-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-md-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-md-row-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-md-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-md-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-md-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-md-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-md-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-md-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-md-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-md-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-md-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-md-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-md-gap
+            );
+
+            --molecule-main-list-spacing: var(--molecule-main-list-md-spacing);
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-md-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-md-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-md-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-md-row-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-md-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-md-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-md-row-gap
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-md-gap
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-md-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-md-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(--template-global-md-spacing-xl);
+
+            --template-projects-spacing-lg: var(
+                --template-projects-md-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-md-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-md-row-gap-sm
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-md-row-gap
+            );
+
+            --template-home-row-gap-base: var(--template-home-md-row-gap-base);
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-md-row-gap
+            );
+        }
+    }
+
+    /* md-lg */
+    @media (min-width: 1280px) {
+        :root {
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-md-lg-paragraph-spacing
+            );
+
+            /* Grid System Tokens */
+            --grid-margin: var(--md-lg-grid-margin);
+            --grid-gutter: var(--md-lg-grid-gutter);
+
+            /* Border Tokens */
+            --border-width-thin: var(--border-width-thin-md-lg);
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-md-lg-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-md-lg-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-md-lg-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-md-lg-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-md-lg-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-md-lg-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-md-lg-row-gap
+            );
+
+            --molecule-projects-connected-projects-row-gap: var(
+                --molecule-projects-connected-projects-md-lg-row-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-md-lg-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-md-lg-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-md-lg-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-md-lg-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-md-lg-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-md-lg-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-md-lg-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-md-lg-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-md-lg-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-md-lg-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-md-lg-gap
+            );
+
+            --molecule-main-list-spacing: var(
+                --molecule-main-list-md-lg-spacing
+            );
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-md-lg-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-md-lg-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-md-lg-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-md-lg-row-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-md-lg-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-md-lg-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-md-lg-row-gap
+            );
+
+            --organism-info-info-section-body-max-width: var(
+                --organism-info-info-section-body-md-lg-max-width
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-md-lg-gap
+            );
+
+            --organism-projects-featured-project-padding-bottom: var(
+                --organism-projects-featured-project-md-lg-padding-bottom
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-md-lg-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-md-lg-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(
+                --template-global-md-lg-spacing-xl
+            );
+
+            --template-projects-spacing-lg: var(
+                --template-projects-md-lg-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-md-lg-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-md-lg-row-gap-sm
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-md-lg-row-gap
+            );
+
+            --template-home-row-gap-base: var(
+                --template-home-md-lg-row-gap-base
+            );
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-md-lg-row-gap
+            );
+        }
+    }
+
+    /* lg */
+    @media (min-width: 1440px) {
+        :root {
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-lg-paragraph-spacing
+            );
+
+            /* Grid System Tokens */
+            --grid-margin: var(--lg-xl-grid-margin);
+            --grid-gutter: var(--lg-xl-grid-gutter);
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-lg-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-lg-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-lg-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-lg-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-lg-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-lg-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-lg-row-gap
+            );
+
+            --molecule-projects-connected-projects-row-gap: var(
+                --molecule-projects-connected-projects-lg-row-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-lg-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-lg-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-lg-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-lg-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-lg-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-lg-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-lg-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-lg-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-lg-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-lg-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-lg-gap
+            );
+
+            --molecule-main-list-spacing: var(--molecule-main-list-lg-spacing);
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-lg-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-lg-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-lg-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-lg-row-gap
+            );
+
+            --organism-projects-meta-col-gap: var(
+                --organism-projects-meta-lg-col-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-lg-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-lg-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-lg-row-gap
+            );
+
+            --organism-info-info-section-body-max-width: var(
+                --organism-info-info-section-body-lg-max-width
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-lg-gap
+            );
+
+            --organism-projects-featured-project-padding-bottom: var(
+                --organism-projects-featured-project-lg-padding-bottom
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-lg-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-lg-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(--template-global-lg-spacing-xl);
+
+            --template-projects-spacing-lg: var(
+                --template-projects-lg-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-lg-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-lg-row-gap-sm
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-lg-row-gap
+            );
+
+            --template-home-row-gap-base: var(--template-home-lg-row-gap-base);
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-lg-row-gap
+            );
+        }
+    }
+
+    /* xl */
+    @media (min-width: 1920px) {
+        :root {
+            /* Typography Tokens */
+            --typography-body-lg-main-paragraph-spacing: var(
+                --typography-body-lg-main-xl-paragraph-spacing
+            );
+
+            /* Atom Spacing Tokens */
+            --atom-projects-category-tag-padding-x: var(
+                --atom-projects-category-tag-xl-padding-x
+            );
+            --atom-projects-category-tag-padding-y: var(
+                --atom-projects-category-tag-xl-padding-y
+            );
+
+            --atom-project-subheading-container-padding-bottom: var(
+                --atom-project-subheading-container-xl-padding-bottom
+            );
+
+            --atom-global-theme-toggle-height: var(
+                --atom-global-theme-toggle-xl-height
+            );
+
+            --atom-global-theme-toggle-width: var(
+                --atom-global-theme-toggle-xl-width
+            );
+
+            --atom-global-theme-toggle-padding: var(
+                --atom-global-theme-toggle-xl-padding
+            );
+
+            /* Molecule Spacing Tokens */
+            --molecule-project-subsection-row-gap: var(
+                --molecule-project-subsection-xl-row-gap
+            );
+
+            --molecule-projects-connected-projects-row-gap: var(
+                --molecule-projects-connected-projects-xl-row-gap
+            );
+
+            --molecule-projects-connected-project-row-gap: var(
+                --molecule-projects-connected-project-xl-row-gap
+            );
+
+            --molecule-projects-subsections-project-partners-row-gap: var(
+                --molecule-projects-subsections-project-partners-xl-row-gap
+            );
+
+            --molecule-projects-project-partner-row-gap: var(
+                --molecule-projects-project-partner-xl-row-gap
+            );
+
+            --molecule-projects-project-partner-names-row-gap: var(
+                --molecule-projects-project-partner-names-xl-row-gap
+            );
+
+            --molecule-global-main-nav-col-gap: var(
+                --molecule-global-main-nav-xl-col-gap
+            );
+
+            --molecule-info-info-list-row-gap: var(
+                --molecule-info-info-list-xl-row-gap
+            );
+
+            --molecule-info-info-list-list-items-row-gap: var(
+                --molecule-info-info-list-list-items-xl-row-gap
+            );
+
+            --molecule-info-experience-row-gap: var(
+                --molecule-info-experience-xl-row-gap
+            );
+
+            --molecule-info-section-content-info-list-row-gap: var(
+                --molecule-info-section-content-info-list-xl-row-gap
+            );
+
+            --molecule-info-section-content-experience-list-row-gap: var(
+                --molecule-info-section-content-experience-list-xl-row-gap
+            );
+
+            --molecule-projects-preview-multi-gap: var(
+                --molecule-projects-preview-multi-xl-gap
+            );
+
+            --molecule-main-list-spacing: var(--molecule-main-list-xl-spacing);
+
+            --molecule-global-main-list-list-items-row-gap: var(
+                --molecule-global-main-list-list-items-xl-row-gap
+            );
+
+            --molecule-global-main-list-list-counter-gap: var(
+                var(--molecule-global-main-list-list-counter-xl-gap)
+            );
+
+            --molecule-projects-project-result-row-gap: var(
+                --molecule-projects-project-result-xl-row-gap
+            );
+
+            /* Organism Spacing Tokens */
+            --organism-projects-meta-row-gap: var(
+                --organism-projects-meta-xl-row-gap
+            );
+
+            --organism-projects-meta-col-gap: var(
+                --organism-projects-meta-xl-col-gap
+            );
+
+            --organism-project-section-heading-group-row-gap: var(
+                --organism-project-section-heading-group-xl-row-gap
+            );
+
+            --organism-project-section-main-row-gap: var(
+                --organism-project-section-main-xl-row-gap
+            );
+
+            --organism-project-section-row-gap: var(
+                --organism-project-section-xl-row-gap
+            );
+
+            --organism-info-info-section-body-max-width: var(
+                --organism-info-info-section-body-xl-max-width
+            );
+
+            --organism-projects-featured-project-gap: var(
+                --organism-projects-featured-project-xl-gap
+            );
+
+            --organism-projects-featured-project-padding-bottom: var(
+                --organism-projects-featured-project-xl-padding-bottom
+            );
+
+            /* Template Spacing Tokens */
+            --template-global-padding-top: var(
+                --template-global-xl-padding-top
+            );
+
+            --template-global-padding-bottom: var(
+                --template-global-xl-padding-bottom
+            );
+
+            --template-global-spacing-xl: var(--template-global-xl-spacing-xl);
+
+            --template-projects-spacing-lg: var(
+                --template-projects-xl-spacing-lg
+            );
+
+            --template-projects-row-gap-base: var(
+                --template-projects-xl-row-gap-base
+            );
+
+            --template-projects-row-gap-sm: var(
+                --template-projects-xl-row-gap-sm
+            );
+
+            --template-info-info-main-row-gap: var(
+                --template-info-info-main-xl-row-gap
+            );
+
+            --template-home-row-gap-base: var(--template-home-xl-row-gap-base);
+
+            --template-projects-work-main-row-gap: var(
+                --template-projects-work-main-xl-row-gap
+            );
+        }
+    }
+    [data-modifier="main-list--numbered"] {
+        counter-reset: list-counter;
+
+        & li {
+            display: flex;
+            align-items: flex-start;
+            counter-increment: list-counter;
+
+            &::before {
+                content: counter(list-counter) ".";
+                min-width: 2ch;
+                margin-right: var(--molecule-global-main-list-list-counter-gap);
+                text-align: right;
+                flex-shrink: 0;
+                line-height: 0.7em;
+                font-size: 15px;
+                font-variant-numeric: lining-nums tabular-nums;
+            }
+        }
+    }
+    
+    /* xxs */
+    @media (min-width: 375px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    /* xs */
+    @media (min-width: 428px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    /* sm */
+    @media (min-width: 768px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    /* md */
+    @media (min-width: 1024px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    /* md-lg */
+    @media (min-width: 1280px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    /* lg */
+    @media (min-width: 1440px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    /* xl */
+    @media (min-width: 1920px) {
+        [data-modifier="main-list--numbered"] {
+            & li {
+                &::before {
+                    line-height: 0.7em;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+@layer utilities {
+    :root {
+        --flex-25: calc(100% / 4 - (var(--grid-gutter) * 3 / 4));
+        --flex-33: calc(100% / 3 - (var(--grid-gutter) * 2 / 3));
+        --flex-50: calc(100% / 2 - (var(--grid-gutter) * 1 / 2));
+
+        --layout-left-width: calc(25vw - var(--grid-margin));
+        --layout-right-constrained: 75%;
+
+        --capsize-clearance: 0.2412em;
+    }
+    /* xl */
+    @media (min-width: 1920px) {
+        :root {
+            --layout-right-constrained: calc(50% - var(--grid-gutter) / 2);
+        }
+    }
+}
+
+@import "./capsize.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+    --*: initial;
+    /* Breakpoints */
+    --breakpoint-xxs: 375px;
+    --breakpoint-xs: 428px;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 1024px;
+    --breakpoint-mdlg: 1280px;
+    --breakpoint-lg: 1440px;
+    --breakpoint-xl: 1920px;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    /* Color Extensions */
+    --color-surface-primary: var(--surface-primary);
+    --color-surface-secondary: var(--surface-secondary);
+    --color-surface-tertiary: var(--surface-tertiary);
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+
+    --color-border-primary: var(--border-color-primary);
+    --color-border-secondary: var(--border-color-secondary);
+
+    /* Spacing Extensions */
+    --spacing-system-3: var(--size-3);
+    --spacing-system-4: var(--size-4);
+    --spacing-system-6: var(--size-6);
+    --spacing-system-8: var(--size-8);
+    --spacing-system-10: var(--size-10);
+    --spacing-system-11: var(--size-11);
+    --spacing-system-12: var(--size-12);
+    --spacing-system-13: var(--size-13);
+    --spacing-system-14: var(--size-14);
+    --spacing-system-15: var(--size-15);
+    --spacing-system-16: var(--size-16);
+    --spacing-system-18: var(--size-18);
+    --spacing-system-20: var(--size-20);
+    --spacing-system-22: var(--size-22);
+    --spacing-system-24: var(--size-24);
+    --spacing-system-28: var(--size-28);
+    --spacing-system-32: var(--size-32);
+    --spacing-system-44: var(--size-44);
+    --spacing-system-48: var(--size-48);
+    --spacing-system-56: var(--size-56);
+    --spacing-system-88: var(--size-88);
+    --spacing-system-96: var(--size-96);
+    --spacing-system-104: var(--size-104);
+    --spacing-system-128: var(--size-128);
+    --spacing-system-160: var(--size-160);
+    --spacing-system-172: var(--size-172);
+    --spacing-system-180: var(--size-180);
+    --spacing-system-188: var(--size-188);
+    --spacing-system-208: var(--size-208);
+    --spacing-system-256: var(--size-256);
+    --spacing-system-320: var(--size-320);
+    --spacing-system-623: var(--size-623);
+    --spacing-system-742: var(--size-742);
+    --spacing-system-871: var(--size-871);
+    --spacing-system-935: var(--size-935);
+
+    --spacing-grid-margin: var(--grid-margin);
+    --spacing-grid-gutter: var(--grid-gutter);
+    --spacing-global-top-margin: var(--template-global-padding-top);
+    --spacing-global-btm-margin: var(--template-global-padding-bottom);
+    --spacing-global-xl-full: var(--template-global-spacing-xl);
+    --spacing-global-xl-half: calc(var(--template-global-spacing-xl) / 2);
+    --spacing-projects-lg-gap: var(--template-projects-spacing-lg);
+
+    --spacing-flex-25: var(--flex-25);
+    --spacing-flex-33: var(--flex-33);
+    --spacing-flex-50: var(--flex-50);
+
+    --spacing-layout-left: var(--layout-left-width);
+    --spacing-layout-right-constrained: var(--layout-right-constrained);
+
+    --spacing-capsize-clearance: var(--capsize-clearance);
+
+    --spacing-main-paragraph-sp-full: var(
+        --typography-body-lg-main-paragraph-spacing
+    );
+
+    --spacing-main-paragraph-sp-half: calc(
+        var(--typography-body-lg-main-paragraph-spacing) / 2
+    );
+
+    /* Spacing Extensions - Atoms */
+    --spacing-tag-padding-x: var(--atom-projects-category-tag-padding-x);
+    --spacing-tag-padding-y: var(--atom-projects-category-tag-padding-y);
+
+    --spacing-toggle-height: var(--atom-global-theme-toggle-height);
+    --spacing-toggle-width: var(--atom-global-theme-toggle-width);
+    --spacing-toggle-padding: var(--atom-global-theme-toggle-padding);
+
+    --spacing-subheading-container-pb: var(
+        --atom-project-subheading-container-padding-bottom
+    );
+
+    --spacing-border-hairline: var(--border-width-hairline);
+    --spacing-border-thin: var(--border-width-thin);
+
+    /* Spacing Extensions - Molecules */
+    --spacing-home-featured: var(--molecule-home-featured-h);
+
+    --spacing-nav-gap-full: var(--molecule-global-main-nav-col-gap);
+    --spacing-nav-gap-half: calc(var(--molecule-global-main-nav-col-gap) / 2);
+
+    --spacing-main-list-gap-full: var(
+        --molecule-global-main-list-list-items-row-gap
+    );
+    --spacing-main-list-gap-half: calc(
+        var(--molecule-global-main-list-list-items-row-gap) / 2
+    );
+
+    --spacing-project-partner-gap: var(
+        --molecule-projects-project-partner-row-gap
+    );
+
+    --spacing-project-partner-names-gap: var(
+        --molecule-projects-project-partner-names-row-gap
+    );
+
+    --spacing-project-result-gap: var(
+        --molecule-projects-project-result-row-gap
+    );
+
+    --spacing-project-subsection-gap: var(
+        --molecule-project-subsection-row-gap
+    );
+
+    --spacing-taxonomy-col-gap: var(--molecule-projects-taxonomy-col-gap);
+    --spacing-taxonomy-row-gap: var(--molecule-projects-taxonomy-row-gap);
+
+    --spacing-project-partners-gap: var(
+        --molecule-projects-subsections-project-partners-row-gap
+    );
+
+    --spacing-project-results-row-gap: var(
+        --molecule-projects-subsections-project-results-row-gap
+    );
+
+    --spacing-connected-project-gap: var(
+        --molecule-projects-connected-project-row-gap
+    );
+
+    --spacing-projects-preview-multi-gap: var(
+        --molecule-projects-preview-multi-gap
+    );
+
+    --spacing-connected-projects-col-gap: var(
+        --molecule-projects-connected-projects-col-gap
+    );
+    --spacing-connected-projects-row-gap: var(
+        --molecule-projects-connected-projects-row-gap
+    );
+
+    --spacing-info-list-gap: var(--molecule-info-info-list-row-gap);
+
+    --spacing-info-experience-gap: var(--molecule-info-experience-row-gap);
+
+    --spacing-info-list-section-content-gap: var(
+        --molecule-info-section-content-info-list-row-gap
+    );
+
+    --spacing-experience-list-section-content-gap: var(
+        --molecule-info-section-content-experience-list-row-gap
+    );
+
+    /* Spacing Extensions - Organisms */
+    --spacing-projects-meta-row-gap: var(--organism-projects-meta-row-gap);
+    --spacing-projects-meta-col-gap: var(--organism-projects-meta-col-gap);
+
+    --spacing-featured-project-gap: var(
+        --organism-projects-featured-project-gap
+    );
+
+    --spacing-featured-project-pb: var(
+        --organism-projects-featured-project-padding-bottom
+    );
+
+    --spacing-project-heading-group-gap: var(
+        --organism-project-section-heading-group-row-gap
+    );
+
+    --spacing-project-section-main-gap: var(
+        --organism-project-section-main-row-gap
+    );
+
+    --spacing-project-section-gap: var(--organism-project-section-row-gap);
+
+    --spacing-connected-work-gap: var(
+        --organism-projects-connected-work-row-gap
+    );
+
+    --spacing-info-section-row-gap: var(--organism-info-info-section-row-gap);
+
+    /* Spacing Extensions - Templates */
+    --spacing-showcase-row-gap: var(
+        --template-projects-project-main-showcase-row-gap
+    );
+    --spacing-projects-row-gap-base: var(--template-projects-row-gap-base);
+    --spacing-projects-row-gap-sm: var(--template-projects-row-gap-sm);
+
+    --spacing-work-main-row-gap: var(--template-projects-work-main-row-gap);
+
+    --spacing-info-main-row-gap: var(--template-info-info-main-row-gap);
+
+    --spacing-home-row-gap-base: var(--template-home-row-gap-base);
+
+    /* Radius Extensions */
+    --radius-pill: var(--radius-pill);
+    --radius-base: var(--radius-base);
+
+    /* Aspect Ratio Extensions */
+    --aspect-cinema: 1.85 / 1;
+    --aspect-square: 1 / 1;
+    --aspect-anamorphic: 2.39 / 1;
+    --aspect-2-1: 2 / 1;
+    --aspect-3-1: 3 / 1;
+    --aspect-ig: 4 / 5;
+    --aspect-85-11: 8.5 / 11;
+    --aspect-9-16: 9 / 16;
+    --aspect-golden: 1.618 / 1;
+    --aspect-sq-3: 1.732 / 1;
+    --aspect-3-2: 3 / 2;
+    --aspect-silver-iso: 1.414 / 1;
+    --aspect-4-3: 4 / 3;
+    --aspect-sq-5: 2.236 / 1;
+    --aspect-16-9: 16 / 9;
+    --aspect-21-9: 21 / 9;
+    --aspect-golden-vert: 1 / 1.618;
+    --aspect-5-4: 5 / 4;
+    --aspect-7-5: 7 / 5;
+    --aspect-a4: 7 / 5;
+    --aspect-2-3: 2 / 3;
 }
