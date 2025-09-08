@@ -1,1 +1,1 @@
-[GEORGE ZIKOS](https://george-zikos.com)
+[george-zikos.com](https://george-zikos.com)
