@@ -154,7 +154,7 @@
         --radius-base-md-lg: var(--radius-10);
         --radius-base-md: var(--radius-10);
         --radius-base-sm: var(--radius-10);
-        --radius-base-xs: var(--radius-10);
+        --radius-base-xs: var(--radius-8);
         --radius-base-xxs: var(--radius-8);
         --radius-base-tiny: var(--radius-7);
         /* Responsive */
@@ -230,18 +230,25 @@
     }
 
     /* Link Styles */
-    [data-element="project-partner__name"] a, [data-element="project-main__background"] a, [data-element="project-section__body"] a {
+    [data-element="project-partner__name"] a,
+    [data-element="project-main__background"] a,
+    [data-element="project-section__body"] a {
         text-decoration-thickness: var(
             --typography-link-base-underline-thickness
         ) !important;
-        text-underline-offset: var(--typography-link-base-underline-offset) !important;
+        text-underline-offset: var(
+            --typography-link-base-underline-offset
+        ) !important;
     }
 
-    [data-element="section-content-experience__link"], [data-element="project-section__link"] {
+    [data-element="section-content-experience__link"],
+    [data-element="project-section__link"] {
         text-decoration-thickness: var(
             --typography-link-cta-underline-thickness
         ) !important;
-        text-underline-offset: var(--typography-link-cta-underline-offset) !important;
+        text-underline-offset: var(
+            --typography-link-cta-underline-offset
+        ) !important;
     }
 }
 
@@ -2107,7 +2114,7 @@
             }
         }
     }
-    
+
     /* xxs */
     @media (min-width: 375px) {
         [data-modifier="main-list--numbered"] {
