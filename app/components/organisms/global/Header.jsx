@@ -4,14 +4,15 @@ import ThemeToggle from "../../atoms/global/ThemeToggle";
 export default function Header({
     navigationLinks = [],
     currentPath = "",
+    showNav = true, // Add this prop with default true
     className = "",
-    ...rest // Capture all other props
+    ...rest
 }) {
     return (
         <header
             className={`flex w-full justify-between ${className}`}
             data-block="global-header"
-            {...rest} // Spread additional props to the header element
+            {...rest}
         >
             <div
                 className="pr-nav-gap-full sm:gap-x-grid-gutter flex w-full items-center justify-between sm:w-auto sm:pr-[0px]"
@@ -29,7 +30,12 @@ export default function Header({
                         George Zikos
                     </a>
                 </h1>
-                <MainNav links={navigationLinks} currentPath={currentPath} />
+                {showNav && (
+                    <MainNav
+                        links={navigationLinks}
+                        currentPath={currentPath}
+                    />
+                )}
             </div>
             <ThemeToggle />
         </header>
