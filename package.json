@@ -15,8 +15,10 @@
     "@contentful/rich-text-react-renderer": "^16.1.0",
     "contentful": "^11.7.15",
     "next": "15.3.4",
+    "plaiceholder": "^3.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

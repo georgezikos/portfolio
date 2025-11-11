@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { getAspectRatioClass } from "@/lib/utils";
 
 export default function FeaturedProjects({
@@ -62,23 +63,38 @@ export default function FeaturedProjects({
     ],
 }) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isMounted, setIsMounted] = useState(false); // ADD THIS LINE
     const carouselRef = useRef(null);
     const announceRef = useRef(null);
+    const videoRefs = useRef({});
 
-    // Use provided projects or fallback to default placeholders
     const slides = projects.length > 0 ? projects : fallbackProjects;
-    // Add after line 69
-    console.log("Slides data:", slides);
-    console.log("First slide:", slides[0]);
-    const goToPrevious = () => {
+
+    // Helper to check if a slide should be rendered (current + adjacent)
+    const shouldRenderSlide = useCallback(
+        (index) => {
+            const prevIndex =
+                currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+            const nextIndex =
+                currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+            return (
+                index === currentSlide ||
+                index === prevIndex ||
+                index === nextIndex
+            );
+        },
+        [currentSlide, slides.length],
+    );
+
+    const goToPrevious = useCallback(() => {
         setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-    };
+    }, [slides.length]);
 
-    const goToNext = () => {
+    const goToNext = useCallback(() => {
         setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    };
+    }, [slides.length]);
 
-    // Keyboard navigation - works immediately without focus requirement
+    // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e) => {
             switch (e.key) {
@@ -103,7 +119,7 @@ export default function FeaturedProjects({
 
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
-    }, [slides.length]);
+    }, [goToPrevious, goToNext, slides.length]);
 
     // Announce slide changes
     useEffect(() => {
@@ -111,6 +127,28 @@ export default function FeaturedProjects({
             announceRef.current.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
         }
     }, [currentSlide, slides.length]);
+
+    // ADD THIS NEW useEffect:
+    // Set mounted state after hydration
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    // Manage video playback - only play current slide
+    useEffect(() => {
+        Object.keys(videoRefs.current).forEach((slideId) => {
+            const video = videoRefs.current[slideId];
+            const slideIndex = slides.findIndex((s) => s.id === slideId);
+            if (video) {
+                if (slideIndex === currentSlide) {
+                    video.currentTime = 0; // Reset to beginning
+                    video.play().catch(() => {}); // Ignore autoplay failures
+                } else {
+                    video.pause();
+                }
+            }
+        });
+    }, [currentSlide, slides]);
 
     return (
         <section
@@ -130,67 +168,101 @@ export default function FeaturedProjects({
             />
 
             {/* Slide content */}
-            {slides.map((slide, index) => (
-                <div
-                    key={slide.id}
-                    role="group"
-                    aria-roledescription="slide"
-                    aria-label={`Slide ${index + 1} of ${slides.length}`}
-                    aria-hidden={index !== currentSlide}
-                    className={`absolute inset-[0] z-0 flex h-full w-full items-center justify-center ${
-                        index === currentSlide ? "block" : "hidden"
-                    }`}
-                >
-                    <div
-                        className={`${getAspectRatioClass(slide.aspectRatio)} overflow-hidden`}
-                        style={{
-                            maxWidth: "100%",
-                            maxHeight: "100%",
-                        }}
-                    >
-                        {slide.type === "Image" ? (
-                            <img
-                                src={
-                                    slide.asset.url.startsWith("http")
-                                        ? slide.asset.url
-                                        : `https:${slide.asset.url}`
-                                }
-                                alt={slide.altText}
-                                className="rounded-base block h-full w-full object-contain"
-                            />
-                        ) : slide.type === "Video" ? (
-                            <video
-                                src={
-                                    slide.asset.url.startsWith("http")
-                                        ? slide.asset.url
-                                        : `https:${slide.asset.url}`
-                                }
-                                className="rounded-base block h-full w-full object-contain"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                            />
-                        ) : null}
-                    </div>
-                </div>
-            ))}
+            {slides.map((slide, index) => {
+                // Only conditionally remove slides after hydration to avoid mismatch
+                if (isMounted && !shouldRenderSlide(index)) {
+                    return null;
+                }
 
-            {/* Navigation overlay - invisible clickable areas */}
+                return (
+                    <div
+                        key={slide.id}
+                        role="group"
+                        aria-roledescription="slide"
+                        aria-label={`Slide ${index + 1} of ${slides.length}`}
+                        aria-hidden={index !== currentSlide}
+                        className={`absolute inset-[0] z-0 flex h-full w-full items-center justify-center ${
+                            index === currentSlide ? "" : "hidden"
+                        }`}
+                    >
+                        <div
+                            className={`${getAspectRatioClass(slide.aspectRatio)} relative flex max-h-full w-full items-center justify-center overflow-hidden`}
+                        >
+                            {slide.type === "Image" ? (
+                                <Image
+                                    src={(() => {
+                                        const url =
+                                            slide.optimizedUrl ||
+                                            slide.asset.url;
+                                        return url.startsWith("http")
+                                            ? url
+                                            : `https:${url}`;
+                                    })()}
+                                    alt={slide.altText}
+                                    width={slide.asset.width}
+                                    height={slide.asset.height}
+                                    className="rounded-base h-full w-auto object-contain"
+                                    priority={index === currentSlide}
+                                    placeholder={
+                                        slide.blurUrl ? "blur" : "empty"
+                                    }
+                                    blurDataURL={
+                                        slide.blurUrl
+                                            ? slide.blurUrl.startsWith("http")
+                                                ? slide.blurUrl
+                                                : `https:${slide.blurUrl}`
+                                            : undefined
+                                    }
+                                    sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
+                                />
+                            ) : slide.type === "Video" ? (
+                                <video
+                                    ref={(el) => {
+                                        if (el)
+                                            videoRefs.current[slide.id] = el;
+                                    }}
+                                    src={
+                                        !isMounted || shouldRenderSlide(index)
+                                            ? slide.asset.url.startsWith("http")
+                                                ? slide.asset.url
+                                                : `https:${slide.asset.url}`
+                                            : undefined
+                                    }
+                                    poster={(() => {
+                                        const posterSrc =
+                                            slide.posterUrl || slide.blurUrl;
+                                        if (!posterSrc) return undefined;
+                                        return posterSrc.startsWith("http")
+                                            ? posterSrc
+                                            : `https:${posterSrc}`;
+                                    })()}
+                                    className="rounded-base h-full w-auto object-contain"
+                                    muted
+                                    loop
+                                    playsInline
+                                    preload={
+                                        index === currentSlide
+                                            ? "auto"
+                                            : "metadata"
+                                    }
+                                />
+                            ) : null}
+                        </div>
+                    </div>
+                );
+            })}
+
+            {/* Navigation overlay */}
             <div className="absolute inset-[0] z-10 flex">
-                {/* Left half - Previous */}
                 <button
                     onClick={goToPrevious}
-                    className="h-full w-1/2 cursor-w-resize focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                    className="h-full w-1/2 cursor-w-resize focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     aria-label="Previous slide"
-                    aria-controls={`slide-${currentSlide}`}
                 />
-                {/* Right half - Next */}
                 <button
                     onClick={goToNext}
-                    className="h-full w-1/2 cursor-e-resize focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                    className="h-full w-1/2 cursor-e-resize focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     aria-label="Next slide"
-                    aria-controls={`slide-${currentSlide}`}
                 />
             </div>
         </section>
