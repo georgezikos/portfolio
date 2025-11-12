@@ -63,24 +63,29 @@ export default function FeaturedProjects({
     ],
 }) {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [isMounted, setIsMounted] = useState(false); // ADD THIS LINE
+    const [isMounted, setIsMounted] = useState(false);
+    const [videoLoadedStates, setVideoLoadedStates] = useState({});
     const carouselRef = useRef(null);
     const announceRef = useRef(null);
     const videoRefs = useRef({});
 
     const slides = projects.length > 0 ? projects : fallbackProjects;
 
-    // Helper to check if a slide should be rendered (current + adjacent)
+    // Helper to check if a slide should be rendered (current + 2 before + 2 after)
     const shouldRenderSlide = useCallback(
         (index) => {
-            const prevIndex =
-                currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-            const nextIndex =
-                currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+            // Calculate indices with wrapping
+            const prev1 = (currentSlide - 1 + slides.length) % slides.length;
+            const prev2 = (currentSlide - 2 + slides.length) % slides.length;
+            const next1 = (currentSlide + 1) % slides.length;
+            const next2 = (currentSlide + 2) % slides.length;
+
             return (
                 index === currentSlide ||
-                index === prevIndex ||
-                index === nextIndex
+                index === prev1 ||
+                index === prev2 ||
+                index === next1 ||
+                index === next2
             );
         },
         [currentSlide, slides.length],
@@ -93,6 +98,28 @@ export default function FeaturedProjects({
     const goToNext = useCallback(() => {
         setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, [slides.length]);
+
+    const handleVideoCanPlay = useCallback((slideId) => {
+        setVideoLoadedStates((prev) => ({ ...prev, [slideId]: true }));
+    }, []);
+
+    // Reset loaded state for videos that are no longer in render range
+    useEffect(() => {
+        const renderedSlideIds = slides
+            .filter((_, index) => shouldRenderSlide(index))
+            .map((slide) => slide.id);
+
+        // Reset loaded state for any video not in the current render range
+        setVideoLoadedStates((prev) => {
+            const newState = { ...prev };
+            Object.keys(newState).forEach((slideId) => {
+                if (!renderedSlideIds.includes(slideId)) {
+                    delete newState[slideId];
+                }
+            });
+            return newState;
+        });
+    }, [currentSlide, slides, shouldRenderSlide]);
 
     // Keyboard navigation
     useEffect(() => {
@@ -186,7 +213,7 @@ export default function FeaturedProjects({
                         }`}
                     >
                         <div
-                            className={`${getAspectRatioClass(slide.aspectRatio)} relative flex max-h-full w-full items-center justify-center overflow-hidden`}
+                            className={`${getAspectRatioClass(slide.aspectRatio)} relative max-h-full w-full overflow-hidden`}
                         >
                             {slide.type === "Image" ? (
                                 <Image
@@ -201,7 +228,7 @@ export default function FeaturedProjects({
                                     alt={slide.altText}
                                     width={slide.asset.width}
                                     height={slide.asset.height}
-                                    className="rounded-base h-full w-auto object-contain"
+                                    className="rounded-base mx-auto h-full w-auto object-contain"
                                     priority={index === currentSlide}
                                     placeholder={
                                         slide.blurUrl ? "blur" : "empty"
@@ -216,36 +243,56 @@ export default function FeaturedProjects({
                                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
                                 />
                             ) : slide.type === "Video" ? (
-                                <video
-                                    ref={(el) => {
-                                        if (el)
-                                            videoRefs.current[slide.id] = el;
-                                    }}
-                                    src={
-                                        !isMounted || shouldRenderSlide(index)
-                                            ? slide.asset.url.startsWith("http")
-                                                ? slide.asset.url
-                                                : `https:${slide.asset.url}`
-                                            : undefined
-                                    }
-                                    poster={(() => {
-                                        const posterSrc =
-                                            slide.posterUrl || slide.blurUrl;
-                                        if (!posterSrc) return undefined;
-                                        return posterSrc.startsWith("http")
-                                            ? posterSrc
-                                            : `https:${posterSrc}`;
-                                    })()}
-                                    className="rounded-base h-full w-auto object-contain"
-                                    muted
-                                    loop
-                                    playsInline
-                                    preload={
-                                        index === currentSlide
-                                            ? "auto"
-                                            : "metadata"
-                                    }
-                                />
+                                <div className="absolute inset-[0] flex items-center justify-center">
+                                    {/* Blur placeholder - renders immediately */}
+                                    {slide.posterBlurDataUrl && (
+                                        <img
+                                            src={slide.posterBlurDataUrl}
+                                            alt=""
+                                            className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
+                                                videoLoadedStates[slide.id]
+                                                    ? "opacity-0"
+                                                    : "opacity-100"
+                                            }`}
+                                            aria-hidden="true"
+                                        />
+                                    )}
+
+                                    {/* Actual video */}
+                                    <video
+                                        ref={(el) => {
+                                            if (el)
+                                                videoRefs.current[slide.id] =
+                                                    el;
+                                        }}
+                                        src={
+                                            !isMounted ||
+                                            shouldRenderSlide(index)
+                                                ? slide.asset.url.startsWith(
+                                                      "http",
+                                                  )
+                                                    ? slide.asset.url
+                                                    : `https:${slide.asset.url}`
+                                                : undefined
+                                        }
+                                        onCanPlay={() =>
+                                            handleVideoCanPlay(slide.id)
+                                        }
+                                        className={`rounded-base relative mx-auto h-full w-auto object-contain transition-opacity duration-300 ${
+                                            videoLoadedStates[slide.id]
+                                                ? "opacity-100"
+                                                : "opacity-0"
+                                        }`}
+                                        muted
+                                        loop
+                                        playsInline
+                                        preload={
+                                            index === currentSlide
+                                                ? "auto"
+                                                : "metadata"
+                                        }
+                                    />
+                                </div>
                             ) : null}
                         </div>
                     </div>
