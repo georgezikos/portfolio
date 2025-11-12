@@ -259,11 +259,24 @@ export default function FeaturedProjects({
                                     )}
 
                                     {/* Actual video */}
+                                    {/* Actual video */}
+                                    {/* Actual video */}
                                     <video
                                         ref={(el) => {
-                                            if (el)
+                                            if (el) {
                                                 videoRefs.current[slide.id] =
                                                     el;
+                                                // Safari may have video cached and ready - check readyState
+                                                // Only set loaded state if not already set (prevent infinite loop)
+                                                if (
+                                                    el.readyState >= 3 &&
+                                                    !videoLoadedStates[slide.id]
+                                                ) {
+                                                    handleVideoCanPlay(
+                                                        slide.id,
+                                                    );
+                                                }
+                                            }
                                         }}
                                         src={
                                             !isMounted ||
