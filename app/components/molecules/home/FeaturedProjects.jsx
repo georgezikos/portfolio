@@ -64,7 +64,7 @@ export default function FeaturedProjects({
 }) {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isMounted, setIsMounted] = useState(false);
-    const [videoLoadedStates, setVideoLoadedStates] = useState({});
+    const [mediaLoadedStates, setMediaLoadedStates] = useState({});
     const carouselRef = useRef(null);
     const announceRef = useRef(null);
     const videoRefs = useRef({});
@@ -100,26 +100,15 @@ export default function FeaturedProjects({
     }, [slides.length]);
 
     const handleVideoCanPlay = useCallback((slideId) => {
-        setVideoLoadedStates((prev) => ({ ...prev, [slideId]: true }));
+        setMediaLoadedStates((prev) => ({ ...prev, [slideId]: true }));
     }, []);
 
-    // Reset loaded state for videos that are no longer in render range
-    useEffect(() => {
-        const renderedSlideIds = slides
-            .filter((_, index) => shouldRenderSlide(index))
-            .map((slide) => slide.id);
+    const handleImageLoad = useCallback((slideId) => {
+        setMediaLoadedStates((prev) => ({ ...prev, [slideId]: true }));
+    }, []);
 
-        // Reset loaded state for any video not in the current render range
-        setVideoLoadedStates((prev) => {
-            const newState = { ...prev };
-            Object.keys(newState).forEach((slideId) => {
-                if (!renderedSlideIds.includes(slideId)) {
-                    delete newState[slideId];
-                }
-            });
-            return newState;
-        });
-    }, [currentSlide, slides, shouldRenderSlide]);
+    // Note: We don't reset loaded states when slides leave render range
+    // This preserves the loaded state for cached images, preventing unnecessary blur transitions
 
     // Keyboard navigation
     useEffect(() => {
@@ -216,32 +205,55 @@ export default function FeaturedProjects({
                             className={`${getAspectRatioClass(slide.aspectRatio)} relative max-h-full w-full overflow-hidden`}
                         >
                             {slide.type === "Image" ? (
-                                <Image
-                                    src={(() => {
-                                        const url =
-                                            slide.optimizedUrl ||
-                                            slide.asset.url;
-                                        return url.startsWith("http")
-                                            ? url
-                                            : `https:${url}`;
-                                    })()}
-                                    alt={slide.altText}
-                                    width={slide.asset.width}
-                                    height={slide.asset.height}
-                                    className="rounded-base mx-auto h-full w-auto object-contain"
-                                    priority={index === currentSlide}
-                                    placeholder={
-                                        slide.blurUrl ? "blur" : "empty"
-                                    }
-                                    blurDataURL={
-                                        slide.blurUrl
-                                            ? slide.blurUrl.startsWith("http")
-                                                ? slide.blurUrl
-                                                : `https:${slide.blurUrl}`
-                                            : undefined
-                                    }
-                                    sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
-                                />
+                                <div className="absolute inset-[0] flex items-center justify-center">
+                                    {/* Blur placeholder - renders immediately, hidden if image already loaded */}
+                                    {!mediaLoadedStates[slide.id] && (
+                                        <img
+                                            src={(() => {
+                                                const url =
+                                                    slide.optimizedUrl ||
+                                                    slide.asset.url;
+                                                const fullUrl = url.startsWith(
+                                                    "http",
+                                                )
+                                                    ? url
+                                                    : `https:${url}`;
+                                                // Generate tiny blur version using Contentful's image API
+                                                const separator =
+                                                    fullUrl.includes("?")
+                                                        ? "&"
+                                                        : "?";
+                                                return `${fullUrl}${separator}w=20&q=20&fm=jpg`;
+                                            })()}
+                                            alt=""
+                                            className="rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500"
+                                            aria-hidden="true"
+                                        />
+                                    )}
+
+                                    {/* Actual image */}
+                                    <Image
+                                        src={(() => {
+                                            const url =
+                                                slide.optimizedUrl ||
+                                                slide.asset.url;
+                                            return url.startsWith("http")
+                                                ? url
+                                                : `https:${url}`;
+                                        })()}
+                                        alt={slide.altText}
+                                        width={slide.asset.width}
+                                        height={slide.asset.height}
+                                        className={`rounded-base relative mx-auto h-full w-auto object-contain transition-opacity duration-300 ${
+                                            mediaLoadedStates[slide.id]
+                                                ? "opacity-100"
+                                                : "opacity-0"
+                                        }`}
+                                        priority={index === currentSlide}
+                                        onLoad={() => handleImageLoad(slide.id)}
+                                        sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
+                                    />
+                                </div>
                             ) : slide.type === "Video" ? (
                                 <div className="absolute inset-[0] flex items-center justify-center">
                                     {/* Blur placeholder - renders immediately */}
@@ -250,7 +262,7 @@ export default function FeaturedProjects({
                                             src={slide.posterBlurDataUrl}
                                             alt=""
                                             className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
-                                                videoLoadedStates[slide.id]
+                                                mediaLoadedStates[slide.id]
                                                     ? "opacity-0"
                                                     : "opacity-100"
                                             }`}
@@ -270,7 +282,7 @@ export default function FeaturedProjects({
                                                 // Only set loaded state if not already set (prevent infinite loop)
                                                 if (
                                                     el.readyState >= 3 &&
-                                                    !videoLoadedStates[slide.id]
+                                                    !mediaLoadedStates[slide.id]
                                                 ) {
                                                     handleVideoCanPlay(
                                                         slide.id,
@@ -292,7 +304,7 @@ export default function FeaturedProjects({
                                             handleVideoCanPlay(slide.id)
                                         }
                                         className={`rounded-base relative mx-auto h-full w-auto object-contain transition-opacity duration-300 ${
-                                            videoLoadedStates[slide.id]
+                                            mediaLoadedStates[slide.id]
                                                 ? "opacity-100"
                                                 : "opacity-0"
                                         }`}
