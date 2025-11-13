@@ -144,7 +144,6 @@ export default function FeaturedProjects({
         }
     }, [currentSlide, slides.length]);
 
-    // ADD THIS NEW useEffect:
     // Set mounted state after hydration
     useEffect(() => {
         setIsMounted(true);

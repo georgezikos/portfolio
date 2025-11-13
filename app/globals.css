@@ -250,6 +250,13 @@
             --typography-link-cta-underline-offset
         ) !important;
     }
+
+    /* Theme Toggle - CSS-driven position for zero flash */
+    html[data-theme="dark"]
+        button[data-block="theme-toggle"]
+        [data-element="theme-toggle__switch"] {
+        margin-left: auto !important;
+    }
 }
 
 @layer base {

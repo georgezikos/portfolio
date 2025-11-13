@@ -3,58 +3,34 @@
 import { useState, useEffect } from "react";
 
 export default function ThemeToggle() {
-    // Always start with false for consistent server/client initial render
+    // State is only for accessibility (aria-checked), visual position is CSS-driven
     const [isChecked, setIsChecked] = useState(false);
-    const [isInitialized, setIsInitialized] = useState(false);
 
-    // Function to get system theme preference
-    const getSystemThemePreference = () => {
+    // Function to get OS preference
+    const getSystemPreference = () => {
         if (typeof window === "undefined") return false;
-
         try {
             return window.matchMedia("(prefers-color-scheme: dark)").matches;
         } catch (error) {
-            console.warn("Error detecting system theme preference:", error);
             return false;
         }
     };
 
-    // Function to save theme preference with expiration
+    // Function to save theme preference (simple string, no expiration)
     const saveThemePreference = (theme) => {
         try {
-            const expirationTime = Date.now() + 24 * 60 * 60 * 1000; // 24 hours from now
-            const themeData = {
-                value: theme,
-                expires: expirationTime,
-            };
-            localStorage.setItem("theme", JSON.stringify(themeData));
+            localStorage.setItem("theme", theme);
         } catch (error) {
             console.warn("Error saving theme preference:", error);
         }
     };
 
-    // Function to get theme preference (checks expiration)
+    // Function to get theme preference (simple string)
     const getThemePreference = () => {
         try {
-            const savedData = localStorage.getItem("theme");
-            if (!savedData) return null;
-
-            const themeData = JSON.parse(savedData);
-
-            // Check if preference has expired
-            if (Date.now() > themeData.expires) {
-                console.log(
-                    "Theme preference expired, removing and falling back to system",
-                );
-                localStorage.removeItem("theme");
-                return null;
-            }
-
-            return themeData.value;
+            return localStorage.getItem("theme");
         } catch (error) {
             console.warn("Error reading theme preference:", error);
-            // If there's an error parsing, clean up the corrupted data
-            localStorage.removeItem("theme");
             return null;
         }
     };
@@ -71,104 +47,29 @@ export default function ThemeToggle() {
         }
     };
 
-    // Initialize theme on mount
+    // Sync state with theme on mount - theme is already applied by inline script
+    // State is only for accessibility, visual position is CSS-driven
     useEffect(() => {
-        const initializeTheme = () => {
-            try {
-                const savedTheme = getThemePreference();
-
-                if (savedTheme === "dark") {
-                    // User has explicitly set dark mode (and it hasn't expired)
-                    console.log("Using saved dark preference");
-                    setIsChecked(true);
-                    applyTheme(true);
-                } else if (savedTheme === "light") {
-                    // User has explicitly set light mode (and it hasn't expired)
-                    console.log("Using saved light preference");
-                    setIsChecked(false);
-                    applyTheme(false);
-                } else {
-                    // No saved preference or expired, use system preference
-                    const systemPrefersDark = getSystemThemePreference();
-                    console.log(
-                        "Using system preference:",
-                        systemPrefersDark ? "dark" : "light",
-                    );
-                    setIsChecked(systemPrefersDark);
-                    applyTheme(systemPrefersDark);
-                }
-
-                setIsInitialized(true);
-            } catch (error) {
-                console.warn("Error initializing theme:", error);
-                // Fallback to light mode
-                setIsChecked(false);
-                applyTheme(false);
-                setIsInitialized(true);
-            }
-        };
-
-        // Small delay to ensure proper hydration
-        const timeoutId = setTimeout(initializeTheme, 100);
-
-        return () => clearTimeout(timeoutId);
-    }, []);
-
-    // Listen for system theme changes
-    useEffect(() => {
-        if (!isInitialized) return;
-
-        let mediaQuery;
-
         try {
-            mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+            const osPrefersDark = getSystemPreference();
+            const savedTheme = getThemePreference();
 
-            const handleSystemThemeChange = (e) => {
-                try {
-                    // Only apply system theme if user hasn't set an explicit preference (or it's expired)
-                    const savedTheme = getThemePreference();
-                    if (!savedTheme) {
-                        console.log(
-                            "System theme changed to:",
-                            e.matches ? "dark" : "light",
-                        );
-                        setIsChecked(e.matches);
-                        applyTheme(e.matches);
-                    }
-                } catch (error) {
-                    console.warn("Error handling system theme change:", error);
-                }
-            };
-
-            // Use both addEventListener and addListener for better browser support
-            if (mediaQuery.addEventListener) {
-                mediaQuery.addEventListener("change", handleSystemThemeChange);
-            } else if (mediaQuery.addListener) {
-                // Fallback for older browsers
-                mediaQuery.addListener(handleSystemThemeChange);
+            // Smart Sync: Check if user has overridden OS preference
+            if (
+                savedTheme &&
+                savedTheme !== (osPrefersDark ? "dark" : "light")
+            ) {
+                // User has manually overridden OS
+                setIsChecked(savedTheme === "dark");
+            } else {
+                // Follow OS preference
+                setIsChecked(osPrefersDark);
             }
-
-            return () => {
-                try {
-                    if (mediaQuery.removeEventListener) {
-                        mediaQuery.removeEventListener(
-                            "change",
-                            handleSystemThemeChange,
-                        );
-                    } else if (mediaQuery.removeListener) {
-                        mediaQuery.removeListener(handleSystemThemeChange);
-                    }
-                } catch (error) {
-                    console.warn(
-                        "Error removing theme change listener:",
-                        error,
-                    );
-                }
-            };
         } catch (error) {
-            console.warn("Error setting up system theme listener:", error);
+            console.warn("Error syncing theme state:", error);
+            setIsChecked(false);
         }
-    }, [isInitialized]);
+    }, []);
 
     const handleToggle = () => {
         const newCheckedState = !isChecked;
@@ -189,17 +90,16 @@ export default function ThemeToggle() {
 
     return (
         <button
+            suppressHydrationWarning
             role="switch"
             aria-checked={isChecked}
             aria-label="toggle dark mode"
             onClick={handleToggle}
-            className={`bg-surface-secondary rounded-pill h-toggle-height w-toggle-width shrink-0 p-toggle-padding flex cursor-pointer ${
-                isChecked ? "justify-end" : "justify-start"
-            }`}
+            className="bg-surface-secondary rounded-pill h-toggle-height w-toggle-width p-toggle-padding flex shrink-0 cursor-pointer justify-start"
             data-block="theme-toggle"
         >
             <span
-                className="bg-surface-tertiary inline-block aspect-square h-full rounded-full"
+                className="bg-surface-tertiary aspect-square h-full rounded-full transition-all duration-200 ease-out"
                 data-element="theme-toggle__switch"
             ></span>
         </button>
