@@ -99,7 +99,7 @@ export default function ThemeToggle() {
             data-block="theme-toggle"
         >
             <span
-                className="bg-surface-tertiary aspect-square h-full rounded-full transition-all duration-200 ease-out"
+                className="bg-surface-tertiary aspect-square h-full rounded-full"
                 data-element="theme-toggle__switch"
             ></span>
         </button>

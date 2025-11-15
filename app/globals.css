@@ -250,13 +250,6 @@
             --typography-link-cta-underline-offset
         ) !important;
     }
-
-    /* Theme Toggle - CSS-driven position for zero flash */
-    html[data-theme="dark"]
-        button[data-block="theme-toggle"]
-        [data-element="theme-toggle__switch"] {
-        margin-left: auto !important;
-    }
 }
 
 @layer base {
@@ -280,12 +273,46 @@
         text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
         height: 100%;
+        transition:
+            background-color 200ms ease,
+            color 200ms ease;
     }
 
     body {
         background: var(--surface-primary);
         color: var(--text-primary);
         height: 100%;
+        transition:
+            background-color 200ms ease,
+            color 200ms ease;
+    }
+
+    * {
+        transition:
+            background-color 200ms ease,
+            color 200ms ease,
+            border-color 200ms ease;
+    }
+
+    /* Theme Toggle - CSS-driven position for smooth transitions */
+    [data-element="theme-toggle__switch"] {
+        transform: translateX(0);
+        transition:
+            transform 200ms ease 100ms,
+            background-color 200ms ease,
+            color 200ms ease,
+            border-color 200ms ease;
+    }
+
+    html[data-theme="dark"]
+        button[data-block="theme-toggle"]
+        [data-element="theme-toggle__switch"] {
+        transform: translateX(
+            calc(
+                var(--atom-global-theme-toggle-width) -
+                    var(--atom-global-theme-toggle-height)
+            )
+        );
     }
 
     #__next {
