@@ -205,32 +205,23 @@ export default function FeaturedProjects({
                         >
                             {slide.type === "Image" ? (
                                 <div className="absolute inset-[0] flex items-center justify-center">
-                                    {/* Blur placeholder - renders immediately, hidden if image already loaded */}
-                                    {!mediaLoadedStates[slide.id] && (
+                                    {/* SVG blur placeholder - renders immediately with same dimensions as final image */}
+                                    {slide.imageBlurDataUrl && (
                                         <img
-                                            src={(() => {
-                                                const url =
-                                                    slide.optimizedUrl ||
-                                                    slide.asset.url;
-                                                const fullUrl = url.startsWith(
-                                                    "http",
-                                                )
-                                                    ? url
-                                                    : `https:${url}`;
-                                                // Generate tiny blur version using Contentful's image API
-                                                const separator =
-                                                    fullUrl.includes("?")
-                                                        ? "&"
-                                                        : "?";
-                                                return `${fullUrl}${separator}w=20&q=20&fm=jpg`;
-                                            })()}
+                                            src={slide.imageBlurDataUrl}
                                             alt=""
-                                            className="rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500"
+                                            width={slide.asset.width}
+                                            height={slide.asset.height}
+                                            className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
+                                                mediaLoadedStates[slide.id]
+                                                    ? "opacity-0"
+                                                    : "opacity-100"
+                                            }`}
                                             aria-hidden="true"
                                         />
                                     )}
 
-                                    {/* Actual image */}
+                                    {/* Actual image - reveals progressively line-by-line over blur */}
                                     <Image
                                         src={(() => {
                                             const url =
@@ -243,11 +234,7 @@ export default function FeaturedProjects({
                                         alt={slide.altText}
                                         width={slide.asset.width}
                                         height={slide.asset.height}
-                                        className={`rounded-base relative mx-auto h-full w-auto object-contain transition-opacity duration-300 ${
-                                            mediaLoadedStates[slide.id]
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        }`}
+                                        className="rounded-base relative mx-auto h-full w-auto object-contain"
                                         priority={index === currentSlide}
                                         onLoad={() => handleImageLoad(slide.id)}
                                         sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
@@ -255,11 +242,13 @@ export default function FeaturedProjects({
                                 </div>
                             ) : slide.type === "Video" ? (
                                 <div className="absolute inset-[0] flex items-center justify-center">
-                                    {/* Blur placeholder - renders immediately */}
+                                    {/* SVG blur placeholder - renders immediately with same dimensions as video */}
                                     {slide.posterBlurDataUrl && (
                                         <img
                                             src={slide.posterBlurDataUrl}
                                             alt=""
+                                            width={slide.asset.width}
+                                            height={slide.asset.height}
                                             className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
                                                 mediaLoadedStates[slide.id]
                                                     ? "opacity-0"
@@ -269,9 +258,7 @@ export default function FeaturedProjects({
                                         />
                                     )}
 
-                                    {/* Actual video */}
-                                    {/* Actual video */}
-                                    {/* Actual video */}
+                                    {/* Actual video - reveals progressively over blur */}
                                     <video
                                         ref={(el) => {
                                             if (el) {
@@ -302,11 +289,7 @@ export default function FeaturedProjects({
                                         onCanPlay={() =>
                                             handleVideoCanPlay(slide.id)
                                         }
-                                        className={`rounded-base relative mx-auto h-full w-auto object-contain transition-opacity duration-300 ${
-                                            mediaLoadedStates[slide.id]
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        }`}
+                                        className="rounded-base relative mx-auto h-full w-auto object-contain"
                                         muted
                                         loop
                                         playsInline
