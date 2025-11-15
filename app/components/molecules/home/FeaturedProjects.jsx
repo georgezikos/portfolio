@@ -221,7 +221,7 @@ export default function FeaturedProjects({
                                         />
                                     )}
 
-                                    {/* Actual image - reveals progressively line-by-line over blur */}
+                                    {/* Actual image - reveals progressively over blur */}
                                     <Image
                                         src={(() => {
                                             const url =
