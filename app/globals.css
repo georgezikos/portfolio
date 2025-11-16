@@ -199,6 +199,9 @@
 
         --text-primary: var(--color-grey-200);
         --text-secondary: var(--color-grey-500);
+
+        --link-primary-hover: var(--text-secondary);
+        --link-secondary-hover: var(--text-primary);
     }
 
     /* Light Theme Override - explicit light mode */
@@ -212,6 +215,9 @@
 
         --text-primary: var(--color-grey-900);
         --text-secondary: var(--color-grey-750);
+
+        --link-primary-hover: var(--color-grey-500);
+        --link-secondary-hover: var(--color-grey-500);
     }
 
     /* Auto Dark Theme - follows system preference when no explicit theme is set */
@@ -2273,6 +2279,9 @@
 
     --color-text-primary: var(--text-primary);
     --color-text-secondary: var(--text-secondary);
+
+    --color-link-primary-hover: var(--link-primary-hover);
+    --color-link-secondary-hover: var(--link-secondary-hover);
 
     --color-border-primary: var(--border-color-primary);
     --color-border-secondary: var(--border-color-secondary);
