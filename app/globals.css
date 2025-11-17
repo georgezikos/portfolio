@@ -293,6 +293,60 @@
             color 200ms ease;
     }
 
+    /* Text Selection Styling - Inverted theme colors */
+    html[data-theme="light"] ::selection {
+        background-color: var(--color-grey-900);
+        color: var(--color-grey-100);
+        text-shadow: none;
+    }
+
+    html[data-theme="light"] ::-moz-selection {
+        background-color: var(--color-grey-900);
+        color: var(--color-grey-100);
+        text-shadow: none;
+    }
+
+    html[data-theme="dark"] ::selection {
+        background-color: var(--color-grey-100);
+        color: var(--color-grey-900);
+        text-shadow: none;
+    }
+
+    html[data-theme="dark"] ::-moz-selection {
+        background-color: var(--color-grey-100);
+        color: var(--color-grey-900);
+        text-shadow: none;
+    }
+
+    /* Auto theme - follows system preference when no explicit theme is set */
+    @media (prefers-color-scheme: light) {
+        html:not([data-theme]) ::selection {
+            background-color: var(--color-grey-900);
+            color: var(--color-grey-100);
+            text-shadow: none;
+        }
+
+        html:not([data-theme]) ::-moz-selection {
+            background-color: var(--color-grey-900);
+            color: var(--color-grey-100);
+            text-shadow: none;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        html:not([data-theme]) ::selection {
+            background-color: var(--color-grey-100);
+            color: var(--color-grey-900);
+            text-shadow: none;
+        }
+
+        html:not([data-theme]) ::-moz-selection {
+            background-color: var(--color-grey-100);
+            color: var(--color-grey-900);
+            text-shadow: none;
+        }
+    }
+
     * {
         transition:
             background-color 200ms ease,
