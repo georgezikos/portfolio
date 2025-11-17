@@ -1,0 +1,9 @@
+# Block work-in-progress pages from search engines
+User-agent: *
+Allow: /
+Disallow: /work/
+Disallow: /information/
+
+# Sitemap
+Sitemap: https://george-zikos.com/sitemap.xml
+

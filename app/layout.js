@@ -10,29 +10,55 @@ const inter = Inter({
 });
 
 export const metadata = {
+    metadataBase: new URL("https://george-zikos.com"),
     title: "GEORGE ZIKOS",
-    description: "Product design portfolio showcasing UX/UI design work",
+    description:
+        "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+    keywords: [
+        "product designer",
+        "UX designer",
+        "UI designer",
+        "design portfolio",
+        "web developer",
+        "front-end developer",
+    ],
+    authors: [{ name: "George Zikos" }],
+    creator: "George Zikos",
     openGraph: {
-        title: "GEORGE ZIKOS - Product Designer",
-        description: "Product design portfolio showcasing UX/UI design work",
         type: "website",
-        locale: "en_US",
+        locale: "en",
+        url: "https://george-zikos.com",
+        siteName: "George Zikos Portfolio",
+        title: "GEORGE ZIKOS",
+        description:
+            "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+        images: [
+            {
+                url: "/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "George Zikos Portfolio",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "GEORGE ZIKOS - Product Designer",
-        description: "Product design portfolio showcasing UX/UI design work",
+        title: "GEORGE ZIKOS",
+        description:
+            "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+        images: ["/og-image.png"],
     },
-    // metadataBase: new URL('https://yourdomain.com'),
-    // alternates: {
-    //   canonical: '/',
-    // },
-    // other: {
-    //   link: [
-    //     { rel: "preload", href: "/hero-image.jpg", as: "image" }, // Actual hero image
-    //     { rel: "preload", href: "/critical-data.json", as: "fetch" }, // API data
-    //   ]
-    // },
+    alternates: {
+        canonical: "/",
+    },
+    manifest: "/site.webmanifest",
+    icons: {
+        icon: [
+            { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+            { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        ],
+        apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    },
 };
 
 export const viewport = {
@@ -41,9 +67,38 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
+    const personSchema = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "George Zikos",
+        jobTitle: "Product Designer",
+        description:
+            "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+        url: "https://george-zikos.com",
+        sameAs: ["https://ca.linkedin.com/in/george-zikos"],
+        knowsAbout: [
+            "Product Design",
+            "UX Design",
+            "UI Design",
+            "Web Development",
+            "Front-end Development",
+        ],
+        workLocation: {
+            "@type": "Place",
+            address: {
+                "@type": "PostalAddress",
+                addressLocality: "Toronto",
+                addressCountry: "CA",
+            },
+        },
+    };
+
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
+                {/* Preconnect to Contentful CDN for faster image loading */}
+                <link rel="preconnect" href="https://images.ctfassets.net" />
+                <link rel="dns-prefetch" href="https://images.ctfassets.net" />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
@@ -76,6 +131,12 @@ export default function RootLayout({ children }) {
                 }
               })();
             `,
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(personSchema),
                     }}
                 />
             </head>

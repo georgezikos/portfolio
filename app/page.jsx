@@ -8,8 +8,30 @@ export const revalidate = 3600;
 
 // Metadata for SEO and performance
 export const metadata = {
-    title: "Portfolio | Featured Work",
-    description: "Explore featured creative projects and design work",
+    title: "GEORGE ZIKOS",
+    description:
+        "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+    openGraph: {
+        title: "GEORGE ZIKOS",
+        description:
+            "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+        url: "https://george-zikos.com",
+        images: [
+            {
+                url: "/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "George Zikos Portfolio",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "GEORGE ZIKOS",
+        description:
+            "George Zikos is an independent multidisciplinary designer and web developer based in Toronto.",
+        images: ["/og-image.png"],
+    },
 };
 
 export default async function Home() {

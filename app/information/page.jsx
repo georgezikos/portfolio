@@ -123,5 +123,9 @@ export async function generateMetadata() {
     
     return {
         title: pageData.pageTitle,
+        robots: {
+            index: false,
+            follow: false,
+        },
     };
 }

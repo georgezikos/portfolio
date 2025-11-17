@@ -372,6 +372,10 @@ export async function generateMetadata({ params }) {
     if (!project) {
         return {
             title: "Project Not Found",
+            robots: {
+                index: false,
+                follow: false,
+            },
         };
     }
 
@@ -380,5 +384,9 @@ export async function generateMetadata({ params }) {
         description: project.fields.background
             ? `${project.fields.project} by ${project.fields.client}`
             : `${project.fields.project} by ${project.fields.client}`,
+        robots: {
+            index: false,
+            follow: false,
+        },
     };
 }
