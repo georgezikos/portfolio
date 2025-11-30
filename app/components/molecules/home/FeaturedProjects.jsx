@@ -7,6 +7,7 @@ import { getAspectRatioClass } from "@/lib/utils";
 export default function FeaturedProjects({
     projects = [],
     className = "",
+    breakpoint = 1024,
     fallbackProjects = [
         {
             id: "fallback-1",
@@ -64,12 +65,40 @@ export default function FeaturedProjects({
 }) {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isMounted, setIsMounted] = useState(false);
+    const [viewportDetected, setViewportDetected] = useState(false);
+    const [isMobileViewport, setIsMobileViewport] = useState(false);
     const [mediaLoadedStates, setMediaLoadedStates] = useState({});
     const carouselRef = useRef(null);
     const announceRef = useRef(null);
     const videoRefs = useRef({});
 
     const slides = projects.length > 0 ? projects : fallbackProjects;
+
+    // Helper to select the appropriate asset based on viewport and availability
+    const getAssetForSlide = useCallback(
+        (slide) => {
+            // Use mobile asset if viewport is mobile AND mobile asset exists
+            const useMobileAsset = isMobileViewport && slide.mobileAsset;
+
+            return {
+                asset: useMobileAsset ? slide.mobileAsset : slide.asset,
+                type: useMobileAsset ? slide.mobileType : slide.type,
+                aspectRatio: useMobileAsset
+                    ? slide.mobileAspectRatio || slide.aspectRatio
+                    : slide.aspectRatio,
+                imageBlurDataUrl: useMobileAsset
+                    ? slide.mobileImageBlurDataUrl
+                    : slide.imageBlurDataUrl,
+                posterBlurDataUrl: useMobileAsset
+                    ? slide.mobilePosterBlurDataUrl
+                    : slide.posterBlurDataUrl,
+                optimizedUrl: useMobileAsset
+                    ? slide.mobileOptimizedUrl
+                    : slide.optimizedUrl,
+            };
+        },
+        [isMobileViewport],
+    );
 
     // Helper to check if a slide should be rendered (current + 2 before + 2 after)
     const shouldRenderSlide = useCallback(
@@ -144,10 +173,19 @@ export default function FeaturedProjects({
         }
     }, [currentSlide, slides.length]);
 
-    // Set mounted state after hydration
+    // Set mounted state after hydration and detect viewport
     useEffect(() => {
         setIsMounted(true);
-    }, []);
+
+        // Detect viewport size on mount (mount-only, no resize handling)
+        if (typeof window !== "undefined") {
+            const mediaQuery = window.matchMedia(
+                `(max-width: ${breakpoint - 1}px)`,
+            );
+            setIsMobileViewport(mediaQuery.matches);
+            setViewportDetected(true);
+        }
+    }, [breakpoint]);
 
     // Manage video playback - only play current slide
     useEffect(() => {
@@ -184,10 +222,25 @@ export default function FeaturedProjects({
 
             {/* Slide content */}
             {slides.map((slide, index) => {
+                // Wait for viewport detection before rendering to prevent flash
+                if (!viewportDetected) {
+                    return null;
+                }
+
                 // Only conditionally remove slides after hydration to avoid mismatch
                 if (isMounted && !shouldRenderSlide(index)) {
                     return null;
                 }
+
+                // Get the appropriate asset based on viewport
+                const {
+                    asset,
+                    type,
+                    aspectRatio,
+                    imageBlurDataUrl,
+                    posterBlurDataUrl,
+                    optimizedUrl,
+                } = getAssetForSlide(slide);
 
                 return (
                     <div
@@ -201,17 +254,17 @@ export default function FeaturedProjects({
                         }`}
                     >
                         <div
-                            className={`${getAspectRatioClass(slide.aspectRatio)} relative max-h-full w-full overflow-hidden`}
+                            className={`${getAspectRatioClass(aspectRatio)} relative max-h-full w-full overflow-hidden`}
                         >
-                            {slide.type === "Image" ? (
+                            {type === "Image" ? (
                                 <div className="absolute inset-[0] flex items-center justify-center">
                                     {/* SVG blur placeholder - renders immediately with same dimensions as final image */}
-                                    {slide.imageBlurDataUrl && (
+                                    {imageBlurDataUrl && (
                                         <img
-                                            src={slide.imageBlurDataUrl}
+                                            src={imageBlurDataUrl}
                                             alt=""
-                                            width={slide.asset.width}
-                                            height={slide.asset.height}
+                                            width={asset.width}
+                                            height={asset.height}
                                             className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
                                                 mediaLoadedStates[slide.id]
                                                     ? "opacity-0"
@@ -225,30 +278,30 @@ export default function FeaturedProjects({
                                     <Image
                                         src={(() => {
                                             const url =
-                                                slide.optimizedUrl ||
-                                                slide.asset.url;
+                                                optimizedUrl || asset.url;
                                             return url.startsWith("http")
                                                 ? url
                                                 : `https:${url}`;
                                         })()}
                                         alt={slide.altText}
-                                        width={slide.asset.width}
-                                        height={slide.asset.height}
+                                        width={asset.width}
+                                        height={asset.height}
+                                        quality={100}
                                         className="rounded-base relative mx-auto h-full w-auto object-contain"
                                         priority={index === currentSlide}
                                         onLoad={() => handleImageLoad(slide.id)}
                                         sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
                                     />
                                 </div>
-                            ) : slide.type === "Video" ? (
+                            ) : type === "Video" ? (
                                 <div className="absolute inset-[0] flex items-center justify-center">
                                     {/* SVG blur placeholder - renders immediately with same dimensions as video */}
-                                    {slide.posterBlurDataUrl && (
+                                    {posterBlurDataUrl && (
                                         <img
-                                            src={slide.posterBlurDataUrl}
+                                            src={posterBlurDataUrl}
                                             alt=""
-                                            width={slide.asset.width}
-                                            height={slide.asset.height}
+                                            width={asset.width}
+                                            height={asset.height}
                                             className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
                                                 mediaLoadedStates[slide.id]
                                                     ? "opacity-0"
@@ -279,11 +332,9 @@ export default function FeaturedProjects({
                                         src={
                                             !isMounted ||
                                             shouldRenderSlide(index)
-                                                ? slide.asset.url.startsWith(
-                                                      "http",
-                                                  )
-                                                    ? slide.asset.url
-                                                    : `https:${slide.asset.url}`
+                                                ? asset.url.startsWith("http")
+                                                    ? asset.url
+                                                    : `https:${asset.url}`
                                                 : undefined
                                         }
                                         onCanPlay={() =>
