@@ -188,6 +188,7 @@ export default function FeaturedProjects({
     }, [breakpoint]);
 
     // Manage video playback - only play current slide
+    // Around line 190-204, update the dependency array:
     useEffect(() => {
         Object.keys(videoRefs.current).forEach((slideId) => {
             const video = videoRefs.current[slideId];
@@ -201,7 +202,7 @@ export default function FeaturedProjects({
                 }
             }
         });
-    }, [currentSlide, slides]);
+    }, [currentSlide, slides, viewportDetected]); // Add viewportDetected here
 
     return (
         <section
