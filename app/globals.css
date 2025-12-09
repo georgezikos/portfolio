@@ -1097,7 +1097,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-xxs-gap)
+                --molecule-global-main-list-list-counter-xxs-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
@@ -1271,7 +1271,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-xs-gap)
+                --molecule-global-main-list-list-counter-xs-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
@@ -1445,7 +1445,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-sm-gap)
+                --molecule-global-main-list-list-counter-sm-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
@@ -1612,7 +1612,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-md-gap)
+                --molecule-global-main-list-list-counter-md-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
@@ -1776,7 +1776,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-md-lg-gap)
+                --molecule-global-main-list-list-counter-md-lg-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
@@ -1947,7 +1947,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-lg-gap)
+                --molecule-global-main-list-list-counter-lg-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
@@ -2114,7 +2114,7 @@
             );
 
             --molecule-global-main-list-list-counter-gap: var(
-                var(--molecule-global-main-list-list-counter-xl-gap)
+                --molecule-global-main-list-list-counter-xl-gap
             );
 
             --molecule-projects-project-result-row-gap: var(
