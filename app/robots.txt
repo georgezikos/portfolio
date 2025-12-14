@@ -4,6 +4,28 @@ Allow: /
 Disallow: /work/
 Disallow: /information/
 
+# Rate limit aggressive SEO crawlers to reduce bandwidth consumption
+# Crawl-delay specifies seconds between requests
+
+# Ahrefs (SEO tool crawler)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+# Semrush (SEO tool crawler)
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Majestic (backlink checker)
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Dotbot (SEO crawler)
+User-agent: dotbot
+Crawl-delay: 10
+
+# Allow major search engines to crawl normally (no delay)
+# Google, Bing, DuckDuckGo, etc. are not restricted
+
 # Sitemap
 Sitemap: https://george-zikos.com/sitemap.xml
 

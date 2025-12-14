@@ -3,8 +3,9 @@ import Footer from "@/app/components/molecules/global/Footer";
 import FeaturedProjects from "@/app/components/molecules/home/FeaturedProjects";
 import { getFeaturedMedia } from "@/lib/contentful";
 
-// ISR: Revalidate every hour (3600 seconds)
-export const revalidate = 3600;
+// On-demand revalidation only (via Contentful webhook)
+// This prevents automatic hourly rebuilds, saving massive bandwidth
+export const revalidate = false;
 
 // Metadata for SEO and performance
 export const metadata = {
