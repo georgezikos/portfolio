@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import PageTransition from "@/app/components/atoms/global/PageTransition";
+import Script from "next/script";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -141,6 +142,13 @@ export default function RootLayout({ children }) {
                 />
             </head>
             <body className={`${inter.variable}`}>
+                {process.env.NODE_ENV === "production" && (
+                    <Script
+                        strategy="afterInteractive"
+                        src="https://cloud.umami.is/script.js"
+                        data-website-id="42757c2e-0be5-4057-9530-30d7e023ecfe"
+                    />
+                )}
                 <PageTransition />
                 {children}
             </body>
