@@ -147,6 +147,7 @@ export default function RootLayout({ children }) {
                         strategy="afterInteractive"
                         src="https://cloud.umami.is/script.js"
                         data-website-id="42757c2e-0be5-4057-9530-30d7e023ecfe"
+                        data-domains="george-zikos.com,www.george-zikos.com"
                     />
                 )}
                 <PageTransition />
