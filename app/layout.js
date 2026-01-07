@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import PageTransition from "@/app/components/atoms/global/PageTransition";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -142,6 +143,9 @@ export default function RootLayout({ children }) {
                 />
             </head>
             <body className={`${inter.variable}`}>
+                <PageTransition />
+                {children}
+                <SpeedInsights />
                 {process.env.NODE_ENV === "production" && (
                     <Script
                         strategy="afterInteractive"
@@ -150,8 +154,6 @@ export default function RootLayout({ children }) {
                         data-domains="george-zikos.com,www.george-zikos.com"
                     />
                 )}
-                <PageTransition />
-                {children}
             </body>
         </html>
     );
