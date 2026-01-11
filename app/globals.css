@@ -2315,6 +2315,8 @@
 
 @import "./capsize.css";
 
+/* Line-by-line reveal animation for loading states - controlled by JavaScript */
+
 @theme inline {
     --*: initial;
     /* Breakpoints */

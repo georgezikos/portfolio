@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     compress: true, // Enable gzip/brotli compression
+    // Remove console logs in production (except console.error and console.warn for debugging)
+    compiler: {
+        removeConsole:
+            process.env.NODE_ENV === "production"
+                ? {
+                      exclude: ["error", "warn"], // Keep error/warn for production debugging
+                  }
+                : false,
+    },
     images: {
         formats: ["image/avif", "image/webp"], // Prefer AVIF (30% smaller), fallback to WebP
         qualities: [100, 75],
