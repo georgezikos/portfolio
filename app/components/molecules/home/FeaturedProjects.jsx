@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import {
+    useState,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useCallback,
+} from "react";
 import Image from "next/image";
 import { getAspectRatioClass } from "@/lib/utils";
 
@@ -68,6 +74,7 @@ export default function FeaturedProjects({
     const [viewportDetected, setViewportDetected] = useState(false);
     const [isMobileViewport, setIsMobileViewport] = useState(false);
     const [mediaLoadedStates, setMediaLoadedStates] = useState({});
+    const [userInteracted, setUserInteracted] = useState(false);
     const carouselRef = useRef(null);
     const announceRef = useRef(null);
     const videoRefs = useRef({});
@@ -174,7 +181,8 @@ export default function FeaturedProjects({
     }, [currentSlide, slides.length]);
 
     // Set mounted state after hydration and detect viewport
-    useEffect(() => {
+    // Using useLayoutEffect to run synchronously before paint, preventing layout shift
+    useLayoutEffect(() => {
         setIsMounted(true);
 
         // Detect viewport size on mount (mount-only, no resize handling)
@@ -186,6 +194,26 @@ export default function FeaturedProjects({
             setViewportDetected(true);
         }
     }, [breakpoint]);
+
+    // Track user interaction to defer video preloading (performance optimization)
+    useEffect(() => {
+        const handleInteraction = () => setUserInteracted(true);
+
+        // Listen for any user interaction
+        window.addEventListener("click", handleInteraction, { once: true });
+        window.addEventListener("scroll", handleInteraction, { once: true });
+        window.addEventListener("touchstart", handleInteraction, {
+            once: true,
+        });
+        window.addEventListener("keydown", handleInteraction, { once: true });
+
+        return () => {
+            window.removeEventListener("click", handleInteraction);
+            window.removeEventListener("scroll", handleInteraction);
+            window.removeEventListener("touchstart", handleInteraction);
+            window.removeEventListener("keydown", handleInteraction);
+        };
+    }, []);
 
     // Manage video playback - only play current slide
     // Around line 190-204, update the dependency array:
@@ -345,7 +373,9 @@ export default function FeaturedProjects({
                                         muted
                                         loop
                                         playsInline
+                                        decoding="async"
                                         preload={
+                                            userInteracted &&
                                             index === currentSlide
                                                 ? "auto"
                                                 : "metadata"
