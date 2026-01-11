@@ -9,15 +9,6 @@ const inter = Inter({
     variable: "--font-inter",
     weight: "variable",
     display: "swap",
-    adjustFontFallback: true,
-    fallback: [
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Segoe UI",
-        "Roboto",
-        "sans-serif",
-    ],
 });
 
 export const metadata = {
@@ -157,7 +148,7 @@ export default function RootLayout({ children }) {
                 <SpeedInsights />
                 {process.env.NODE_ENV === "production" && (
                     <Script
-                        strategy="lazyOnload"
+                        strategy="afterInteractive"
                         src="https://cloud.umami.is/script.js"
                         data-website-id="42757c2e-0be5-4057-9530-30d7e023ecfe"
                         data-domains="george-zikos.com,www.george-zikos.com"
