@@ -71,6 +71,8 @@ export default function FeaturedProjects({
     const carouselRef = useRef(null);
     const announceRef = useRef(null);
     const videoRefs = useRef({});
+    const cleanupTimerRef = useRef(null);
+    const navigationThrottleRef = useRef(false);
 
     const slides = projects.length > 0 ? projects : fallbackProjects;
 
@@ -113,10 +115,24 @@ export default function FeaturedProjects({
     );
 
     const goToPrevious = useCallback(() => {
+        // Throttle navigation to prevent rapid clicking crashes
+        if (navigationThrottleRef.current) return;
+        navigationThrottleRef.current = true;
+        setTimeout(() => {
+            navigationThrottleRef.current = false;
+        }, 100); // 100ms throttle
+
         setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
     }, [slides.length]);
 
     const goToNext = useCallback(() => {
+        // Throttle navigation to prevent rapid clicking crashes
+        if (navigationThrottleRef.current) return;
+        navigationThrottleRef.current = true;
+        setTimeout(() => {
+            navigationThrottleRef.current = false;
+        }, 100); // 100ms throttle
+
         setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, [slides.length]);
 
@@ -129,21 +145,38 @@ export default function FeaturedProjects({
     }, []);
 
     // Reset loaded states for slides that are no longer rendered
-    // This prevents blank flashes when slides remount after being out of range
+    // Debounced to prevent excessive setState calls during rapid navigation
     useEffect(() => {
-        setMediaLoadedStates((prevStates) => {
-            const newStates = { ...prevStates };
+        // Clear any existing timer
+        if (cleanupTimerRef.current) {
+            clearTimeout(cleanupTimerRef.current);
+        }
 
-            // Clear loaded state for any slide not currently in render range
-            Object.keys(newStates).forEach((slideId) => {
-                const slideIndex = slides.findIndex((s) => s.id === slideId);
-                if (slideIndex !== -1 && !shouldRenderSlide(slideIndex)) {
-                    delete newStates[slideId];
-                }
+        // Debounce cleanup by 300ms - only run after navigation settles
+        cleanupTimerRef.current = setTimeout(() => {
+            setMediaLoadedStates((prevStates) => {
+                const newStates = { ...prevStates };
+
+                // Clear loaded state for any slide not currently in render range
+                Object.keys(newStates).forEach((slideId) => {
+                    const slideIndex = slides.findIndex(
+                        (s) => s.id === slideId,
+                    );
+                    if (slideIndex !== -1 && !shouldRenderSlide(slideIndex)) {
+                        delete newStates[slideId];
+                    }
+                });
+
+                return newStates;
             });
+        }, 300);
 
-            return newStates;
-        });
+        // Cleanup timer on unmount
+        return () => {
+            if (cleanupTimerRef.current) {
+                clearTimeout(cleanupTimerRef.current);
+            }
+        };
     }, [currentSlide, slides, shouldRenderSlide]);
 
     // Keyboard navigation
@@ -195,7 +228,6 @@ export default function FeaturedProjects({
     }, [breakpoint]);
 
     // Manage video playback - only play current slide
-    // Around line 190-204, update the dependency array:
     useEffect(() => {
         Object.keys(videoRefs.current).forEach((slideId) => {
             const video = videoRefs.current[slideId];
@@ -209,7 +241,23 @@ export default function FeaturedProjects({
                 }
             }
         });
-    }, [currentSlide, slides, viewportDetected]); // Add viewportDetected here
+    }, [currentSlide, slides, viewportDetected]);
+
+    // Clean up video refs for slides no longer rendered (prevents memory leaks)
+    useEffect(() => {
+        Object.keys(videoRefs.current).forEach((slideId) => {
+            const slideIndex = slides.findIndex((s) => s.id === slideId);
+            if (slideIndex === -1 || !shouldRenderSlide(slideIndex)) {
+                const video = videoRefs.current[slideId];
+                if (video) {
+                    video.pause();
+                    video.src = ""; // Release video memory
+                    video.load(); // Force browser to release resources
+                    delete videoRefs.current[slideId];
+                }
+            }
+        });
+    }, [currentSlide, slides, shouldRenderSlide]);
 
     return (
         <section
