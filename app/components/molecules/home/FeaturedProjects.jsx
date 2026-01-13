@@ -103,19 +103,11 @@ export default function FeaturedProjects({
     // Helper to check if a slide should be rendered (current + 2 before + 2 after)
     const shouldRenderSlide = useCallback(
         (index) => {
-            // Calculate indices with wrapping
+            // Calculate indices with wrapping (current + 1 before + 1 after = 3 slides)
             const prev1 = (currentSlide - 1 + slides.length) % slides.length;
-            const prev2 = (currentSlide - 2 + slides.length) % slides.length;
             const next1 = (currentSlide + 1) % slides.length;
-            const next2 = (currentSlide + 2) % slides.length;
 
-            return (
-                index === currentSlide ||
-                index === prev1 ||
-                index === prev2 ||
-                index === next1 ||
-                index === next2
-            );
+            return index === currentSlide || index === prev1 || index === next1;
         },
         [currentSlide, slides.length],
     );
@@ -266,6 +258,7 @@ export default function FeaturedProjects({
                                             alt=""
                                             width={asset.width}
                                             height={asset.height}
+                                            decoding="async"
                                             className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
                                                 mediaLoadedStates[slide.id]
                                                     ? "opacity-0"
@@ -291,7 +284,7 @@ export default function FeaturedProjects({
                                         className="rounded-base relative mx-auto h-full w-auto object-contain"
                                         priority={index === currentSlide}
                                         onLoad={() => handleImageLoad(slide.id)}
-                                        sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
+                                        sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, (max-width: 1440px) 75vw, 70vw"
                                     />
                                 </div>
                             ) : type === "Video" ? (
@@ -303,6 +296,7 @@ export default function FeaturedProjects({
                                             alt=""
                                             width={asset.width}
                                             height={asset.height}
+                                            decoding="async"
                                             className={`rounded-base absolute mx-auto h-full w-auto object-contain transition-opacity duration-500 ${
                                                 mediaLoadedStates[slide.id]
                                                     ? "opacity-0"
@@ -331,8 +325,7 @@ export default function FeaturedProjects({
                                             }
                                         }}
                                         src={
-                                            !isMounted ||
-                                            shouldRenderSlide(index)
+                                            index === currentSlide
                                                 ? asset.url.startsWith("http")
                                                     ? asset.url
                                                     : `https:${asset.url}`
@@ -345,11 +338,9 @@ export default function FeaturedProjects({
                                         muted
                                         loop
                                         playsInline
-                                        preload={
-                                            index === currentSlide
-                                                ? "auto"
-                                                : "metadata"
-                                        }
+                                        disablePictureInPicture
+                                        disableRemotePlayback
+                                        preload="auto"
                                     />
                                 </div>
                             ) : null}
