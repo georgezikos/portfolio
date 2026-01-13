@@ -128,8 +128,23 @@ export default function FeaturedProjects({
         setMediaLoadedStates((prev) => ({ ...prev, [slideId]: true }));
     }, []);
 
-    // Note: We don't reset loaded states when slides leave render range
-    // This preserves the loaded state for cached images, preventing unnecessary blur transitions
+    // Reset loaded states for slides that are no longer rendered
+    // This prevents blank flashes when slides remount after being out of range
+    useEffect(() => {
+        setMediaLoadedStates((prevStates) => {
+            const newStates = { ...prevStates };
+
+            // Clear loaded state for any slide not currently in render range
+            Object.keys(newStates).forEach((slideId) => {
+                const slideIndex = slides.findIndex((s) => s.id === slideId);
+                if (slideIndex !== -1 && !shouldRenderSlide(slideIndex)) {
+                    delete newStates[slideId];
+                }
+            });
+
+            return newStates;
+        });
+    }, [currentSlide, slides, shouldRenderSlide]);
 
     // Keyboard navigation
     useEffect(() => {
