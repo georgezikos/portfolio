@@ -5,7 +5,6 @@ export default function MainNav({
 }) {
     // Needs to loop through a list of links and output list items
     const defaultLinks = [
-        { href: "/work", label: "Work" },
         { href: "/information", label: "Information" },
     ];
 

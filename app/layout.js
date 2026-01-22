@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import LayoutWrapper from "./components/organisms/global/LayoutWrapper";
 import PageTransition from "@/app/components/atoms/global/PageTransition";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -144,7 +145,7 @@ export default function RootLayout({ children }) {
             </head>
             <body className={`${inter.variable}`}>
                 <PageTransition />
-                {children}
+                <LayoutWrapper>{children}</LayoutWrapper>
                 <SpeedInsights />
                 {process.env.NODE_ENV === "production" && (
                     <Script

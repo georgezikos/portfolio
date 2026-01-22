@@ -1,5 +1,3 @@
-import Header from "@/app/components/organisms/global/Header";
-import Footer from "@/app/components/molecules/global/Footer";
 import InfoSection from "@/app/components/organisms/info/InfoSection";
 import { getInformationPageContent } from "@/lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -44,14 +42,14 @@ function renderInfoBodyContent(richTextDocument) {
 function transformInformationData(contentfulEntry) {
     if (!contentfulEntry) return {};
 
-    const fields = contentfulEntry.fields;
+    const fields = contentfulEntry?.fields || {};
 
     return {
         pageTitle: fields.pageTitle || "Information",
         
         // About section (first InfoSection - body type)
         aboutHeading: fields.aboutHeading || "About",
-        aboutContent: renderInfoBodyContent(fields.aboutContent),
+        aboutContent: fields.aboutContent ? renderInfoBodyContent(fields.aboutContent) : [],
         
         // Skills section (second InfoSection - list type)
         skillsHeading: fields.skillsHeading || "Skills",
@@ -64,7 +62,7 @@ function transformInformationData(contentfulEntry) {
         
         // Contact section (fourth InfoSection - body type)
         contactHeading: fields.contactHeading || "Contact",
-        contactContent: renderInfoBodyContent(fields.contactContent),
+        contactContent: fields.contactContent ? renderInfoBodyContent(fields.contactContent) : [],
     };
 }
 
@@ -74,45 +72,49 @@ export default async function Information() {
     const pageData = transformInformationData(informationEntry);
 
     return (
-        <div className="px-grid-margin pt-global-top-margin pb-global-btm-margin gap-y-global-xl-full flex min-h-screen flex-col">
-            <Header role="banner" />
-            <main
-                data-block="info-main"
-                className="gap-y-info-main-row-gap flex grow flex-col"
-            >
-                {/* About Section - body type */}
-                <InfoSection 
-                    heading={pageData.aboutHeading}
-                    sectionType="body"
-                    content={pageData.aboutContent}
-                />
+        <main
+            data-block="info-main"
+            className="gap-y-info-main-row-gap flex grow flex-col"
+        >
+                {/* About Section - body type - only render if content exists */}
+                {pageData.aboutContent && pageData.aboutContent.length > 0 && (
+                    <InfoSection 
+                        heading={pageData.aboutHeading}
+                        sectionType="body"
+                        content={pageData.aboutContent}
+                    />
+                )}
                 
-                {/* Skills Section - list type */}
-                <InfoSection
-                    heading={pageData.skillsHeading}
-                    sectionType="list"
-                    headingClassName="hidden md:block"
-                    skillsData={pageData.skillsContent}
-                />
+                {/* Skills Section - list type - only render if skills data exists */}
+                {pageData.skillsContent && pageData.skillsContent.length > 0 && (
+                    <InfoSection
+                        heading={pageData.skillsHeading}
+                        sectionType="list"
+                        headingClassName="hidden md:block"
+                        skillsData={pageData.skillsContent}
+                    />
+                )}
                 
-                {/* Experience Section - experiences type */}
-                <InfoSection 
-                    heading={pageData.experienceHeading}
-                    sectionType="experiences"
-                    experiences={pageData.experienceContent}
-                    cv={pageData.cv}
-                />
+                {/* Experience Section - experiences type - only render if experience data exists */}
+                {pageData.experienceContent && pageData.experienceContent.length > 0 && (
+                    <InfoSection 
+                        heading={pageData.experienceHeading}
+                        sectionType="experiences"
+                        experiences={pageData.experienceContent}
+                        cv={pageData.cv}
+                    />
+                )}
                 
-                {/* Contact Section - body type with custom spacing for multiple paragraphs */}
-                <InfoSection 
-                    heading={pageData.contactHeading}
-                    sectionType="body"
-                    content={pageData.contactContent}
-                    multiClassName="*:not-last:mb-[6.5px] *:not-first:mt-[6.5px] sm:*:not-last:mb-[7px] sm:*:not-first:mt-[7px] xl:*:not-last:mb-[7.5px] xl:*:not-first:mt-[7.5px]"
-                />
-            </main>
-            <Footer role="contentinfo" />
-        </div>
+                {/* Contact Section - body type with custom spacing - only render if content exists */}
+                {pageData.contactContent && pageData.contactContent.length > 0 && (
+                    <InfoSection 
+                        heading={pageData.contactHeading}
+                        sectionType="body"
+                        content={pageData.contactContent}
+                        multiClassName="*:not-last:mb-[6.5px] *:not-first:mt-[6.5px] sm:*:not-last:mb-[7px] sm:*:not-first:mt-[7px] xl:*:not-last:mb-[7.5px] xl:*:not-first:mt-[7.5px]"
+                    />
+                )}
+        </main>
     );
 }
 

@@ -7,6 +7,7 @@ import { getAspectRatioClass } from "@/lib/utils";
 export default function FeaturedProjects({
     projects = [],
     className = "",
+    as: Component = "section", // Allow polymorphic rendering
     breakpoint = 1024,
     fallbackProjects = [
         {
@@ -260,13 +261,13 @@ export default function FeaturedProjects({
     }, [currentSlide, slides, shouldRenderSlide]);
 
     return (
-        <section
+        <Component
             ref={carouselRef}
-            role="region"
-            aria-roledescription="carousel"
+            role={Component === "main" ? undefined : "region"}
+            aria-roledescription={Component === "main" ? undefined : "carousel"}
             aria-label="Featured work slideshow"
             className={`relative w-full ${className}`}
-            data-block="featured-projects"
+            data-block={Component === "main" ? "home-content" : "featured-projects"}
         >
             {/* Screen reader announcement */}
             <div
@@ -425,6 +426,6 @@ export default function FeaturedProjects({
                     aria-label="Next slide"
                 />
             </div>
-        </section>
+        </Component>
     );
 }
