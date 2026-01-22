@@ -1,5 +1,6 @@
 import FeaturedProjects from "@/app/components/molecules/home/FeaturedProjects";
 import { getFeaturedMedia } from "@/lib/contentful";
+import Footer from "./components/molecules/global/Footer";
 
 // On-demand revalidation only (via Contentful webhook)
 // This prevents automatic hourly rebuilds, saving massive bandwidth

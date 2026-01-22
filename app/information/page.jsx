@@ -10,11 +10,11 @@ export const revalidate = false;
 
 // Metadata for SEO
 export const metadata = {
-    title: "Information — GEORGE ZIKOS",
+    title: "GEORGE ZIKOS — Information",
     description:
         "Learn more about George Zikos — an independent multidisciplinary designer and web developer based in Toronto. View experience, skills, and contact information.",
     openGraph: {
-        title: "Information — GEORGE ZIKOS",
+        title: "GEORGE ZIKOS — Information",
         description:
             "Learn more about George Zikos — an independent multidisciplinary designer and web developer based in Toronto. View experience, skills, and contact information.",
         url: "https://george-zikos.com/information",
@@ -29,7 +29,7 @@ export const metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Information — GEORGE ZIKOS",
+        title: "GEORGE ZIKOS — Information",
         description:
             "Learn more about George Zikos — an independent multidisciplinary designer and web developer based in Toronto. View experience, skills, and contact information.",
         images: ["/og-image.png"],
