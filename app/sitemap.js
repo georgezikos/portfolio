@@ -1,4 +1,3 @@
-// Sitemap for single-page launch (homepage only)
 export default function sitemap() {
     return [
         {
@@ -6,6 +5,12 @@ export default function sitemap() {
             lastModified: new Date(),
             changeFrequency: "monthly",
             priority: 1.0,
+        },
+        {
+            url: "https://george-zikos.com/information",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.8,
         },
     ];
 }

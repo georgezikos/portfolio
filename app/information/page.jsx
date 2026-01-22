@@ -1,7 +1,43 @@
 import InfoSection from "@/app/components/organisms/info/InfoSection";
+import CopyEmailLink from "@/app/components/atoms/global/CopyEmailLink";
 import { getInformationPageContent } from "@/lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+
+// On-demand revalidation only (via Contentful webhook)
+// This prevents automatic hourly rebuilds, saving massive bandwidth
+export const revalidate = false;
+
+// Metadata for SEO
+export const metadata = {
+    title: "Information — GEORGE ZIKOS",
+    description:
+        "Learn more about George Zikos — an independent multidisciplinary designer and web developer based in Toronto. View experience, skills, and contact information.",
+    openGraph: {
+        title: "Information — GEORGE ZIKOS",
+        description:
+            "Learn more about George Zikos — an independent multidisciplinary designer and web developer based in Toronto. View experience, skills, and contact information.",
+        url: "https://george-zikos.com/information",
+        images: [
+            {
+                url: "/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "George Zikos Portfolio",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Information — GEORGE ZIKOS",
+        description:
+            "Learn more about George Zikos — an independent multidisciplinary designer and web developer based in Toronto. View experience, skills, and contact information.",
+        images: ["/og-image.png"],
+    },
+    alternates: {
+        canonical: "/information",
+    },
+};
 
 // Rich text renderer for body content - preserves structure as JSX elements
 function renderInfoBodyContent(richTextDocument) {
@@ -14,11 +50,29 @@ function renderInfoBodyContent(richTextDocument) {
             },
             [INLINES.HYPERLINK]: (node, children) => {
                 const href = node.data?.uri || '#';
+                const isMailto = href.startsWith('mailto:');
+                
+                if (isMailto) {
+                    const email = href.replace('mailto:', '');
+                    return (
+                        <CopyEmailLink
+                            email={email}
+                            className="hover:text-link-secondary-hover active:text-link-secondary-hover focus-visible:text-link-secondary-hover relative inline-block cursor-pointer no-underline transition-colors duration-200 ease-in-out"
+                            spanClassName="absolute inset-[0]"
+                            copiedSpanClassName="!text-link-secondary-hover absolute inset-[0]"
+                            invisibleSpanClassName="invisible"
+                        >
+                            {children}
+                        </CopyEmailLink>
+                    );
+                }
+                
                 return (
                     <a 
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="hover:text-link-secondary-hover active:text-link-secondary-hover focus-visible:text-link-secondary-hover no-underline transition-colors duration-200 ease-in-out"
                     >
                         {children}
                     </a>
@@ -116,18 +170,4 @@ export default async function Information() {
                 )}
         </main>
     );
-}
-
-// Add metadata
-export async function generateMetadata() {
-    const informationEntry = await getInformationPageContent();
-    const pageData = transformInformationData(informationEntry);
-    
-    return {
-        title: pageData.pageTitle,
-        robots: {
-            index: false,
-            follow: false,
-        },
-    };
 }

@@ -20,7 +20,7 @@ export default function MainNav({
                 return (
                     <li key={link.href || index} data-element="main-nav__link">
                         <a
-                            className="no-underline"
+                            className="hover:text-link-primary-hover active:text-link-primary-hover focus-visible:text-link-primary-hover no-underline transition-colors duration-200 ease-in-out"
                             href={link.href}
                             aria-current={isCurrentPage ? "page" : undefined}
                         >

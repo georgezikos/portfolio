@@ -63,7 +63,7 @@ export default function ExperienceList({
                 ))}
             </ul>
             <a
-                className="text-link-base-showcase-cv text-text-primary w-fit"
+                className="text-link-base-showcase-cv text-text-primary hover:text-link-primary-hover active:text-link-primary-hover focus-visible:text-link-primary-hover w-fit no-underline transition-colors duration-200 ease-in-out"
                 data-element="section-content-experience__link"
                 href={cv}
                 target="_blank"
