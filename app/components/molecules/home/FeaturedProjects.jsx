@@ -266,7 +266,7 @@ export default function FeaturedProjects({
             role={Component === "main" ? undefined : "region"}
             aria-roledescription={Component === "main" ? undefined : "carousel"}
             aria-label="Featured work slideshow"
-            className={`relative w-full ${className}`}
+            className={`relative w-full h-full ${className}`}
             data-block={Component === "main" ? "home-content" : "featured-projects"}
         >
             {/* Screen reader announcement */}

@@ -20,7 +20,7 @@ export default function LayoutWrapper({ children }) {
 
     return (
         <div className={containerClasses}>
-            <Header />
+            <Header currentPath={pathname} />
             {children}
             <Footer />
         </div>

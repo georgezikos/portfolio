@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import MainNav from "../../molecules/global/MainNav";
 import ThemeToggle from "../../atoms/global/ThemeToggle";
 
@@ -23,13 +26,13 @@ export default function Header({
                         className="text-heading-lg-site-title text-text-primary group w-fit"
                         data-element="global-header__name"
                     >
-                        <a
+                        <Link
                             href="/"
                             className="group-hover:text-link-primary-hover group-active:text-link-primary-hover focus-visible:text-link-primary-hover no-underline transition-colors duration-200 ease-in-out"
                             aria-label="George Zikos - Portfolio Home"
                         >
                             George Zikos
-                        </a>
+                        </Link>
                     </h1>
                 </div>
                 {showNav && (

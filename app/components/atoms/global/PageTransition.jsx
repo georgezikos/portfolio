@@ -1,42 +1,24 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useTransition } from "@/app/context/TransitionContext";
+import { useEffect, useState } from "react";
 
 export default function PageTransition() {
-    const { transitionStage } = useTransition();
     const [isVisible, setIsVisible] = useState(true);
     const [shouldRender, setShouldRender] = useState(true);
-    const hasInitialFaded = useRef(false);
 
-    // Handle initial page load fade-in (only once)
+    // Handle initial page load fade-in
     useEffect(() => {
-        if (!hasInitialFaded.current && transitionStage === "idle") {
-            // Wait for content to be mounted, then trigger fade-out
-            const timer = setTimeout(() => {
-                setIsVisible(false);
-                hasInitialFaded.current = true;
-            }, 50); // Small delay to ensure content is ready
-
-            return () => clearTimeout(timer);
-        }
-    }, [transitionStage]);
-
-    // Handle page transition animations
-    useEffect(() => {
-        if (transitionStage === "exiting") {
-            // Show overlay and fade in (reverse of normal)
-            setShouldRender(true);
-            setIsVisible(true);
-        } else if (transitionStage === "entering") {
-            // Fade out overlay to reveal new page
+        // Wait for content to be mounted, then trigger fade-out
+        const timer = setTimeout(() => {
             setIsVisible(false);
-        }
-    }, [transitionStage]);
+        }, 50); // Small delay to ensure content is ready
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleTransitionEnd = () => {
         // After opacity transition completes, hide the overlay
-        if (!isVisible && transitionStage === "idle") {
+        if (!isVisible) {
             setShouldRender(false);
         }
     };
