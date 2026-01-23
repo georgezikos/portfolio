@@ -78,21 +78,22 @@ export default function LayoutWrapper({ children }) {
         }
 
         // Move focus to main content for keyboard navigation
-        const timer = setTimeout(() => {
-            const mainContent = document.querySelector("main");
-            if (mainContent) {
-                mainContent.setAttribute("tabindex", "-1");
-                mainContent.focus({ preventScroll: true });
-                // Remove tabindex after focus to maintain natural tab order
-                mainContent.addEventListener(
-                    "blur",
-                    () => mainContent.removeAttribute("tabindex"),
-                    { once: true },
-                );
-            }
-        }, 50);
+        // TEMPORARILY DISABLED to debug Safari outline flash
+        // const timer = setTimeout(() => {
+        //     const mainContent = document.querySelector("main");
+        //     if (mainContent) {
+        //         mainContent.setAttribute("tabindex", "-1");
+        //         mainContent.focus({ preventScroll: true });
+        //         // Remove tabindex after focus to maintain natural tab order
+        //         mainContent.addEventListener(
+        //             "blur",
+        //             () => mainContent.removeAttribute("tabindex"),
+        //             { once: true },
+        //         );
+        //     }
+        // }, 50);
 
-        return () => clearTimeout(timer);
+        // return () => clearTimeout(timer);
     }, [pathname]);
 
     // Conditional classes based on LAYOUT state (not current pathname)
@@ -123,7 +124,7 @@ export default function LayoutWrapper({ children }) {
     // Transition timing - instant for reduced motion, smooth otherwise
     const transition = prefersReducedMotion
         ? { duration: 0.01 }
-        : { duration: 0.2, ease: [0.4, 0, 0.2, 1] };
+        : { duration: 0.3, ease: [0.4, 0, 0.2, 1] };
 
     // Handler called when exit animation completes
     const handleExitComplete = () => {
