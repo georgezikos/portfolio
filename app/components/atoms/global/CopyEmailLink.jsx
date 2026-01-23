@@ -17,6 +17,9 @@ export default function CopyEmailLink({
     const handleCopyEmail = async (e) => {
         e.preventDefault();
 
+        // Prevent redundant copy operations
+        if (isCopied) return;
+
         // Check if clipboard API is available and in secure context
         if (!navigator.clipboard || !window.isSecureContext) {
             console.warn(

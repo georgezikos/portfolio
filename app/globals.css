@@ -2315,6 +2315,11 @@
 
 @import "./capsize.css";
 
+/* Accessibility - Hide focus outline for programmatically focused elements */
+[tabindex="-1"]:focus {
+    outline: none;
+}
+
 /* Line-by-line reveal animation for loading states - controlled by JavaScript */
 
 @theme inline {

@@ -37,13 +37,5 @@ export default async function Home() {
     // Fetch featured media from Contentful (server-side)
     const featuredMedia = await getFeaturedMedia();
 
-    return (
-        <div className="flex h-full flex-col justify-center">
-            <FeaturedProjects
-                as="main"
-                projects={featuredMedia}
-                className="grow overflow-hidden h-full"
-            />
-        </div>
-    );
+    return <FeaturedProjects as="main" projects={featuredMedia} />;
 }
