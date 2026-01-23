@@ -42,7 +42,7 @@ export default async function Home() {
             <FeaturedProjects
                 as="main"
                 projects={featuredMedia}
-                className="max-h-[80%] grow overflow-hidden h-full"
+                className="grow overflow-hidden h-full"
             />
         </div>
     );

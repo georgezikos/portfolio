@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function PageTransition() {
+export default function PageLoad() {
     const [isVisible, setIsVisible] = useState(true);
     const [shouldRender, setShouldRender] = useState(true);
 
@@ -29,7 +29,7 @@ export default function PageTransition() {
 
     return (
         <div
-            data-element="page-transition"
+            data-element="page-load"
             className={`ease fixed inset-[0] z-[9999] bg-[var(--surface-primary)] transition-opacity duration-200 ${
                 isVisible ? "opacity-100" : "opacity-0"
             }`}
