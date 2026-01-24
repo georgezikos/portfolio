@@ -29,8 +29,12 @@ export default function MainList({
             aria-label={ariaLabel}
         >
             {listItems.map((item, index) => (
-                <li key={item.id || index} data-element="main-list__list-item">
-                    <span className="text-body-lg-main-list">{item.text}</span>
+                <li
+                    key={item.id || index}
+                    data-element="main-list__list-item"
+                    className="text-body-lg-main-list"
+                >
+                    {item.text}
                 </li>
             ))}
         </ListElement>
